@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solventa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="#" class="navbar-logo">
+        <img src="material/solventa_logo_klein.png" alt="Solventa Digital" class="navbar-logo-img" />
+      </a>
+
+      <nav class="nav-menu">
+        <ul class="nav-list">
+
+          <!-- Home -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Home
+              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-content">
+              <ul class="home-grid">
+                <li class="home-featured-li">
+                  <a href="#" class="home-featured-link">
+                    <div class="featured-name">ReUI</div>
+                    <p class="featured-desc">Beautifully designed components built with React and Tailwind CSS.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Introduction</div>
+                    <p class="link-desc">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Installation</div>
+                    <p class="link-desc">How to install dependencies and structure your app.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Typography</div>
+                    <p class="link-desc">Styles for headings, paragraphs, lists...etc</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Components -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Components
+              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-content">
+              <ul class="components-grid">
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Alert Dialog</div>
+                    <p class="link-desc">A modal dialog that interrupts the user with important content and expects a response.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Hover Card</div>
+                    <p class="link-desc">For sighted users to preview content available behind a link.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Progress</div>
+                    <p class="link-desc">Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Scroll-area</div>
+                    <p class="link-desc">Visually or semantically separates content.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Tabs</div>
+                    <p class="link-desc">A set of layered sections of content—known as tab panels—that are displayed one at a time.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Tooltip</div>
+                    <p class="link-desc">A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Docs — direct link -->
+          <li class="nav-item">
+            <a href="#" class="nav-trigger nav-trigger--link">Docs</a>
+          </li>
+
+          <!-- List -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              List
+              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-content">
+              <ul class="list-grid">
+                <li>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Components</div>
+                    <div class="link-desc">Browse all components in the library.</div>
+                  </a>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Documentation</div>
+                    <div class="link-desc">Learn how to use the library.</div>
+                  </a>
+                  <a href="#" class="nav-link-item">
+                    <div class="link-title">Blog</div>
+                    <div class="link-desc">Read our latest blog posts.</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Simple -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Simple
+              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-content">
+              <ul class="simple-grid">
+                <li>
+                  <a href="#" class="nav-link-item">Components</a>
+                  <a href="#" class="nav-link-item">Documentation</a>
+                  <a href="#" class="nav-link-item">Blocks</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- With Icon -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              With Icon
+              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-content">
+              <ul class="icon-grid">
+                <li>
+                  <a href="#" class="nav-link-item nav-link-item--row">
+                    <svg class="status-icon icon-backlog" width="16" height="16" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                      <circle cx="12" cy="17" r=".5" fill="currentColor"/>
+                    </svg>
+                    Backlog
+                  </a>
+                  <a href="#" class="nav-link-item nav-link-item--row">
+                    <svg class="status-icon icon-todo" width="16" height="16" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                    To Do
+                  </a>
+                  <a href="#" class="nav-link-item nav-link-item--row">
+                    <svg class="status-icon icon-done" width="16" height="16" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Done
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ═══ Hero Section — LandingHero ════════════════════════ -->
+  <section class="lhero" id="lhero">
+
+    <!-- Background video loop -->
+    <video class="lhero-video" autoplay muted loop playsinline preload="auto"
+      poster="material/hero_wall_poster.jpg" aria-hidden="true">
+      <source src="material/hero_wall.webm" type="video/webm" />
+      <source src="material/hero_wall.mp4" type="video/mp4" />
+    </video>
+    <div class="lhero-video-overlay" aria-hidden="true"></div>
+
+    <!-- Central content -->
+    <div class="lhero-center z50" id="lheroCenter">
+      <h1 class="lhero-title" id="lheroTitle">
+        <span class="lhero-title-line">Ihre Website</span>
+        <span class="lhero-title-line lhero-title-line--flex">
+          <span>aber&#160;</span>
+          <!-- Text rotation -->
+          <span class="lhero-rotate" id="lheroRotate" aria-live="polite"></span>
+        </span>
+      </h1>
+      <p class="lhero-sub" id="lheroSub">
+        Webdesign · Grafikdesign · Digitale Systeme – aus Paderborn.
+      </p>
+      <div class="lhero-buttons" id="lheroButtons">
+        <button class="lhero-btn lhero-btn--primary">
+          Kostenloses Erstgespräch <span class="lhero-btn-arrow">→</span>
+        </button>
+        <button class="lhero-btn lhero-btn--secondary">
+          Leistungen ansehen
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ Reviews Section ════════════════════════════════════ -->
+  <section class="reviews" id="reviews" aria-label="Kundenbewertungen">
+
+    <!-- Schema.org LocalBusiness + AggregateRating → Rich Snippets in Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Solventa Digital",
+      "description": "Professionelles Webdesign, Grafikdesign und digitale Geschäftssysteme aus Paderborn.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Paderborn",
+        "addressRegion": "Nordrhein-Westfalen",
+        "addressCountry": "DE"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "38"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Thomas Bergmann"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Solventa hat unsere Website komplett neu gestaltet. Das Ergebnis ist modern, schnell und wir bekommen deutlich mehr Anfragen. Absolute Empfehlung!"
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Sandra Keller"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Sehr professionelle Zusammenarbeit. Die neue Website lädt blitzschnell und sieht auf dem Handy genauso gut aus wie am PC."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Markus Vogt"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Wir brauchten ein internes Mitarbeiterportal – Solventa hat es genau nach unseren Vorstellungen umgesetzt. Schnelle Reaktionszeiten und tolle Umsetzung."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Julia Schneider"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Das neue Logo und die Corporate Identity sind genau das, was wir uns vorgestellt haben. Kreativ, klar und professionell. Danke!"
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Peter Hoffmann"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Faire Preise und ein tolles Ergebnis. Unsere neue Website ist seit dem Launch deutlich besser bei Google zu finden."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Nina Braun"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Super schnelle Umsetzung! Innerhalb von 3 Wochen hatten wir eine komplett neue Website. Design und Technik stimmen einfach."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Andreas Koch"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Das Team von Solventa hat uns bei unserem Online-Auftritt wirklich geholfen. Endlich werden wir bei Google gefunden!"
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Laura Meyer"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Wir haben ein maßgeschneidertes Buchungssystem bekommen, das perfekt zu unseren Abläufen passt. Jede Anforderung wurde umgesetzt."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Felix Wagner"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Tolle Erfahrung von der ersten Anfrage bis zur fertigen Website. Freundlich, kompetent und die Deadlines wurden eingehalten."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Two-column layout: header left, 3D marquee right -->
+    <div class="reviews-inner">
+    <!-- Section header -->
+    <div class="reviews-header">
+      <div class="reviews-badge">
+        <svg class="google-g" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <span class="badge-stars" aria-label="5 von 5 Sternen">★★★★★</span>
+        <span class="badge-score">4,9</span>
+        <span class="badge-sep">·</span>
+        <span class="badge-count">38 Bewertungen auf Google</span>
+      </div>
+      <h2 class="reviews-title">Das sagen unsere Kunden</h2>
+      <p class="reviews-sub">Echte Erfahrungen, echte Ergebnisse – aus Paderborn und der Region.</p>
+    </div>
+
+    <!-- 3D Marquee — 4 vertical columns, alternating direction -->
+    <div class="reviews-3d" id="reviews3d">
+      <div class="reviews-scene">
+        <div class="marquee-col"           id="revCol1"></div>
+        <div class="marquee-col rev-col-r" id="revCol2"></div>
+        <div class="marquee-col"           id="revCol3"></div>
+        <div class="marquee-col rev-col-r" id="revCol4"></div>
+      </div>
+      <!-- Edge fades — match background so cards dissolve cleanly -->
+      <div class="rev-grad rev-grad--top"></div>
+      <div class="rev-grad rev-grad--bottom"></div>
+      <div class="rev-grad rev-grad--left"></div>
+      <div class="rev-grad rev-grad--right"></div>
+    </div>
+    </div><!-- /reviews-inner -->
+
+  </section>
+
+  <!-- ═══ Leistungen — Gallery4 ══════════════════════════════ -->
+  <section class="g4" id="leistungen">
+
+    <!-- Header: title left, nav arrows right -->
+    <div class="g4-head-wrap">
+      <div class="g4-head">
+        <div class="g4-head-left">
+          <h2 class="g4-title">Unsere Leistungen</h2>
+          <p class="g4-desc">Von der ersten Idee bis zum fertigen Produkt — wir begleiten Sie bei jedem Schritt Ihrer digitalen Entwicklung.</p>
+        </div>
+        <div class="g4-arrows">
+          <button class="g4-arrow" id="g4Prev" aria-label="Vorherige" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+          </button>
+          <button class="g4-arrow" id="g4Next" aria-label="Nächste">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel — full width, bleeds right -->
+    <div class="g4-carousel">
+      <div class="g4-track" id="g4Track">
+
+        <div class="g4-item">
+          <a href="#" class="g4-card">
+            <img class="g4-img" src="https://images.unsplash.com/photo-1551250928-243dc937c49d?w=1080&auto=format&fit=crop" alt="Webdesign" />
+            <div class="g4-overlay"></div>
+            <div class="g4-body">
+              <div class="g4-card-title">Webdesign</div>
+              <p class="g4-card-desc">Professionelle Websites, die Besucher überzeugen und qualifizierte Anfragen generieren.</p>
+              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="g4-item">
+          <a href="#" class="g4-card">
+            <img class="g4-img" src="https://images.unsplash.com/photo-1551250928-e4a05afaed1e?w=1080&auto=format&fit=crop" alt="Grafikdesign" />
+            <div class="g4-overlay"></div>
+            <div class="g4-body">
+              <div class="g4-card-title">Grafikdesign</div>
+              <p class="g4-card-desc">Logos, Corporate Identity und Print-Design, das Ihr Unternehmen unverwechselbar macht.</p>
+              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="g4-item">
+          <a href="#" class="g4-card">
+            <img class="g4-img" src="https://images.unsplash.com/photo-1536735561749-fc87494598cb?w=1080&auto=format&fit=crop" alt="Digitale Geschäftssysteme" />
+            <div class="g4-overlay"></div>
+            <div class="g4-body">
+              <div class="g4-card-title">Digitale Geschäftssysteme</div>
+              <p class="g4-card-desc">Individuelle Portale, Dashboards und Datenbanklösungen, die Ihre Prozesse effizienter machen.</p>
+              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="g4-item">
+          <a href="#" class="g4-card">
+            <img class="g4-img" src="https://images.unsplash.com/photo-1548324215-9133768e4094?w=1080&auto=format&fit=crop" alt="E-Commerce" />
+            <div class="g4-overlay"></div>
+            <div class="g4-body">
+              <div class="g4-card-title">E-Commerce</div>
+              <p class="g4-card-desc">Online-Shops mit optimierter User Experience und technischer Performance von Anfang an.</p>
+              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="g4-item">
+          <a href="#" class="g4-card">
+            <img class="g4-img" src="https://images.unsplash.com/photo-1550070881-a5d71eda5800?w=1080&auto=format&fit=crop" alt="Wartung & Support" />
+            <div class="g4-overlay"></div>
+            <div class="g4-body">
+              <div class="g4-card-title">Wartung &amp; Support</div>
+              <p class="g4-card-desc">Zuverlässige Betreuung Ihrer Website — Updates, Sicherheit und schneller Support wenn es zählt.</p>
+              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dot indicators -->
+    <div class="g4-dots" id="g4Dots"></div>
+
+  </section>
+
+  <!-- ═══ Projekte / Erfolge — Features-7 (tailark / 21st.dev) ═ -->
+  <section class="feat7" id="erfolge" aria-label="Projekte, die Ergebnisse liefern">
+    <div class="feat7-inner">
+
+      <!-- Heading + reference navigation -->
+      <div class="feat7-head reveal">
+        <h2 class="feat7-title">Projekte, die Ergebnisse liefern</h2>
+        <p class="feat7-sub">Echte Websites für echte Unternehmen aus der Region – modern, schnell und gemacht, um Anfragen zu bringen.</p>
+      </div>
+
+      <!-- Control bar: current project + arrows -->
+      <div class="feat7-bar reveal">
+        <div class="feat7-project" id="feat7Project">Bautrocknung OWL</div>
+        <div class="feat7-arrows">
+          <button class="feat7-arrow" id="feat7Prev" aria-label="Vorherige Referenz">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+          </button>
+          <button class="feat7-arrow" id="feat7Next" aria-label="Nächste Referenz">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Swappable content (image + features cross-fade on navigation) -->
+      <div class="feat7-swap" id="feat7Swap">
+
+        <!-- Tilted 3D image showcase -->
+        <div class="feat7-showcase reveal">
+          <div class="feat7-perspective">
+            <div class="feat7-tilt">
+              <div class="feat7-frame">
+                <div class="feat7-vignette" aria-hidden="true"></div>
+                <div class="feat7-media" id="feat7Media">
+                  <video class="feat7-img" muted loop playsinline preload="auto"
+                    poster="material/bautrocknung_poster.jpg"
+                    aria-label="Scroll-Aufnahme der Website von Bautrocknung OWL">
+                    <source src="material/bautrocknung.webm" type="video/webm" />
+                    <source src="material/bautrocknung.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature grid — short heading + big counting key figure -->
+        <div class="feat7-grid">
+          <div class="feat7-feature reveal">
+            <span class="feat7-label">Besucher</span>
+            <h3 class="feat7-fval" data-target="212" data-prefix="+" data-suffix="&#160;%">+212&#160;%</h3>
+          </div>
+          <div class="feat7-feature reveal">
+            <span class="feat7-label">Neukunden</span>
+            <h3 class="feat7-fval" data-target="180" data-prefix="+" data-suffix="&#160;%">+180&#160;%</h3>
+          </div>
+          <div class="feat7-feature reveal">
+            <span class="feat7-label">Platzierung</span>
+            <h3 class="feat7-fval">#1</h3>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dots -->
+      <div class="feat7-dots" id="feat7Dots"></div>
+
+    </div>
+  </section>
+
+  <!-- ═══ So arbeiten wir — animated timeline ════════════════ -->
+  <section class="proc" id="ablauf" aria-label="So arbeiten wir">
+    <div class="proc-inner">
+
+      <div class="proc-head reveal">
+        <span class="proc-eyebrow">Unser Ablauf</span>
+        <h2 class="proc-title">So arbeiten wir</h2>
+        <p class="proc-sub">Vom ersten Gespräch bis zum fertigen Ergebnis – ein klarer Weg in vier Schritten. Transparent und ohne Umwege.</p>
+      </div>
+
+      <ol class="proc-steps" id="procSteps">
+        <!-- animated connecting line (desktop horizontal / mobile vertical) -->
+        <div class="proc-line" aria-hidden="true"><span class="proc-line-fill" id="procLineFill"></span></div>
+
+        <li class="proc-step" style="--i:0">
+          <div class="proc-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span class="proc-num">01</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Erstgespräch</h3>
+            <p class="proc-step-desc">Wir klären deine Ziele, Wünsche und den Rahmen – kostenlos und unverbindlich.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:1">
+          <div class="proc-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
+            </svg>
+            <span class="proc-num">02</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Konzept &amp; Design</h3>
+            <p class="proc-step-desc">Wir entwickeln Struktur und Design, passgenau auf deine Marke abgestimmt.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:2">
+          <div class="proc-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+            <span class="proc-num">03</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Umsetzung</h3>
+            <p class="proc-step-desc">Wir setzen deine Website oder dein System sauber, schnell und zuverlässig um.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:3">
+          <div class="proc-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg>
+            <span class="proc-num">04</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Launch &amp; Betreuung</h3>
+            <p class="proc-step-desc">Wir gehen live – und bleiben auch danach dein Ansprechpartner.</p>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA — Text-Marquee (uimix / 21st.dev) ══════════════ -->
+  <section class="mcta" id="kontakt" aria-label="Kostenloses Erstgespräch anfragen">
+    <div class="mcta-inner">
+
+      <!-- Left content -->
+      <div class="mcta-left reveal">
+        <h2 class="mcta-title">In wenigen Tagen startklar</h2>
+        <p class="mcta-text">Mehr Sichtbarkeit, mehr Anfragen, mehr Wachstum. Lass uns in einem kostenlosen Erstgespräch über dein Projekt sprechen – unverbindlich.</p>
+        <div class="mcta-buttons">
+          <a href="#" class="mcta-btn mcta-btn--primary">
+            <span>Kostenloses Erstgespräch</span>
+            <span class="mcta-shine" aria-hidden="true"></span>
+          </a>
+          <a href="#" class="mcta-btn mcta-btn--secondary">
+            <span>Projekt besprechen</span>
+            <span class="mcta-shine" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: vertical text marquee -->
+      <div class="mcta-marquee reveal" id="mctaMarquee" aria-hidden="true">
+        <div class="mcta-viewport">
+          <div class="mcta-track">
+            <span class="mcta-item">Handwerksbetriebe</span>
+            <span class="mcta-item">Selbstständige</span>
+            <span class="mcta-item">Mittelstand</span>
+            <span class="mcta-item">Online-Shops</span>
+            <span class="mcta-item">Dienstleister</span>
+            <span class="mcta-item">Lokale Unternehmen</span>
+            <!-- duplicate for seamless loop -->
+            <span class="mcta-item">Handwerksbetriebe</span>
+            <span class="mcta-item">Selbstständige</span>
+            <span class="mcta-item">Mittelstand</span>
+            <span class="mcta-item">Online-Shops</span>
+            <span class="mcta-item">Dienstleister</span>
+            <span class="mcta-item">Lokale Unternehmen</span>
+          </div>
+        </div>
+        <div class="mcta-fade mcta-fade--top"></div>
+        <div class="mcta-fade mcta-fade--bottom"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ════════════════════════════════════════════════ -->
+  <section class="faq" id="faq" aria-label="Häufige Fragen">
+
+    <!-- Schema.org FAQPage → Rich Snippets + KI-Verständnis -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet eine Website bei Solventa Digital?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Der Preis hängt vom Umfang ab – eine einfache Unternehmenswebsite startet günstiger als ein individuelles Geschäftssystem oder ein Online-Shop. Nach dem kostenlosen Erstgespräch erhältst du ein transparentes Festpreis-Angebot ohne versteckte Kosten."}
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange dauert die Umsetzung?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Eine typische Unternehmenswebsite ist in der Regel innerhalb von 3 bis 6 Wochen fertig. Größere Projekte wie digitale Geschäftssysteme dauern entsprechend länger. Den genauen Zeitrahmen legen wir gemeinsam zu Beginn fest."}
+        },
+        {
+          "@type": "Question",
+          "name": "Für wen ist Solventa Digital geeignet?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Wir arbeiten mit kleinen und mittelständischen Unternehmen, Selbstständigen und Handwerksbetrieben – vor allem aus Paderborn und der Region OWL, aber auch deutschlandweit."}
+        },
+        {
+          "@type": "Question",
+          "name": "Was sind digitale Geschäftssysteme?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Damit meinen wir individuelle digitale Lösungen für Unternehmensprozesse – zum Beispiel Mitarbeiterportale, interne Dashboards, Datenbank-Systeme oder Geräteverwaltungen. Alles maßgeschneidert auf deine Abläufe."}
+        },
+        {
+          "@type": "Question",
+          "name": "Bietet ihr auch Wartung und Support an?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Ja. Auf Wunsch übernehmen wir nach dem Launch die laufende Betreuung – inklusive Updates, Sicherheit und schnellem Support, wenn du uns brauchst."}
+        },
+        {
+          "@type": "Question",
+          "name": "In welcher Region seid ihr tätig?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Unser Sitz ist in Paderborn und wir sind in ganz Ostwestfalen-Lippe (OWL) aktiv. Projekte setzen wir aber auch ortsunabhängig in ganz Deutschland um."}
+        }
+      ]
+    }
+    </script>
+
+    <div class="faq-inner">
+      <div class="faq-head reveal">
+        <h2 class="faq-title">Häufige Fragen</h2>
+        <p class="faq-sub">Du hast eine andere Frage? Schreib uns einfach – wir antworten schnell.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>Was kostet eine Website bei Solventa Digital?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Der Preis hängt vom Umfang ab – eine einfache Unternehmenswebsite startet günstiger als ein individuelles Geschäftssystem oder ein Online-Shop. Nach dem kostenlosen Erstgespräch erhältst du ein transparentes Festpreis-Angebot ohne versteckte Kosten.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>Wie lange dauert die Umsetzung?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Eine typische Unternehmenswebsite ist in der Regel innerhalb von 3 bis 6 Wochen fertig. Größere Projekte wie digitale Geschäftssysteme dauern entsprechend länger. Den genauen Zeitrahmen legen wir gemeinsam zu Beginn fest.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>Für wen ist Solventa Digital geeignet?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Wir arbeiten mit kleinen und mittelständischen Unternehmen, Selbstständigen und Handwerksbetrieben – vor allem aus Paderborn und der Region OWL, aber auch deutschlandweit.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>Was sind digitale Geschäftssysteme?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Damit meinen wir individuelle digitale Lösungen für Unternehmensprozesse – zum Beispiel Mitarbeiterportale, interne Dashboards, Datenbank-Systeme oder Geräteverwaltungen. Alles maßgeschneidert auf deine Abläufe.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>Bietet ihr auch Wartung und Support an?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Ja. Auf Wunsch übernehmen wir nach dem Launch die laufende Betreuung – inklusive Updates, Sicherheit und schnellem Support, wenn du uns brauchst.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span>In welcher Region seid ihr tätig?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-a"><p>Unser Sitz ist in Paderborn und wir sind in ganz Ostwestfalen-Lippe (OWL) aktiv. Projekte setzen wir aber auch ortsunabhängig in ganz Deutschland um.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

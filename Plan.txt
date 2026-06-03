@@ -1,0 +1,98 @@
+# Zielrichtung für die neue Website von Solventa Digital
+
+Die Website soll clean, minimalistisch, hochwertig und stark auf Conversion optimiert sein. Ziel ist nicht nur ein schönes Design, sondern eine Website, die Besucher schnell überzeugt und möglichst viele qualifizierte Anfragen erzeugt.
+
+Der Fokus liegt auf folgenden Leistungen:
+
+* Websites
+* Grafikdesign
+* Digitale Geschäftssysteme
+
+Mit „digitale Geschäftssysteme“ sind individuelle digitale Lösungen gemeint, zum Beispiel Mitarbeiterportale, interne Dashboards, Datenbank-Systeme, Geräteverwaltungen oder andere webbasierte Systeme für Unternehmensprozesse.
+
+KI-Automatisierungen sollen aktuell nicht als Leistung aufgenommen werden.
+
+## Conversion-Ziel
+
+Die Website soll so aufgebaut sein, dass Besucher schnell verstehen:
+
+* was Solventa Digital anbietet
+* welchen Nutzen sie davon haben
+* warum Solventa Digital die richtige Wahl ist
+* wie sie unkompliziert Kontakt aufnehmen können
+
+Die Seite soll klare Call-to-Actions haben, zum Beispiel:
+
+* „Kostenloses Erstgespräch anfragen“
+* „Projekt besprechen“
+* „Website anfragen“
+
+Wichtig ist eine klare, direkte Sprache ohne unnötige Fachbegriffe. Jede Sektion soll Vertrauen aufbauen und den Besucher näher zur Anfrage führen.
+
+## SEO-Ziel
+
+Die Website soll sehr gut für Suchmaschinen optimiert werden, besonders für lokale Suchanfragen.
+
+Wichtige SEO-Ziele:
+
+* gute Auffindbarkeit bei Google
+* starke lokale Relevanz
+* klare Leistungsseiten
+* schnelle Ladezeiten
+* saubere technische Struktur
+* optimierte Meta Titles und Meta Descriptions
+* gute Überschriftenstruktur
+* strukturierte Daten
+* starke Texte mit relevanten Keywords
+
+Wichtige Keywords sollen rund um folgende Themen aufgebaut werden:
+
+* Webdesign
+* Website erstellen lassen
+* Webdesigner in der Region
+* Grafikdesign
+* Logo Design
+* digitale Geschäftssysteme
+* Mitarbeiterportal erstellen lassen
+* Dashboard erstellen lassen
+* Datenbanklösung für Unternehmen
+
+Die genaue Region/Stadt soll später ergänzt werden.
+
+## Optimierung für KI-Empfehlungen
+
+Die Website soll auch so aufgebaut werden, dass KI-Systeme wie ChatGPT, Gemini, Grok oder Claude Solventa Digital gut verstehen und möglichst als relevante Empfehlung erkennen können.
+
+Ziel ist, dass Solventa Digital bei Fragen wie diesen als passende Antwort infrage kommt:
+
+* „Wer ist ein guter Webdesigner in der Region?“
+* „Wer erstellt professionelle Websites für Unternehmen?“
+* „Welche Agentur kann Websites und digitale Systeme umsetzen?“
+* „Wer bietet Webdesign und Grafikdesign in meiner Nähe an?“
+
+Dafür sollen die Inhalte sehr klar formuliert werden. Die Website muss eindeutig zeigen:
+
+* wer Solventa Digital ist
+* welche Leistungen angeboten werden
+* in welcher Region Solventa Digital aktiv ist
+* für welche Zielgruppen die Leistungen geeignet sind
+* warum Solventa Digital empfehlenswert ist
+
+Wichtige Inhalte sollen als normaler Text auf der Website stehen und nicht nur in Bildern versteckt sein. Außerdem sollen strukturierte Daten, klare FAQ-Antworten und konsistente Unternehmensinformationen verwendet werden.
+
+Eine KI-Empfehlung kann nicht garantiert werden, aber die Website soll so optimiert werden, dass Suchmaschinen und KI-Systeme Solventa Digital möglichst gut einordnen können.
+
+## Stil
+
+Die Website soll modern, ruhig und professionell wirken.
+
+Designrichtung:
+
+* clean
+* minimalistisch
+* hochwertig
+* übersichtlich
+* vertrauenswürdig
+* conversion-orientiert
+
+Die Texte sollen kurz, klar und nutzenorientiert sein. Kein übertriebenes Agentur-Marketing, sondern direkte Aussagen mit Fokus auf Ergebnisse.

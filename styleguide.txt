@@ -1,0 +1,8 @@
+Hintergrund: #ffffff
+Akzente auch für Übergänge: #39ceff, #020d7c
+Div Elemente: Hell grau
+
+Schriftarten:
+- Inter (Google Fonts) — Gewichte: 400 (Regular), 500 (Medium), 600 (SemiBold)
+  Verwendung: gesamte Website (Fließtext, Navigation, Buttons, Überschriften)
+  Einbindung: Google Fonts CDN

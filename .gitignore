@@ -1,0 +1,6 @@
+# ProRes / source masters — too large for GitHub (>100 MB), not needed on the web
+material/*.mov
+
+# macOS
+.DS_Store
+**/.DS_Store
