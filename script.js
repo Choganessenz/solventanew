@@ -48,45 +48,60 @@
     runAnim(content, enterCls ?? 'anim-zoom-in', null);
   }
 
+  let closeTimer = null;
+
+  function cancelClose() {
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+  }
+
   items.forEach((item, index) => {
     item.addEventListener('mouseenter', () => {
+      cancelClose();
       const content = item.querySelector('.nav-content');
       if (activeIndex === index) return;
 
+      // Plain link (no dropdown) — keep current dropdown open, just track position
+      if (!content) {
+        activeIndex = index;
+        return;
+      }
+
       if (activeContent && activeIndex !== -1) {
-        const goingRight = index > activeIndex;
+        // Find the index of the item that owns the currently open dropdown
+        const openIdx = items.findIndex(i => i.classList.contains('is-open'));
+        const goingRight = index > (openIdx !== -1 ? openIdx : activeIndex);
         closePanel(activeContent, goingRight ? 'anim-exit-left' : 'anim-exit-right');
-        if (content) {
-          openPanel(content, item, goingRight ? 'anim-enter-right' : 'anim-enter-left');
-          activeContent = content;
-        } else {
-          activeContent = null;
-        }
+        openPanel(content, item, goingRight ? 'anim-enter-right' : 'anim-enter-left');
+        activeContent = content;
       } else {
-        if (content) {
-          openPanel(content, item, null);
-          activeContent = content;
-        }
+        openPanel(content, item, null);
+        activeContent = content;
       }
       activeIndex = index;
     });
   });
 
   navMenu.addEventListener('mouseleave', () => {
-    if (activeContent) {
-      const item = activeContent.closest('.nav-item');
-      activeContent.classList.add('is-exiting');
-      runAnim(activeContent, 'anim-zoom-out', () => {
-        activeContent?.classList.remove('is-exiting');
-        item?.classList.remove('is-open');
-        activeContent = null;
-        activeIndex   = -1;
-      });
-    } else {
-      items.forEach(i => i.classList.remove('is-open'));
-      activeIndex = -1;
-    }
+    // Small delay prevents snap-close when the cursor briefly leaves while
+    // moving from the trigger button toward the dropdown panel below.
+    closeTimer = setTimeout(() => {
+      if (activeContent) {
+        const item = activeContent.closest('.nav-item');
+        activeContent.classList.add('is-exiting');
+        runAnim(activeContent, 'anim-zoom-out', () => {
+          activeContent?.classList.remove('is-exiting');
+          item?.classList.remove('is-open');
+          activeContent = null;
+          activeIndex   = -1;
+        });
+      } else {
+        items.forEach(i => i.classList.remove('is-open'));
+        activeIndex = -1;
+      }
+    }, 120);
   });
+
+  navMenu.addEventListener('mouseenter', cancelClose);
 })();
 
 /* ═══════════════════════════════════════════════════════════

@@ -22,7 +22,7 @@
       <nav class="nav-menu">
         <ul class="nav-list">
 
-          <!-- Home -->
+          <!-- Home dropdown -->
           <li class="nav-item">
             <button class="nav-trigger">
               Home
@@ -34,181 +34,120 @@
             <div class="nav-content">
               <ul class="home-grid">
                 <li class="home-featured-li">
-                  <a href="#" class="home-featured-link">
-                    <div class="featured-name">ReUI</div>
-                    <p class="featured-desc">Beautifully designed components built with React and Tailwind CSS.</p>
+                  <a href="#lhero" class="home-featured-link">
+                    <img src="material/solventa_logo_klein.png" alt="Solventa Digital" style="height:32px;width:auto;display:block" />
+                    <div class="featured-name">Solventa Digital</div>
+                    <p class="featured-desc">Webdesign, Grafikdesign &amp; digitale Systeme — aus Paderborn.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Introduction</div>
-                    <p class="link-desc">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  <a href="#reviews" class="nav-link-item">
+                    <div class="link-title">Bewertungen</div>
+                    <p class="link-desc">Was unsere Kunden über uns sagen.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Installation</div>
-                    <p class="link-desc">How to install dependencies and structure your app.</p>
+                  <a href="#erfolge" class="nav-link-item">
+                    <div class="link-title">Referenzen</div>
+                    <p class="link-desc">Projekte, die Ergebnisse liefern.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Typography</div>
-                    <p class="link-desc">Styles for headings, paragraphs, lists...etc</p>
+                  <a href="#ablauf" class="nav-link-item">
+                    <div class="link-title">So arbeiten wir</div>
+                    <p class="link-desc">Unser Ablauf in vier klaren Schritten.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" class="nav-link-item">
+                    <div class="link-title">FAQ</div>
+                    <p class="link-desc">Häufige Fragen, klar beantwortet.</p>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
 
-          <!-- Components -->
+          <!-- Leistungen dropdown -->
           <li class="nav-item">
             <button class="nav-trigger">
-              Components
+              Leistungen
               <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"/>
               </svg>
             </button>
             <div class="nav-content">
-              <ul class="components-grid">
+              <ul class="leistungen-grid">
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Alert Dialog</div>
-                    <p class="link-desc">A modal dialog that interrupts the user with important content and expects a response.</p>
+                  <a href="webdesign.html" class="leist-link">
+                    <div class="leist-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/>
+                      </svg>
+                    </div>
+                    <div class="leist-body">
+                      <div class="leist-title">Webdesign</div>
+                      <p class="leist-desc">Professionelle Websites, die Besucher überzeugen.</p>
+                    </div>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Hover Card</div>
-                    <p class="link-desc">For sighted users to preview content available behind a link.</p>
+                  <a href="grafikdesign.html" class="leist-link">
+                    <div class="leist-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+                      </svg>
+                    </div>
+                    <div class="leist-body">
+                      <div class="leist-title">Grafikdesign</div>
+                      <p class="leist-desc">Logos, Corporate Identity und Branding.</p>
+                    </div>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Progress</div>
-                    <p class="link-desc">Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.</p>
+                  <a href="digitale-geschaeftssysteme.html" class="leist-link">
+                    <div class="leist-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                        <path d="M7 8h10M7 12h5"/>
+                      </svg>
+                    </div>
+                    <div class="leist-body">
+                      <div class="leist-title">Digitale Geschäftssysteme</div>
+                      <p class="leist-desc">Portale, Dashboards und Datenbanklösungen.</p>
+                    </div>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Scroll-area</div>
-                    <p class="link-desc">Visually or semantically separates content.</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Tabs</div>
-                    <p class="link-desc">A set of layered sections of content—known as tab panels—that are displayed one at a time.</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Tooltip</div>
-                    <p class="link-desc">A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.</p>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <!-- Docs — direct link -->
-          <li class="nav-item">
-            <a href="#" class="nav-trigger nav-trigger--link">Docs</a>
-          </li>
-
-          <!-- List -->
-          <li class="nav-item">
-            <button class="nav-trigger">
-              List
-              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-            <div class="nav-content">
-              <ul class="list-grid">
-                <li>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Components</div>
-                    <div class="link-desc">Browse all components in the library.</div>
-                  </a>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Documentation</div>
-                    <div class="link-desc">Learn how to use the library.</div>
-                  </a>
-                  <a href="#" class="nav-link-item">
-                    <div class="link-title">Blog</div>
-                    <div class="link-desc">Read our latest blog posts.</div>
+                  <a href="wartung-support.html" class="leist-link">
+                    <div class="leist-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                      </svg>
+                    </div>
+                    <div class="leist-body">
+                      <div class="leist-title">Wartung &amp; Support</div>
+                      <p class="leist-desc">Updates, Sicherheit und schneller Support.</p>
+                    </div>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
 
-          <!-- Simple -->
+          <!-- Kontakt — direct link -->
           <li class="nav-item">
-            <button class="nav-trigger">
-              Simple
-              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-            <div class="nav-content">
-              <ul class="simple-grid">
-                <li>
-                  <a href="#" class="nav-link-item">Components</a>
-                  <a href="#" class="nav-link-item">Documentation</a>
-                  <a href="#" class="nav-link-item">Blocks</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <!-- With Icon -->
-          <li class="nav-item">
-            <button class="nav-trigger">
-              With Icon
-              <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-            <div class="nav-content">
-              <ul class="icon-grid">
-                <li>
-                  <a href="#" class="nav-link-item nav-link-item--row">
-                    <svg class="status-icon icon-backlog" width="16" height="16" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                      <circle cx="12" cy="17" r=".5" fill="currentColor"/>
-                    </svg>
-                    Backlog
-                  </a>
-                  <a href="#" class="nav-link-item nav-link-item--row">
-                    <svg class="status-icon icon-todo" width="16" height="16" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                    </svg>
-                    To Do
-                  </a>
-                  <a href="#" class="nav-link-item nav-link-item--row">
-                    <svg class="status-icon icon-done" width="16" height="16" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                      <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    Done
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <a href="kontakt.html" class="nav-trigger nav-trigger--link">Kontakt</a>
           </li>
 
         </ul>
       </nav>
+
+      <!-- CTA -->
+      <a href="kontakt.html" class="navbar-cta">Erstgespräch</a>
 
     </div>
   </header>
@@ -401,7 +340,7 @@
       <div class="g4-track" id="g4Track">
 
         <div class="g4-item">
-          <a href="#" class="g4-card">
+          <a href="webdesign.html" class="g4-card">
             <img class="g4-img" src="https://images.unsplash.com/photo-1551250928-243dc937c49d?w=1080&auto=format&fit=crop" alt="Webdesign" />
             <div class="g4-overlay"></div>
             <div class="g4-body">
@@ -413,7 +352,7 @@
         </div>
 
         <div class="g4-item">
-          <a href="#" class="g4-card">
+          <a href="grafikdesign.html" class="g4-card">
             <img class="g4-img" src="https://images.unsplash.com/photo-1551250928-e4a05afaed1e?w=1080&auto=format&fit=crop" alt="Grafikdesign" />
             <div class="g4-overlay"></div>
             <div class="g4-body">
@@ -425,7 +364,7 @@
         </div>
 
         <div class="g4-item">
-          <a href="#" class="g4-card">
+          <a href="digitale-geschaeftssysteme.html" class="g4-card">
             <img class="g4-img" src="https://images.unsplash.com/photo-1536735561749-fc87494598cb?w=1080&auto=format&fit=crop" alt="Digitale Geschäftssysteme" />
             <div class="g4-overlay"></div>
             <div class="g4-body">
@@ -449,7 +388,7 @@
         </div>
 
         <div class="g4-item">
-          <a href="#" class="g4-card">
+          <a href="wartung-support.html" class="g4-card">
             <img class="g4-img" src="https://images.unsplash.com/photo-1550070881-a5d71eda5800?w=1080&auto=format&fit=crop" alt="Wartung & Support" />
             <div class="g4-overlay"></div>
             <div class="g4-body">

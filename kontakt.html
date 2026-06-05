@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt — Solventa Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Wizard layout ── */
+    .kw-section {
+      background: var(--muted);
+      min-height: calc(100vh - 60px);
+      padding: 48px 24px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    @media (max-width: 520px) { .kw-section { padding: 24px 14px; } }
+
+    .kw-wrap {
+      width: 100%; max-width: 1040px;
+      background: #fff; border: 1px solid var(--border); border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 50px 100px -45px rgba(2,13,124,.4);
+      display: grid; grid-template-columns: 380px 1fr; min-height: 600px;
+    }
+    @media (max-width: 860px) { .kw-wrap { grid-template-columns: 1fr; min-height: 0; } }
+
+    /* Left visual pane */
+    .kw-aside {
+      position: relative; color: #fff;
+      padding: 40px 36px; display: flex; flex-direction: column; justify-content: space-between;
+      overflow: hidden; background: #020d7c; min-height: 600px;
+    }
+    @media (max-width: 860px) { .kw-aside { min-height: 0; padding: 30px 28px; } }
+    @media (max-width: 520px) { .kw-aside { padding: 24px 22px; } }
+    .kw-aside-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: .3; transition: opacity .6s ease;
+    }
+    .kw-aside::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(160deg, rgba(2,13,124,.82), rgba(5,7,26,.92));
+    }
+    .kw-aside > * { position: relative; z-index: 2; }
+
+    .kw-aside-brand { display: inline-flex; align-items: center; gap: 8px; }
+    .kw-aside-logo { height: 26px; width: auto; filter: brightness(0) invert(1); }
+
+    .kw-aside-mid { margin: 28px 0; }
+    .kw-aside-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: #39ceff; margin-bottom: 14px; display: block;
+      transition: opacity .3s ease;
+    }
+    .kw-aside-title {
+      font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -.03em;
+      line-height: 1.15; transition: opacity .3s ease;
+    }
+    .kw-aside-sub {
+      font-size: 14px; color: rgba(255,255,255,.62); line-height: 1.6; margin-top: 14px;
+      transition: opacity .3s ease;
+    }
+
+    .kw-prog { display: flex; gap: 6px; margin-top: 10px; }
+    .kw-prog-seg { flex: 1; height: 5px; border-radius: 99px; background: rgba(255,255,255,.18); overflow: hidden; }
+    .kw-prog-seg .f { display: block; height: 100%; width: 0; background: linear-gradient(90deg,#39ceff,#8be8ff); transition: width .45s cubic-bezier(0.22,1,0.36,1); }
+    .kw-prog-seg.fill .f { width: 100%; }
+    .kw-step-count { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+
+    /* Right interactive pane */
+    .kw-main { padding: 44px 44px; display: flex; flex-direction: column; }
+    @media (max-width: 520px) { .kw-main { padding: 28px 22px; } }
+
+    .kw-slides { flex: 1; }
+    .kw-slide { display: none; }
+    .kw-slide.is-active { display: block; animation: kw-in .45s cubic-bezier(0.22,1,0.36,1); }
+    @keyframes kw-in { from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: none; } }
+
+    .kw-q { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 800; letter-spacing: -.02em; color: var(--foreground); margin-bottom: 6px; }
+    .kw-hint { font-size: 14px; color: var(--muted-foreground); margin-bottom: 24px; }
+
+    /* Option grid */
+    .kw-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 520px) { .kw-opts { grid-template-columns: 1fr; } }
+
+    .kw-opt {
+      position: relative; border: 1.5px solid var(--border); border-radius: 14px;
+      cursor: pointer; text-align: left; background: #fff; overflow: hidden;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+      padding: 16px;
+    }
+    .kw-opt:hover { border-color: rgba(57,206,255,.55); transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(2,13,124,.3); }
+    .kw-opt.is-sel { border-color: #020d7c; box-shadow: 0 0 0 3px rgba(2,13,124,.12); }
+    .kw-opt-check {
+      position: absolute; top: 12px; right: 12px; z-index: 3;
+      width: 22px; height: 22px; border-radius: 50%; background: #020d7c; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(.4); transition: opacity .2s ease, transform .2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .kw-opt.is-sel .kw-opt-check { opacity: 1; transform: scale(1); }
+    .kw-opt-ico {
+      width: 42px; height: 42px; border-radius: 11px; margin-bottom: 12px;
+      background: linear-gradient(135deg, rgba(57,206,255,.18), rgba(2,13,124,.1));
+      color: #020d7c; display: flex; align-items: center; justify-content: center;
+    }
+    .kw-opt-t { font-size: 15px; font-weight: 700; color: var(--foreground); }
+    .kw-opt-d { font-size: 12.5px; color: var(--muted-foreground); margin-top: 3px; line-height: 1.45; }
+
+    /* Image option (service step) */
+    .kw-opt--img { padding: 0; }
+    .kw-imgwrap {
+      position: relative; height: 104px; overflow: hidden;
+      background: linear-gradient(135deg, #39ceff, #020d7c);
+      transform: translateZ(0);            /* own layer → clean clipping */
+    }
+    .kw-imgwrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transform: scale(1.02);              /* tiny base zoom avoids edge flicker */
+      transition: transform .55s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    }
+    .kw-opt--img:hover .kw-imgwrap img { transform: scale(1.08); }
+    .kw-opt--img .kw-opt-body { padding: 13px 15px; }
+
+    /* Hint when multi-select is allowed */
+    .kw-multi-hint {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: #39ceff; margin-bottom: 16px;
+    }
+
+    /* Add-on (Wartung unter Webdesign) */
+    .kw-addon {
+      margin-top: 12px; width: 100%;
+      display: flex; align-items: center; gap: 13px;
+      border: 1.5px dashed var(--border); border-radius: 14px; padding: 14px 16px;
+      background: var(--muted); cursor: pointer; text-align: left;
+      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, opacity .3s ease, transform .3s ease;
+    }
+    .kw-addon[hidden] { display: none; }
+    .kw-addon.kw-addon--in { animation: kw-addon-in .35s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes kw-addon-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+    .kw-addon:hover { border-color: rgba(57,206,255,.6); }
+    .kw-addon.is-sel { border-style: solid; border-color: #020d7c; background: #fff; box-shadow: 0 0 0 3px rgba(2,13,124,.1); }
+    .kw-addon-box {
+      width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; color: #fff; transition: all .2s ease;
+    }
+    .kw-addon.is-sel .kw-addon-box { background: #020d7c; border-color: #020d7c; }
+    .kw-addon-box svg { opacity: 0; transition: opacity .2s ease; }
+    .kw-addon.is-sel .kw-addon-box svg { opacity: 1; }
+    .kw-addon-ico { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; background: linear-gradient(135deg, rgba(57,206,255,.18), rgba(2,13,124,.1)); color: #020d7c; display: flex; align-items: center; justify-content: center; }
+    .kw-addon-t { font-size: 14px; font-weight: 700; color: var(--foreground); }
+    .kw-addon-d { font-size: 12px; color: var(--muted-foreground); margin-top: 2px; line-height: 1.4; }
+
+    /* Contact fields */
+    .kw-fields { display: flex; flex-direction: column; gap: 15px; }
+    .kw-field label { font-size: 12.5px; font-weight: 600; color: var(--foreground); display: block; margin-bottom: 6px; }
+    .kw-field label .opt { color: var(--muted-foreground); font-weight: 400; }
+    .kw-input, .kw-textarea {
+      width: 100%; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: var(--font); font-size: 14px; color: var(--foreground); background: #fff;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .kw-input:focus, .kw-textarea:focus { outline: none; border-color: #39ceff; box-shadow: 0 0 0 3px rgba(57,206,255,.16); }
+    .kw-textarea { resize: vertical; min-height: 80px; }
+    .kw-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 520px) { .kw-row2 { grid-template-columns: 1fr; } }
+
+    /* Summary chips */
+    .kw-summary {
+      background: var(--muted); border: 1px solid var(--border); border-radius: 12px;
+      padding: 13px 15px; margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .kw-chip { font-size: 12px; font-weight: 600; color: #020d7c; background: #fff; border: 1px solid var(--border); padding: 5px 11px; border-radius: 99px; }
+    .kw-chip span { color: var(--muted-foreground); font-weight: 500; }
+
+    /* Nav buttons */
+    .kw-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 30px; }
+    .kw-back {
+      background: none; border: none; color: var(--muted-foreground); font-size: 14px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); padding: 8px 6px;
+      transition: color .2s ease;
+    }
+    .kw-back:hover { color: var(--foreground); }
+    .kw-back[hidden] { visibility: hidden; }
+    .kw-next {
+      display: inline-flex; align-items: center; gap: 8px; margin-left: auto;
+      background: #020d7c; color: #fff; border: none; border-radius: 99px;
+      padding: 13px 30px; font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .kw-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(2,13,124,.55); }
+    .kw-next:disabled { opacity: .4; cursor: not-allowed; }
+
+    /* Success */
+    .kw-done { text-align: center; padding: 24px 0; }
+    .kw-done-badge {
+      width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 24px;
+      background: linear-gradient(135deg, #39ceff, #020d7c);
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      box-shadow: 0 16px 36px -12px rgba(2,13,124,.5);
+      animation: kw-pop .55s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes kw-pop { from { transform: scale(0) rotate(-30deg); } to { transform: scale(1) rotate(0); } }
+    .kw-done-t { font-size: 1.7rem; font-weight: 800; letter-spacing: -.03em; color: var(--foreground); margin-bottom: 10px; }
+    .kw-done-d { font-size: 15px; color: var(--muted-foreground); line-height: 1.6; max-width: 400px; margin: 0 auto 26px; }
+    .kw-done-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .kw-done-btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 99px;
+      font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; font-family: var(--font);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .kw-done-btn--p { background: #020d7c; color: #fff; }
+    .kw-done-btn--p:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -10px rgba(2,13,124,.5); }
+    .kw-done-btn--s { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .kw-done-btn--s:hover { background: #e8e8ec; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Navbar ═════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="material/solventa_logo_klein.png" alt="Solventa Digital" class="navbar-logo-img" />
+      </a>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-trigger">Home<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="home-grid">
+                <li class="home-featured-li"><a href="index.html" class="home-featured-link"><img src="material/solventa_logo_klein.png" alt="Solventa Digital" style="height:32px;width:auto;display:block" /><div class="featured-name">Solventa Digital</div><p class="featured-desc">Webdesign, Grafikdesign &amp; digitale Systeme — aus Paderborn.</p></a></li>
+                <li><a href="index.html#reviews" class="nav-link-item"><div class="link-title">Bewertungen</div><p class="link-desc">Was unsere Kunden über uns sagen.</p></a></li>
+                <li><a href="index.html#erfolge" class="nav-link-item"><div class="link-title">Referenzen</div><p class="link-desc">Projekte, die Ergebnisse liefern.</p></a></li>
+                <li><a href="index.html#ablauf" class="nav-link-item"><div class="link-title">So arbeiten wir</div><p class="link-desc">Unser Ablauf in vier klaren Schritten.</p></a></li>
+                <li><a href="index.html#faq" class="nav-link-item"><div class="link-title">FAQ</div><p class="link-desc">Häufige Fragen, klar beantwortet.</p></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">Leistungen<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="leistungen-grid">
+                <li><a href="webdesign.html" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div><div class="leist-body"><div class="leist-title">Webdesign</div><p class="leist-desc">Professionelle Websites, die Besucher überzeugen.</p></div></a></li>
+                <li><a href="grafikdesign.html" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div><div class="leist-body"><div class="leist-title">Grafikdesign</div><p class="leist-desc">Logos, Corporate Identity und Branding.</p></div></a></li>
+                <li><a href="digitale-geschaeftssysteme.html" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10M7 12h5"/></svg></div><div class="leist-body"><div class="leist-title">Digitale Geschäftssysteme</div><p class="leist-desc">Portale, Dashboards und Datenbanklösungen.</p></div></a></li>
+                <li><a href="wartung-support.html" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="leist-body"><div class="leist-title">Wartung &amp; Support</div><p class="leist-desc">Updates, Sicherheit und schneller Support.</p></div></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"><a href="kontakt.html" class="nav-trigger nav-trigger--link">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="kontakt.html" class="navbar-cta">Erstgespräch</a>
+    </div>
+  </header>
+
+  <!-- ═══ Interaktiver Kontakt-Wizard ════════════════════════ -->
+  <section class="kw-section">
+    <div class="kw-wrap">
+
+      <!-- Left visual pane -->
+      <aside class="kw-aside">
+        <img class="kw-aside-bg" id="kwAsideBg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop" alt="" aria-hidden="true" onerror="this.style.display='none'" />
+        <a href="index.html" class="kw-aside-brand">
+          <img class="kw-aside-logo" src="material/solventa_logo_klein.png" alt="Solventa Digital" />
+        </a>
+        <div class="kw-aside-mid">
+          <span class="kw-aside-eyebrow" id="kwAsideEyebrow">Schritt 1 von 5</span>
+          <div class="kw-aside-title" id="kwAsideTitle">Lassen Sie uns Ihr Projekt starten.</div>
+          <p class="kw-aside-sub" id="kwAsideSub">Beantworten Sie ein paar kurze Fragen — in unter einer Minute. Kein Verkaufsdruck, nur ein klares Bild Ihres Vorhabens.</p>
+        </div>
+        <div>
+          <div class="kw-step-count" id="kwStepCount">Schritt 1 / 5</div>
+          <div class="kw-prog" id="kwProg">
+            <div class="kw-prog-seg"><span class="f"></span></div>
+            <div class="kw-prog-seg"><span class="f"></span></div>
+            <div class="kw-prog-seg"><span class="f"></span></div>
+            <div class="kw-prog-seg"><span class="f"></span></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right interactive pane -->
+      <div class="kw-main">
+        <div class="kw-slides" id="kwSlides">
+
+          <!-- 1 · Leistung (Mehrfachauswahl) -->
+          <div class="kw-slide is-active" data-key="service" data-multi="true">
+            <h1 class="kw-q">Womit können wir helfen?</h1>
+            <p class="kw-hint">Wählen Sie alles aus, was passt — gern auch mehreres.</p>
+            <div class="kw-opts">
+              <button class="kw-opt kw-opt--img" data-val="Webdesign">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-imgwrap"><img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format&fit=crop" alt="" onerror="this.style.display='none'"></span>
+                <span class="kw-opt-body"><span class="kw-opt-t" style="display:block">Webdesign</span><span class="kw-opt-d" style="display:block">Eine neue Website, die verkauft.</span></span>
+              </button>
+              <button class="kw-opt kw-opt--img" data-val="Grafikdesign">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-imgwrap"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop" alt="" onerror="this.style.display='none'"></span>
+                <span class="kw-opt-body"><span class="kw-opt-t" style="display:block">Grafikdesign</span><span class="kw-opt-d" style="display:block">Logo, Branding &amp; Print.</span></span>
+              </button>
+              <button class="kw-opt kw-opt--img" data-val="Digitale Geschäftssysteme">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-imgwrap"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop" alt="" onerror="this.style.display='none'"></span>
+                <span class="kw-opt-body"><span class="kw-opt-t" style="display:block">Digitale Systeme</span><span class="kw-opt-d" style="display:block">Portale, Dashboards, Tools.</span></span>
+              </button>
+            </div>
+
+            <!-- Zusatz: erscheint nur, wenn Webdesign gewählt ist -->
+            <button class="kw-addon" id="kwAddonWartung" data-addon="Wartung &amp; Support (laufende Betreuung)" hidden>
+              <span class="kw-addon-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="kw-addon-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+              <span style="flex:1">
+                <span class="kw-addon-t" style="display:block">Wartung &amp; Support dazubuchen</span>
+                <span class="kw-addon-d" style="display:block">Laufende Betreuung Ihrer Website — Updates, Sicherheit &amp; schneller Support.</span>
+              </span>
+            </button>
+          </div>
+
+          <!-- 2 · Projektart -->
+          <div class="kw-slide" data-key="art">
+            <h1 class="kw-q">Wie sieht Ihr Projekt aus?</h1>
+            <p class="kw-hint">Damit wir den richtigen Ansatz wählen.</p>
+            <div class="kw-opts">
+              <button class="kw-opt" data-val="Komplett neu">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                <span class="kw-opt-t" style="display:block">Komplett neu</span>
+                <span class="kw-opt-d" style="display:block">Wir starten von Grund auf.</span>
+              </button>
+              <button class="kw-opt" data-val="Relaunch / Überarbeitung">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/></svg></span>
+                <span class="kw-opt-t" style="display:block">Relaunch</span>
+                <span class="kw-opt-d" style="display:block">Bestehendes modernisieren.</span>
+              </button>
+              <button class="kw-opt" data-val="Noch unsicher">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                <span class="kw-opt-t" style="display:block">Noch unsicher</span>
+                <span class="kw-opt-d" style="display:block">Wir beraten Sie gern.</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 · Zeitrahmen -->
+          <div class="kw-slide" data-key="zeit">
+            <h1 class="kw-q">Wann soll es losgehen?</h1>
+            <p class="kw-hint">Ganz unverbindlich — nur zur Orientierung.</p>
+            <div class="kw-opts">
+              <button class="kw-opt" data-val="So schnell wie möglich">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                <span class="kw-opt-t" style="display:block">So schnell wie möglich</span>
+                <span class="kw-opt-d" style="display:block">Es eilt.</span>
+              </button>
+              <button class="kw-opt" data-val="In 1–3 Monaten">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                <span class="kw-opt-t" style="display:block">In 1–3 Monaten</span>
+                <span class="kw-opt-d" style="display:block">Gut planbar.</span>
+              </button>
+              <button class="kw-opt" data-val="In 3–6 Monaten">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                <span class="kw-opt-t" style="display:block">In 3–6 Monaten</span>
+                <span class="kw-opt-d" style="display:block">Mit Vorlauf.</span>
+              </button>
+              <button class="kw-opt" data-val="Erstmal nur informieren">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+                <span class="kw-opt-t" style="display:block">Erstmal informieren</span>
+                <span class="kw-opt-d" style="display:block">Kein fester Termin.</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 · Kontaktdaten -->
+          <div class="kw-slide" data-type="contact">
+            <h1 class="kw-q">Wie erreichen wir Sie?</h1>
+            <p class="kw-hint">Wir melden uns innerhalb von 24 Stunden — versprochen.</p>
+            <div class="kw-summary" id="kwSummary"></div>
+            <div class="kw-fields">
+              <div class="kw-row2">
+                <div class="kw-field">
+                  <label for="kwName">Ihr Name</label>
+                  <input class="kw-input" id="kwName" type="text" placeholder="Max Mustermann" autocomplete="name" />
+                </div>
+                <div class="kw-field">
+                  <label for="kwEmail">E-Mail</label>
+                  <input class="kw-input" id="kwEmail" type="email" placeholder="max@firma.de" autocomplete="email" />
+                </div>
+              </div>
+              <div class="kw-field">
+                <label for="kwPhone">Telefon <span class="opt">· optional</span></label>
+                <input class="kw-input" id="kwPhone" type="tel" placeholder="05251 1234567" autocomplete="tel" />
+              </div>
+              <div class="kw-field">
+                <label for="kwMsg">Worum geht's genau? <span class="opt">· optional</span></label>
+                <textarea class="kw-textarea" id="kwMsg" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben…"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 · Erfolg -->
+          <div class="kw-slide" data-type="done">
+            <div class="kw-done">
+              <div class="kw-done-badge"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="kw-done-t">Vielen Dank!</div>
+              <p class="kw-done-d" id="kwDoneText">Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen — meist deutlich schneller.</p>
+              <div class="kw-done-btns">
+                <a class="kw-done-btn kw-done-btn--p" id="kwMailto" href="#">Anfrage per E-Mail senden</a>
+                <a class="kw-done-btn kw-done-btn--s" href="index.html">Zurück zur Startseite</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="kw-nav" id="kwNav">
+          <button class="kw-back" id="kwBack" hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Zurück
+          </button>
+          <button class="kw-next" id="kwNext" disabled>
+            Weiter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+  (() => {
+    const slides  = Array.from(document.querySelectorAll('.kw-slide'));
+    const backBtn = document.getElementById('kwBack');
+    const nextBtn = document.getElementById('kwNext');
+    const nav     = document.getElementById('kwNav');
+    const summary = document.getElementById('kwSummary');
+    const addon   = document.getElementById('kwAddonWartung');
+
+    const eyebrowEl = document.getElementById('kwAsideEyebrow');
+    const titleEl   = document.getElementById('kwAsideTitle');
+    const subEl     = document.getElementById('kwAsideSub');
+    const bgEl      = document.getElementById('kwAsideBg');
+    const countEl   = document.getElementById('kwStepCount');
+    const progSegs  = Array.from(document.querySelectorAll('#kwProg .kw-prog-seg'));
+
+    const TOTAL = 4; // Leistung, Projektart, Zeitrahmen, Kontakt
+    const ASIDE = [
+      { t: 'Womit dürfen wir starten?',  s: 'Wählen Sie alle Bereiche, in denen wir Sie unterstützen sollen.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop' },
+      { t: 'Erzählen Sie uns mehr.',     s: 'Geht es um etwas Neues oder eine Auffrischung?',                   img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&auto=format&fit=crop' },
+      { t: 'Alles eine Frage der Zeit.', s: 'Wir richten uns nach Ihrem Zeitplan.',                              img: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=900&auto=format&fit=crop' },
+      { t: 'Fast geschafft!',            s: 'Nur noch Ihre Kontaktdaten — dann melden wir uns persönlich.',      img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&auto=format&fit=crop' },
+      { t: 'Wir freuen uns auf Sie.',    s: 'Ihre Anfrage ist unterwegs zu uns.',                                img: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&auto=format&fit=crop' },
+    ];
+    const LABELS = { service: 'Leistung', art: 'Projekt', zeit: 'Zeitrahmen' };
+
+    const state = { service: [] };
+    let cur = 0;
+
+    function decode(str) { const t = document.createElement('textarea'); t.innerHTML = str; return t.value; }
+
+    function renderAside() {
+      const a = ASIDE[cur];
+      [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '0');
+      setTimeout(() => {
+        eyebrowEl.textContent = cur >= TOTAL ? 'Geschafft' : ('Schritt ' + (cur + 1) + ' von ' + TOTAL);
+        titleEl.textContent = a.t;
+        subEl.textContent = a.s;
+        [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '1');
+      }, 160);
+      if (a && a.img && bgEl) {
+        const im = new Image();
+        im.onload = () => { bgEl.src = a.img; bgEl.style.display = ''; bgEl.style.opacity = '.3'; };
+        im.onerror = () => { bgEl.style.opacity = '0'; };
+        im.src = a.img;
+      }
+      countEl.textContent = cur >= TOTAL ? 'Abgeschlossen' : ('Schritt ' + (cur + 1) + ' / ' + TOTAL);
+      progSegs.forEach((seg, i) => seg.classList.toggle('fill', cur >= TOTAL ? true : i <= cur));
+    }
+
+    const isMulti   = s => s.dataset.multi === 'true';
+    const isChoice  = s => !!s.dataset.key;
+    const isContact = s => s.dataset.type === 'contact';
+    const isDone    = s => s.dataset.type === 'done';
+    const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    function canProceed() {
+      const s = slides[cur];
+      if (isChoice(s)) {
+        const v = state[s.dataset.key];
+        return Array.isArray(v) ? v.length > 0 : !!v;
+      }
+      if (isContact(s)) {
+        const n = document.getElementById('kwName').value.trim();
+        const e = document.getElementById('kwEmail').value.trim();
+        return n.length > 1 && validEmail(e);
+      }
+      return false;
+    }
+
+    function updateNav() {
+      const s = slides[cur];
+      if (isDone(s)) { nav.style.display = 'none'; return; }
+      nav.style.display = '';
+      backBtn.hidden = cur === 0;
+      nextBtn.disabled = !canProceed();
+      nextBtn.childNodes[0].nodeValue = isContact(s) ? 'Anfrage senden ' : 'Weiter ';
+    }
+
+    function show(i) {
+      slides[cur].classList.remove('is-active');
+      cur = i;
+      slides[cur].classList.add('is-active');
+      if (isContact(slides[cur])) buildSummary();
+      renderAside();
+      updateNav();
+      document.querySelector('.kw-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function buildSummary() {
+      summary.innerHTML = '';
+      // Leistungen (kann mehrere sein)
+      if (state.service.length) {
+        const chip = document.createElement('span');
+        chip.className = 'kw-chip';
+        chip.innerHTML = '<span>' + LABELS.service + ':</span> ' + state.service.join(', ');
+        summary.appendChild(chip);
+      }
+      if (state.wartung) {
+        const chip = document.createElement('span');
+        chip.className = 'kw-chip';
+        chip.innerHTML = '<span>Zusatz:</span> Wartung &amp; Support';
+        summary.appendChild(chip);
+      }
+      ['art', 'zeit'].forEach(k => {
+        if (!state[k]) return;
+        const chip = document.createElement('span');
+        chip.className = 'kw-chip';
+        chip.innerHTML = '<span>' + LABELS[k] + ':</span> ' + state[k];
+        summary.appendChild(chip);
+      });
+    }
+
+    // ── Add-on (Wartung) visibility + toggle ──
+    function syncAddon() {
+      const webselected = state.service.includes('Webdesign');
+      if (webselected) {
+        if (addon.hidden) { addon.hidden = false; addon.classList.add('kw-addon--in'); }
+      } else {
+        addon.hidden = true;
+        addon.classList.remove('is-sel');
+        state.wartung = false;
+      }
+    }
+    addon.addEventListener('click', () => {
+      state.wartung = !state.wartung;
+      addon.classList.toggle('is-sel', state.wartung);
+    });
+
+    // ── Option selection (multi for service, single otherwise) ──
+    document.querySelectorAll('.kw-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const slide = opt.closest('.kw-slide');
+        const key = slide.dataset.key;
+        const val = decode(opt.dataset.val);
+        if (isMulti(slide)) {
+          opt.classList.toggle('is-sel');
+          const arr = state[key] || (state[key] = []);
+          const idx = arr.indexOf(val);
+          if (idx === -1) arr.push(val); else arr.splice(idx, 1);
+          if (key === 'service') syncAddon();
+        } else {
+          slide.querySelectorAll('.kw-opt').forEach(o => o.classList.remove('is-sel'));
+          opt.classList.add('is-sel');
+          state[key] = val;
+        }
+        updateNav();
+      });
+    });
+
+    ['kwName', 'kwEmail'].forEach(id => document.getElementById(id).addEventListener('input', updateNav));
+
+    backBtn.addEventListener('click', () => { if (cur > 0) show(cur - 1); });
+
+    nextBtn.addEventListener('click', () => {
+      if (!canProceed()) return;
+      const s = slides[cur];
+      if (isContact(s)) {
+        state.name  = document.getElementById('kwName').value.trim();
+        state.email = document.getElementById('kwEmail').value.trim();
+        state.phone = document.getElementById('kwPhone').value.trim();
+        state.msg   = document.getElementById('kwMsg').value.trim();
+
+        const leistung = state.service.join(', ') + (state.wartung ? ' + Wartung & Support' : '');
+        const lines = [
+          'Neue Projektanfrage über die Website', '',
+          'Leistung:   ' + (leistung || '—'),
+          'Projektart: ' + (state.art || '—'),
+          'Zeitrahmen: ' + (state.zeit || '—'), '',
+          'Name:       ' + state.name,
+          'E-Mail:     ' + state.email,
+          'Telefon:    ' + (state.phone || '—'), '',
+          'Nachricht:', (state.msg || '—'),
+        ];
+        const subject = 'Projektanfrage: ' + (state.service.join(', ') || 'Solventa');
+        const mailto = 'mailto:kontakt@solventa-digital.de'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(lines.join('\n'));
+        const mailBtn = document.getElementById('kwMailto');
+        if (mailBtn) mailBtn.href = mailto;
+
+        const doneTxt = document.getElementById('kwDoneText');
+        if (doneTxt) doneTxt.textContent = 'Danke, ' + state.name.split(' ')[0] + '! Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen — meist deutlich schneller.';
+
+        show(cur + 1);
+      } else {
+        show(cur + 1);
+      }
+    });
+
+    renderAside();
+    updateNav();
+  })();
+  </script>
+</body>
+</html>

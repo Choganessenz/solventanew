@@ -5,6 +5,16 @@
   padding: 0;
 }
 
+/* Smooth-scroll to in-page anchors (Home-Dropdown sections etc.) */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;   /* keeps target below the 60px navbar */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* ─── Design tokens (shadcn/zinc defaults) ───────────────── */
 :root {
   --font:              'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -236,7 +246,7 @@ body {
 }
 
 .home-featured-li {
-  grid-row: span 3;
+  grid-row: span 4;
 }
 
 /* from-muted/50 to-muted flex h-full flex-col justify-end rounded-md bg-linear-to-b p-6 */
@@ -1782,6 +1792,90 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Navbar — CTA button (right-anchored)
+   ════════════════════════════════════════════════════════ */
+.navbar-cta {
+  position: absolute;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 18px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #020d7c;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 1;
+  transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.navbar-cta:hover {
+  background: #0a1a9e;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -6px rgba(2,13,124,.5);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Leistungen dropdown grid (2-col with icons)
+   ════════════════════════════════════════════════════════ */
+.leistungen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 520px;
+  list-style: none;
+}
+
+.leist-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--foreground);
+  transition: background-color 150ms ease;
+}
+.leist-link:hover {
+  background-color: var(--accent);
+}
+
+.leist-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(57,206,255,.15), rgba(2,13,124,.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #020d7c;
+  transition: background 200ms ease;
+}
+.leist-link:hover .leist-icon {
+  background: linear-gradient(135deg, rgba(57,206,255,.3), rgba(2,13,124,.18));
+}
+
+.leist-body { flex: 1; min-width: 0; }
+
+.leist-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--foreground);
+}
+
+.leist-desc {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  line-height: 1.45;
+}
+
+/* ═══════════════════════════════════════════════════════════
    CTA / FAQ — responsive
    ════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
@@ -1800,4 +1894,22 @@ body {
   .mcta-fade { height: 130px; }
 
   .faq { padding: 0 0 80px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Kleine türkise Eyebrow-Labels über den Überschriften ausblenden
+   (Mockup-interne / Wizard-Labels bleiben erhalten)
+   ════════════════════════════════════════════════════════ */
+.proc-eyebrow,
+.wd-hero-eyebrow,
+.wd-section-eyebrow,
+.wd-story-intro-eyebrow,
+.gd-hero-eyebrow,
+.gd-section-eyebrow,
+.dg-hero-eyebrow,
+.dgx-eyebrow,
+.dg-builder-section-eyebrow,
+.ws-section-eyebrow,
+.wd-story-tag {
+  display: none !important;
 }
