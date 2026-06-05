@@ -1399,33 +1399,39 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* entrance: hidden until the section animates in */
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--i) * 140ms + 150ms);
+  opacity: 0;            /* hidden until the section animates in */
+}
+
+/* Keyframe entrance (smoother than transition+delay for the SVG icons —
+   no per-frame re-raster, no visible compositing box). */
+@keyframes procStepIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .proc.is-animated .proc-step {
-  opacity: 1;
-  transform: translateY(0);
+  animation: procStepIn 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 140ms + 150ms);
 }
 
-/* ── Node (icon circle + number badge) ── */
-.proc-node {
+/* ── Node wrapper (holds the round node + the number badge) ── */
+.proc-node-wrap {
   position: relative;
+  margin-bottom: 24px;
+}
+
+/* ── Node (icon circle) — gradient from the start, no white flash ── */
+.proc-node {
   width: 68px;
   height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--background);
-  border: 2px solid var(--border);
-  color: #020d7c;
-  margin-bottom: 24px;
-  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+  background: linear-gradient(135deg, #39ceff, #020d7c);
+  color: #ffffff;
+  box-shadow: 0 14px 30px -12px rgba(2, 13, 124, 0.45);
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
 
 .proc-node svg {
@@ -1433,23 +1439,16 @@ body {
   height: 26px;
 }
 
-/* Activated node — filled gradient ring as the line reaches it */
-.proc-step.is-active .proc-node {
-  border-color: transparent;
-  background: linear-gradient(135deg, #39ceff, #020d7c);
-  color: #ffffff;
-  box-shadow: 0 14px 30px -10px rgba(2, 13, 124, 0.5);
-}
-
 .proc-step:hover .proc-node {
   transform: translateY(-4px);
+  box-shadow: 0 20px 38px -14px rgba(2, 13, 124, 0.55);
 }
 
-/* Number badge */
+/* Number badge — sits on the wrapper, never clipped by the circle */
 .proc-num {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -6px;
+  right: -6px;
   min-width: 24px;
   height: 24px;
   padding: 0 6px;
@@ -1462,11 +1461,6 @@ body {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.02em;
-}
-
-.proc-step.is-active .proc-num {
-  background: #39ceff;
-  color: #020d7c;
 }
 
 /* ── Card ── */
@@ -1655,10 +1649,6 @@ body {
   flex-shrink: 0;
   animation: mctaScroll 20s linear infinite;
   will-change: transform;
-}
-
-.mcta-marquee:hover .mcta-track {
-  animation-play-state: paused;
 }
 
 @keyframes mctaScroll {

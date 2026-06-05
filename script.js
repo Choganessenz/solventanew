@@ -622,7 +622,6 @@
   const section = document.querySelector('.proc');
   if (!section) return;
 
-  const steps    = Array.from(section.querySelectorAll('.proc-step'));
   const lineFill = document.getElementById('procLineFill');
   const mobile   = () => window.matchMedia('(max-width: 767px)').matches;
 
@@ -642,11 +641,6 @@
         else          lineFill.style.width  = '100%';
       });
     }
-
-    // 3) light up each node in turn, synced roughly with the line
-    steps.forEach((step, i) => {
-      setTimeout(() => step.classList.add('is-active'), 300 + i * 280);
-    });
   }
 
   if (!('IntersectionObserver' in window)) { play(); return; }
