@@ -959,6 +959,12 @@ body {
   text-decoration: none;
   position: relative;
   min-height: 432px;       /* min-h-[27rem] */
+  /* own stacking/compositing context so video + blend-mode survive the
+     track's translateX during swiping (otherwise they vanish/flicker) */
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* image: absolute h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 */
@@ -970,24 +976,29 @@ body {
   object-fit: cover;
   object-position: center;
   transition: transform 300ms ease;
+  /* keep the video painted on its own layer while the track translates */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .g4-card:hover .g4-img {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0);
 }
 
-/* Gradient overlay, Solventa navy (#020d7c) instead of demo's --primary */
-/* bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.4),hsl(var(--primary)/0.8))] mix-blend-multiply */
+/* Gradient overlay — Solventa navy (#020d7c) instead of demo's --primary */
 .g4-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(2, 13, 124, 0)   0%,
-    rgba(2, 13, 124, 0.4) 55%,
-    rgba(2, 13, 124, 0.85) 100%
+    rgba(2, 13, 124, 0)    0%,
+    rgba(2, 13, 124, 0.18) 60%,
+    rgba(2, 13, 124, 0.55) 100%
   );
-  mix-blend-mode: multiply;
+  /* multiply over a <video> drops out during compositing on some browsers;
+     plain alpha gradient is stable and looks nearly identical here */
+  transform: translateZ(0);
 }
 
 /* Card body, absolute inset-x-0 bottom-0 p-6 text-primary-foreground md:p-8 */
@@ -1001,6 +1012,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* keep the text on its own layer so it doesn't flicker while the
+     track translates during swiping */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @media (min-width: 768px) {
@@ -1901,4 +1917,142 @@ body {
 .ws-section-eyebrow,
 .wd-story-tag {
   display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Footer (nevsky118 / 21st.dev) — schwarz
+   ════════════════════════════════════════════════════════ */
+.ft {
+  background: #000000;
+  color: #ffffff;
+  padding: 64px 0 24px;
+}
+
+@media (min-width: 1024px) {
+  .ft { padding: 96px 0 32px; }
+}
+
+.ft-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Top: brand + socials ── */
+.ft-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .ft-top { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+
+.ft-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.ft-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+.ft-socials {
+  display: flex;
+  list-style: none;
+  gap: 12px;
+}
+
+.ft-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.ft-social:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+/* ── Bottom grid ── */
+.ft-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 28px;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ft-bottom {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    align-items: start;
+    margin-top: 24px;
+    padding-top: 32px;
+    gap: 16px 24px;
+  }
+  /* copyright left (cols 1–4, both rows), nav + legal right (cols 4–11) */
+  .ft-copy  { grid-column: 1 / 4; grid-row: 1 / 3; }
+  .ft-nav   { grid-column: 4 / 11; }
+  .ft-legal { grid-column: 4 / 11; }
+}
+
+.ft-copy {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.ft-nav { margin: 0; }
+
+.ft-links,
+.ft-legal {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+@media (min-width: 1024px) {
+  .ft-links,
+  .ft-legal { justify-content: flex-end; }
+}
+
+.ft-links a {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 160ms ease;
+}
+
+.ft-links a:hover { text-decoration: underline; }
+
+.ft-legal a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 160ms ease;
+}
+
+.ft-legal a:hover { color: #ffffff; text-decoration: underline; }
+
+@media (max-width: 767px) {
+  .ft-inner { padding: 0 24px; }
 }

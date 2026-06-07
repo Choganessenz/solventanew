@@ -973,7 +973,8 @@
   }, { threshold: 0 });
 
   document.querySelectorAll('video').forEach((v) => {
-    if (!v.closest('.feat7')) io.observe(v);   // feat7 video handled in its own module
+    // skip feat7 carousel (own module) and any video that manages its own playback
+    if (!v.closest('.feat7') && !v.hasAttribute('data-manual')) io.observe(v);
   });
 })();
 
