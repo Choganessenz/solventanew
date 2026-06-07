@@ -60,7 +60,7 @@ body {
   padding: 0 24px;
 }
 
-/* ─── Logo — absolute left so nav stays truly centered ───── */
+/* ─── Logo, absolute left so nav stays truly centered ───── */
 .navbar-logo {
   position: absolute;
   left: 24px;
@@ -76,7 +76,7 @@ body {
   z-index: 1;
 }
 
-/* ─── NavigationMenu — remains centered in the flex bar ──── */
+/* ─── NavigationMenu, remains centered in the flex bar ──── */
 .nav-menu {
   position: relative;
   display: flex;
@@ -84,7 +84,7 @@ body {
   justify-content: center;
 }
 
-/* ─── NavigationMenuList — flex list-none items-center gap-1 */
+/* ─── NavigationMenuList, flex list-none items-center gap-1 */
 .nav-list {
   display: flex;
   list-style: none;
@@ -131,7 +131,7 @@ body {
   text-decoration: none;
 }
 
-/* ─── Chevron — transition duration-300 rotate-180 when open */
+/* ─── Chevron, transition duration-300 rotate-180 when open */
 .chevron {
   position: relative;
   top: 1px;
@@ -145,7 +145,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Keyframe animations — matches Radix motion data attributes
+   Keyframe animations, matches Radix motion data attributes
    ════════════════════════════════════════════════════════ */
 
 /* Enter from right  (data-[motion=from-end]:slide-in-from-right-52) */
@@ -172,7 +172,7 @@ body {
   to   { opacity: 0; transform: translateX(13rem); }
 }
 
-/* First open / last close — zoom-in-95/zoom-out-95 + fade */
+/* First open / last close, zoom-in-95/zoom-out-95 + fade */
 @keyframes zoom-in {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1);    }
@@ -204,7 +204,7 @@ body {
   animation: none;
 }
 
-/* Bridge — keeps hover alive while mouse moves to dropdown */
+/* Bridge, keeps hover alive while mouse moves to dropdown */
 .nav-content::before {
   content: '';
   position: absolute;
@@ -214,13 +214,13 @@ body {
   height: 10px;
 }
 
-/* Visible state — JS adds .is-open on the nav-item */
+/* Visible state, JS adds .is-open on the nav-item */
 .nav-item.is-open > .nav-content {
   visibility: visible;
   pointer-events: auto;
 }
 
-/* Exiting — JS adds .is-exiting directly on the content */
+/* Exiting, JS adds .is-exiting directly on the content */
 .nav-content.is-exiting {
   visibility: visible;
   pointer-events: none;
@@ -364,7 +364,7 @@ body {
 .icon-done    { color: #22c55e; }
 
 /* ═══════════════════════════════════════════════════════════
-   Navbar — logo image
+   Navbar, logo image
    ════════════════════════════════════════════════════════ */
 .navbar-logo-img {
   height: 30px;
@@ -390,7 +390,7 @@ body {
   background: #ffffff;
 }
 
-/* ── Background video loop — fills the hero ── */
+/* ── Background video loop, fills the hero ── */
 .lhero-video {
   position: absolute;
   top: 0;
@@ -417,7 +417,7 @@ body {
       rgba(255, 255, 255, 0) 100%);
 }
 
-/* ── Central content — z-50 pointer-events-auto ── */
+/* ── Central content, z-50 pointer-events-auto ── */
 .lhero-center {
   position: relative;
   z-index: 50;
@@ -429,7 +429,7 @@ body {
   pointer-events: auto;
 }
 
-/* ── Title — text-3xl → text-8xl font-bold tracking-tight ── */
+/* ── Title, text-3xl → text-8xl font-bold tracking-tight ── */
 .lhero-title {
   font-size: clamp(2.4rem, 7vw, 5.5rem);
   font-weight: 700;
@@ -452,7 +452,7 @@ body {
   white-space: pre;
 }
 
-/* Second line holds "wird " + rotating span — must never wrap */
+/* Second line holds "wird " + rotating span, must never wrap */
 .lhero-title-line--flex {
   display: flex;
   align-items: baseline;
@@ -488,7 +488,7 @@ body {
 .tr-char {
   display: inline-block;
   /* descenders (g, j, p, y) need the gradient background box to extend below
-     the baseline — bottom padding grows the box without moving the baseline */
+     the baseline, bottom padding grows the box without moving the baseline */
   padding-bottom: 0.18em;
   /* gradient: #39ceff → #020d7c (both styleguide accents) */
   background: linear-gradient(135deg, #39ceff, #020d7c);
@@ -531,7 +531,7 @@ body {
   transform: translateY(0);
 }
 
-/* Shared button base — rounded-full font-semibold tracking-tight */
+/* Shared button base, rounded-full font-semibold tracking-tight */
 .lhero-btn {
   display: inline-flex;
   align-items: center;
@@ -551,7 +551,7 @@ body {
 }
 .lhero-btn:hover { scale: 1.05; }
 
-/* Primary — #020d7c bg, white text */
+/* Primary, #020d7c bg, white text */
 .lhero-btn--primary {
   background: #020d7c;
   color: #ffffff;
@@ -560,7 +560,7 @@ body {
   box-shadow: 0 12px 32px -4px rgba(2, 13, 124, 0.45);
 }
 
-/* Secondary — #39ceff bg, dark text */
+/* Secondary, #39ceff bg, dark text */
 .lhero-btn--secondary {
   background: #39ceff;
   color: #020d7c;
@@ -576,7 +576,7 @@ body {
 .lhero-btn--primary:hover .lhero-btn-arrow { transform: translateX(4px); }
 
 /* ═══════════════════════════════════════════════════════════
-   LandingHero — Responsive
+   LandingHero, Responsive
    ════════════════════════════════════════════════════════ */
 
 /* XL-only images: hidden below 1921 px */
@@ -584,7 +584,7 @@ body {
   display: none;
 }
 
-/* ── Mobile (< 768 px) — no floating images ── */
+/* ── Mobile (< 768 px), no floating images ── */
 @media (max-width: 767px) {
   .lhero-float {
     display: none;
@@ -610,7 +610,7 @@ body {
   }
 }
 
-/* ── Large screens (> 1920 px) — show extra images ── */
+/* ── Large screens (> 1920 px), show extra images ── */
 @media (min-width: 1921px) {
   .lhero-float--xl {
     display: block;
@@ -618,10 +618,10 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Reviews Section — 3D Testimonials
+   Reviews Section, 3D Testimonials
    ════════════════════════════════════════════════════════ */
 
-/* Marquee keyframe — matches component: translateY(calc(-100% - var(--gap))) */
+/* Marquee keyframe, matches component: translateY(calc(-100% - var(--gap))) */
 @keyframes marquee-vertical {
   from { transform: translateY(0); }
   to   { transform: translateY(calc(-100% - 1rem)); }
@@ -695,12 +695,12 @@ body {
   line-height: 1.6;
 }
 
-/* ── Right: 3D marquee — flex:1 takes remaining width ── */
+/* ── Right: 3D marquee, flex:1 takes remaining width ── */
 .reviews-3d {
   flex: 1;
   perspective: 300px;
   position: relative;
-  height: 384px;           /* h-96 — original height */
+  height: 384px;           /* h-96, original height */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -712,7 +712,7 @@ body {
   animation-play-state: paused;
 }
 
-/* ── 3D scene — exact original transform from demo ── */
+/* ── 3D scene, exact original transform from demo ── */
 .reviews-scene {
   display: flex;
   flex-direction: row;
@@ -722,7 +722,7 @@ body {
              rotateX(20deg) rotateY(-10deg) rotateZ(20deg);
 }
 
-/* ── Marquee column — natural width, original sizing ── */
+/* ── Marquee column, natural width, original sizing ── */
 .marquee-col {
   display: flex;
   flex-direction: column;
@@ -732,7 +732,7 @@ body {
   height: 384px;
 }
 
-/* ── Inner repeat div — animated ── */
+/* ── Inner repeat div, animated ── */
 /* [--duration:40s] set in demo; repeat=3 creates 3 copies for seamless loop */
 .marquee-inner {
   display: flex;
@@ -747,7 +747,7 @@ body {
   animation-direction: reverse;
 }
 
-/* ── Gradient edge fades — match section background ── */
+/* ── Gradient edge fades, match section background ── */
 .rev-grad {
   position: absolute;
   pointer-events: none;
@@ -758,9 +758,9 @@ body {
 .rev-grad--left   { inset: 0 auto 0 0; width:  25%; background: linear-gradient(to right,  var(--muted), transparent); }
 .rev-grad--right  { inset: 0 0 0 auto; width:  25%; background: linear-gradient(to left,   var(--muted), transparent); }
 
-/* ── Review card — w-50 from demo ── */
+/* ── Review card, w-50 from demo ── */
 .rev-card {
-  width: 200px;           /* w-50 — original component size */
+  width: 200px;           /* w-50, original component size */
   flex-shrink: 0;
   background: #ffffff;
   border: 1px solid var(--border);
@@ -792,7 +792,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Initials avatar — colored circle (no external images needed) */
+/* Initials avatar, colored circle (no external images needed) */
 .rev-avatar {
   width: 34px;
   height: 34px;
@@ -819,7 +819,7 @@ body {
   margin-top: 1px;
 }
 
-/* Review text — line-clamp-3 */
+/* Review text, line-clamp-3 */
 .rev-text {
   font-size: 12px;
   color: var(--foreground);
@@ -839,7 +839,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Gallery4 — Leistungen
+   Gallery4, Leistungen
    ════════════════════════════════════════════════════════ */
 
 .g4 {
@@ -886,7 +886,7 @@ body {
   max-width: 480px;
 }
 
-/* Arrow buttons — size="icon" variant="ghost" */
+/* Arrow buttons, size="icon" variant="ghost" */
 .g4-arrows {
   display: none;           /* hidden on mobile, shown md+ */
   gap: 8px;
@@ -936,7 +936,7 @@ body {
   will-change: transform;
 }
 
-/* ── Item — max-w-[320px] pl-[20px] lg:max-w-[360px] ── */
+/* ── Item, max-w-[320px] pl-[20px] lg:max-w-[360px] ── */
 .g4-item {
   flex-shrink: 0;
   width: 320px;
@@ -1001,7 +1001,7 @@ body {
   transform: translateZ(0);
 }
 
-/* Card body — absolute inset-x-0 bottom-0 p-6 text-primary-foreground md:p-8 */
+/* Card body, absolute inset-x-0 bottom-0 p-6 text-primary-foreground md:p-8 */
 .g4-body {
   position: absolute;
   bottom: 0;
@@ -1104,7 +1104,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Projekte / Erfolge — Features-7 (tailark / 21st.dev)
+   Projekte / Erfolge, Features-7 (tailark / 21st.dev)
    ════════════════════════════════════════════════════════ */
 .feat7 {
   background: var(--muted);
@@ -1154,7 +1154,7 @@ body {
 }
 
 .feat7-tilt {
-  /* flat — no skew/tilt */
+  /* flat, no skew/tilt */
 }
 
 .feat7-frame {
@@ -1179,7 +1179,7 @@ body {
   object-position: top center;
 }
 
-/* Radial vignette — fades the screenshot edges into the background */
+/* Radial vignette, fades the screenshot edges into the background */
 .feat7-vignette {
   position: absolute;
   inset: 0;
@@ -1271,7 +1271,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* ── Swappable content — directional slide driven by JS (inline transforms) ── */
+/* ── Swappable content, directional slide driven by JS (inline transforms) ── */
 .feat7-swap {
   will-change: transform, opacity;
 }
@@ -1315,7 +1315,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Scroll reveal — shared utility
+   Scroll reveal, shared utility
    ════════════════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
@@ -1330,7 +1330,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   So arbeiten wir — animated timeline
+   So arbeiten wir, animated timeline
    ════════════════════════════════════════════════════════ */
 .proc {
   background: var(--background);
@@ -1418,8 +1418,7 @@ body {
   opacity: 0;            /* hidden until the section animates in */
 }
 
-/* Keyframe entrance (smoother than transition+delay for the SVG icons —
-   no per-frame re-raster, no visible compositing box). */
+/* Keyframe entrance (smoother than transition+delay for the SVG icons, no per-frame re-raster, no visible compositing box). */
 @keyframes procStepIn {
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -1436,7 +1435,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* ── Node (icon circle) — gradient from the start, no white flash ── */
+/* ── Node (icon circle), gradient from the start, no white flash ── */
 .proc-node {
   width: 68px;
   height: 68px;
@@ -1460,7 +1459,7 @@ body {
   box-shadow: 0 20px 38px -14px rgba(2, 13, 124, 0.55);
 }
 
-/* Number badge — sits on the wrapper, never clipped by the circle */
+/* Number badge, sits on the wrapper, never clipped by the circle */
 .proc-num {
   position: absolute;
   top: -6px;
@@ -1545,7 +1544,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CTA — Text Marquee (uimix / 21st.dev)
+   CTA, Text Marquee (uimix / 21st.dev)
    ════════════════════════════════════════════════════════ */
 .mcta {
   background: var(--background);
@@ -1685,7 +1684,7 @@ body {
   /* JS sets opacity per frame based on distance from center */
 }
 
-/* Edge vignettes — dissolve into the background */
+/* Edge vignettes, dissolve into the background */
 .mcta-fade {
   pointer-events: none;
   position: absolute;
@@ -1798,7 +1797,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Navbar — CTA button (right-anchored)
+   Navbar, CTA button (right-anchored)
    ════════════════════════════════════════════════════════ */
 .navbar-cta {
   position: absolute;
@@ -1882,16 +1881,16 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CTA / FAQ — responsive
+   CTA / FAQ, responsive
    ════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
-  /* CTA marquee — stack, shrink the scroller */
+  /* CTA marquee, stack, shrink the scroller */
   .mcta-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 40px; }
   .mcta-marquee { height: 420px; }
 }
 
 @media (max-width: 767px) {
-  /* CTA marquee — mobile */
+  /* CTA marquee, mobile */
   .mcta { padding: 48px 0 80px; }
   .mcta-inner { padding: 0 24px; gap: 36px; }
   .mcta-buttons { flex-direction: column; }

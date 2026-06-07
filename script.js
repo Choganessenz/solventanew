@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   Navbar — directional slide animations
+   Navbar, directional slide animations
    ════════════════════════════════════════════════════════ */
 (() => {
   const navMenu = document.querySelector('.nav-menu');
@@ -60,7 +60,7 @@
       const content = item.querySelector('.nav-content');
       if (activeIndex === index) return;
 
-      // Plain link (no dropdown) — keep current dropdown open, just track position
+      // Plain link (no dropdown), keep current dropdown open, just track position
       if (!content) {
         activeIndex = index;
         return;
@@ -105,10 +105,10 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   LandingHero — Floating Parallax + TextRotate
+   LandingHero, Floating Parallax + TextRotate
    ════════════════════════════════════════════════════════ */
 (() => {
-  // ── 1. Floating parallax images (optional — only if present) ──
+  // ── 1. Floating parallax images (optional, only if present) ──
   // Matches Floating component: sensitivity=-0.5, easingFactor=0.05
   const floatingContainer = document.getElementById('lheroFloating');
   if (floatingContainer) {
@@ -171,7 +171,7 @@
 
   const TEXTS    = ['mehr Kunden', 'erfolgreich', 'einzigartig', 'sichtbar'];
   const INTERVAL = 3000;
-  const STAGGER  = 30;   // ms — staggerDuration 0.03 s
+  const STAGGER  = 30;   // ms, staggerDuration 0.03 s
   let   currentIdx = 0;
   let   rotating   = false;
 
@@ -205,7 +205,7 @@
     if (Math.abs(newW - oldW) > 1) {
       rotateEl.style.transition = 'none';
       rotateEl.style.width      = `${oldW}px`;
-      void rotateEl.offsetWidth;                               // force reflow — pin old width
+      void rotateEl.offsetWidth;                               // force reflow, pin old width
       rotateEl.style.transition = 'width 300ms cubic-bezier(0.22,1,0.36,1)';
       rotateEl.style.width      = `${newW}px`;
       setTimeout(() => {
@@ -251,7 +251,7 @@
     setTimeout(onDone, (total - 1) * STAGGER + 250);
   }
 
-  // Initial render — enter after title appears
+  // Initial render, enter after title appears
   const initSpans = buildSpans(TEXTS[0]);
   setBelow(initSpans);
   setTimeout(() => {
@@ -276,10 +276,10 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Reviews — 3D Testimonials (reui/3d-testimonails)
+   Reviews, 3D Testimonials (reui/3d-testimonails)
    ════════════════════════════════════════════════════════ */
 (() => {
-  // ── Review data (9 entries — invented for demo) ──────────
+  // ── Review data (9 entries, invented for demo) ──────────
   const REVIEWS = [
     {
       name: 'Thomas Bergmann',
@@ -300,7 +300,7 @@
       service: 'Digitales System',
       initials: 'MV',
       color: { bg: '#6366f1', fg: '#fff' },
-      text: 'Wir brauchten ein internes Mitarbeiterportal – Solventa hat es genau nach unseren Vorstellungen umgesetzt. Schnelle Reaktionszeiten!',
+      text: 'Wir brauchten ein internes Mitarbeiterportal, Solventa hat es genau nach unseren Vorstellungen umgesetzt. Schnelle Reaktionszeiten!',
     },
     {
       name: 'Julia Schneider',
@@ -346,7 +346,7 @@
     },
   ];
 
-  // Google G SVG (multicolor — exact brand colors)
+  // Google G SVG (multicolor, exact brand colors)
   const GOOGLE_G = `<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true">
     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -395,7 +395,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Gallery4 — Leistungen carousel
+   Gallery4, Leistungen carousel
    ════════════════════════════════════════════════════════ */
 (() => {
   const track    = document.getElementById('g4Track');
@@ -471,7 +471,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Erfolge — Sticky Scroll Showcase (pinned stage, scenes swap)
+   Erfolge, Sticky Scroll Showcase (pinned stage, scenes swap)
    ════════════════════════════════════════════════════════ */
 (() => {
   const section = document.querySelector('.showcase');
@@ -592,7 +592,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Scroll reveal — fade/slide elements in as they enter view
+   Scroll reveal, fade/slide elements in as they enter view
    ════════════════════════════════════════════════════════ */
 (() => {
   const els = Array.from(document.querySelectorAll('.reveal'));
@@ -616,7 +616,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   So arbeiten wir — timeline: draw line + light up nodes in sequence
+   So arbeiten wir, timeline: draw line + light up nodes in sequence
    ════════════════════════════════════════════════════════ */
 (() => {
   const section = document.querySelector('.proc');
@@ -653,7 +653,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   FAQ — accordion (one open at a time)
+   FAQ, accordion (one open at a time)
    ════════════════════════════════════════════════════════ */
 (() => {
   const items = Array.from(document.querySelectorAll('.faq-item'));
@@ -696,7 +696,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   CTA Text-Marquee — fade items by distance from center
+   CTA Text-Marquee, fade items by distance from center
    ════════════════════════════════════════════════════════ */
 (() => {
   const marquee = document.getElementById('mctaMarquee');
@@ -740,7 +740,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Projekte (Features-7) — reference carousel (slide + counters + video/img)
+   Projekte (Features-7), reference carousel (slide + counters + video/img)
    ════════════════════════════════════════════════════════ */
 (() => {
   const section  = document.querySelector('.feat7');
@@ -804,7 +804,7 @@
 
   // Register the project media that isn't in the DOM yet so the global
   // preloader fetches it in order (chronological, after this section).
-  // Skip index 0 — it's already in the DOM and preloads itself.
+  // Skip index 0, it's already in the DOM and preloads itself.
   window.__preloadQueue = window.__preloadQueue || [];
   PROJECTS.slice(1).forEach((p) => {
     const m = p.media;
@@ -959,7 +959,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Video playback — play only while on screen (data may load earlier)
+   Video playback, play only while on screen (data may load earlier)
    Handles static videos (hero); the feat7 carousel manages its own.
    ════════════════════════════════════════════════════════ */
 (() => {
@@ -979,7 +979,7 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Media preloader — warm images & videos in chronological order
+   Media preloader, warm images & videos in chronological order
    (document order top→bottom, then JS-deferred project media)
    ════════════════════════════════════════════════════════ */
 (() => {
