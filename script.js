@@ -276,125 +276,6 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   Reviews, 3D Testimonials (reui/3d-testimonails)
-   ════════════════════════════════════════════════════════ */
-(() => {
-  // ── Review data (9 entries, invented for demo) ──────────
-  const REVIEWS = [
-    {
-      name: 'Thomas Bergmann',
-      service: 'Website-Projekt',
-      initials: 'TB',
-      color: { bg: '#020d7c', fg: '#fff' },
-      text: 'Solventa hat unsere Website komplett neu gestaltet. Das Ergebnis ist modern, schnell und wir bekommen deutlich mehr Anfragen. Absolute Empfehlung!',
-    },
-    {
-      name: 'Sandra Keller',
-      service: 'Webdesign',
-      initials: 'SK',
-      color: { bg: '#39ceff', fg: '#020d7c' },
-      text: 'Sehr professionelle Zusammenarbeit. Die neue Website lädt blitzschnell und sieht auf dem Handy genauso gut aus wie am PC.',
-    },
-    {
-      name: 'Markus Vogt',
-      service: 'Digitales System',
-      initials: 'MV',
-      color: { bg: '#6366f1', fg: '#fff' },
-      text: 'Wir brauchten ein internes Mitarbeiterportal, Solventa hat es genau nach unseren Vorstellungen umgesetzt. Schnelle Reaktionszeiten!',
-    },
-    {
-      name: 'Julia Schneider',
-      service: 'Logo & Branding',
-      initials: 'JS',
-      color: { bg: '#ec4899', fg: '#fff' },
-      text: 'Das neue Logo und die Corporate Identity sind genau das, was wir uns vorgestellt haben. Kreativ, klar und professionell. Danke!',
-    },
-    {
-      name: 'Peter Hoffmann',
-      service: 'Webdesign & SEO',
-      initials: 'PH',
-      color: { bg: '#10b981', fg: '#fff' },
-      text: 'Faire Preise und ein tolles Ergebnis. Unsere neue Website ist seit dem Launch deutlich besser bei Google zu finden.',
-    },
-    {
-      name: 'Nina Braun',
-      service: 'Website-Projekt',
-      initials: 'NB',
-      color: { bg: '#f59e0b', fg: '#fff' },
-      text: 'Super schnelle Umsetzung! Innerhalb von 3 Wochen hatten wir eine komplett neue Website. Design und Technik stimmen einfach.',
-    },
-    {
-      name: 'Andreas Koch',
-      service: 'Webdesign',
-      initials: 'AK',
-      color: { bg: '#ef4444', fg: '#fff' },
-      text: 'Das Team von Solventa hat uns bei unserem Online-Auftritt wirklich geholfen. Endlich werden wir bei Google gefunden!',
-    },
-    {
-      name: 'Laura Meyer',
-      service: 'Buchungssystem',
-      initials: 'LM',
-      color: { bg: '#8b5cf6', fg: '#fff' },
-      text: 'Wir haben ein maßgeschneidertes Buchungssystem bekommen, das perfekt zu unseren Abläufen passt. Jede Anforderung wurde umgesetzt.',
-    },
-    {
-      name: 'Felix Wagner',
-      service: 'Website-Projekt',
-      initials: 'FW',
-      color: { bg: '#0ea5e9', fg: '#fff' },
-      text: 'Tolle Erfahrung von der ersten Anfrage bis zur fertigen Website. Freundlich, kompetent und die Deadlines wurden eingehalten.',
-    },
-  ];
-
-  // Google G SVG (multicolor, exact brand colors)
-  const GOOGLE_G = `<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
-    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-  </svg>`;
-
-  // ── Build a single review card ────────────────────────────
-  function createCard(r) {
-    const card = document.createElement('div');
-    card.className = 'rev-card';
-    card.innerHTML = `
-      <div class="rev-card-top">
-        <span class="rev-stars" aria-label="5 Sterne">★★★★★</span>
-        ${GOOGLE_G}
-      </div>
-      <div class="rev-author">
-        <div class="rev-avatar" style="background:${r.color.bg};color:${r.color.fg}">${r.initials}</div>
-        <div>
-          <div class="rev-name">${r.name}</div>
-          <div class="rev-service">${r.service}</div>
-        </div>
-      </div>
-      <blockquote class="rev-text">„${r.text}"</blockquote>
-    `;
-    return card;
-  }
-
-  // ── Fill one column with `repeat` copies of all reviews ──
-  // Matches Marquee repeat=3: 3 inner divs → seamless vertical loop
-  function fillCol(id, repeat) {
-    const col = document.getElementById(id);
-    if (!col) return;
-    for (let r = 0; r < repeat; r++) {
-      const inner = document.createElement('div');
-      inner.className = 'marquee-inner';
-      REVIEWS.forEach(review => inner.appendChild(createCard(review)));
-      col.appendChild(inner);
-    }
-  }
-
-  fillCol('revCol1', 3);
-  fillCol('revCol2', 3);
-  fillCol('revCol3', 3);
-  fillCol('revCol4', 3);
-})();
-
-/* ═══════════════════════════════════════════════════════════
    Gallery4, Leistungen carousel
    ════════════════════════════════════════════════════════ */
 (() => {
@@ -756,7 +637,7 @@
 
   const PROJECTS = [
     {
-      name: 'Bautrocknung OWL',
+      name: 'Bautrocknung in NRW',
       media: {
         type: 'video',
         webm: 'material/bautrocknung.webm',
@@ -771,7 +652,7 @@
       ],
     },
     {
-      name: 'Grünwerk Galabau',
+      name: 'Gala Bau in Baden-Württemberg',
       media: {
         type: 'video',
         webm: 'material/gruenwerk.webm',
@@ -786,7 +667,7 @@
       ],
     },
     {
-      name: 'Koya',
+      name: 'Bistro in NRW',
       media: {
         type: 'video',
         webm: 'material/koya.webm',
