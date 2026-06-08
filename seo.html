@@ -14,16 +14,9 @@
     .seo-hero-section {
       position: relative;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.95) 42%, rgba(240,248,255,0.82) 100%),
-        url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1920&auto=format&fit=crop') center/cover no-repeat;
+        linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.55) 42%, rgba(255,255,255,0.20) 100%),
+        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&auto=format&fit=crop') center/cover no-repeat;
       overflow: hidden;
-    }
-    .seo-hero-section::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(2,13,124,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(2,13,124,.035) 1px, transparent 1px);
-      background-size: 40px 40px;
     }
     .seo-hero {
       position: relative; z-index: 1;
@@ -38,7 +31,7 @@
       line-height: 1.08; color: var(--foreground); margin-bottom: 20px;
     }
     .seo-hero-title em { font-style: normal; background: linear-gradient(135deg,#39ceff,#020d7c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .seo-hero-sub { font-size: 17px; color: var(--muted-foreground); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .seo-hero-sub { font-size: 17px; color: #1a2230; font-weight: 500; line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
     .seo-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
     .seo-btn {
       display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 9999px;
@@ -288,7 +281,6 @@
           <li class="nav-item"><a href="kontakt.html" class="nav-trigger nav-trigger--link">Kontakt</a></li>
         </ul>
       </nav>
-      <a href="kontakt.html" class="navbar-cta">Erstgespräch</a>
     </div>
   </header>
 
@@ -505,6 +497,48 @@
       <a href="kontakt.html" class="seo-cta-btn">Kostenloses Erstgespräch <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </section>
+
+  <footer class="ft">
+    <div class="ft-inner">
+
+      <div class="ft-top">
+        <a href="index.html" class="ft-brand" aria-label="Solventa Digital">
+          <img src="material/logo.png" alt="Solventa Digital" class="ft-logo" />
+        </a>
+        <ul class="ft-socials">
+          <li>
+            <a href="mailto:info@solventa-digital.de" class="ft-social" aria-label="E-Mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ft-bottom">
+        <div class="ft-copy">
+          <div>© 2026 Solventa Digital</div>
+          <div>Webdesign · Grafikdesign · SEO · Digitale Systeme</div>
+        </div>
+        <nav class="ft-nav" aria-label="Footer">
+          <ul class="ft-links">
+            <li><a href="webdesign.html">Webdesign</a></li>
+            <li><a href="grafikdesign.html">Grafikdesign</a></li>
+            <li><a href="seo.html">SEO</a></li>
+            <li><a href="digitale-geschaeftssysteme.html">Digitale Systeme</a></li>
+            <li><a href="wartung-support.html">Wartung &amp; Support</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+        <ul class="ft-legal">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script>
