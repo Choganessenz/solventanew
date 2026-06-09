@@ -165,7 +165,7 @@
           toggleAcc(item);
           return;
         }
-        window.location.href = 'index.html';
+        window.location.href = '/';
         return;
       }
       // Leistungen u. a. Dropdowns: nur mobil als Accordion
@@ -250,7 +250,7 @@
   const rotateEl = document.getElementById('lheroRotate');
   if (!rotateEl) return;
 
-  const TEXTS    = ['mehr Kunden', 'erfolgreich', 'einzigartig', 'sichtbar'];
+  const TEXTS    = ['Webdesign', 'Grafikdesign', 'SEO', 'Digitale Systeme'];
   const INTERVAL = 3000;
   const STAGGER  = 30;   // ms, staggerDuration 0.03 s
   let   currentIdx = 0;
@@ -1024,7 +1024,7 @@
       '<div class="cc-title">Wir respektieren Ihre Privatsphäre</div>' +
       '<p class="cc-text">Wir verwenden Cookies, um diese Website bereitzustellen und Ihr Erlebnis zu verbessern. ' +
       'Notwendige Cookies sind für den Betrieb erforderlich. Optionale Cookies setzen wir nur mit Ihrer Einwilligung. ' +
-      'Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
+      'Mehr dazu in unserer <a href="/datenschutz">Datenschutzerklärung</a>.</p>' +
       '<div class="cc-actions">' +
         '<button class="cc-btn cc-btn--ghost" data-cc="necessary">Nur notwendige</button>' +
         '<button class="cc-btn cc-btn--accept" data-cc="all">Alle akzeptieren</button>' +

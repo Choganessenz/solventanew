@@ -556,8 +556,13 @@ body {
 
 /* ── Subtitle ── */
 .lhero-sub {
-  font-size: clamp(0.95rem, 2vw, 1.25rem);
-  color: var(--muted-foreground);
+  font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+  font-weight: 500;
+  color: #52525b;
+  line-height: 1.5;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: clamp(1rem, 2.5vw, 3rem);
   /* fade+slide in via JS */
   opacity: 0;
@@ -567,6 +572,35 @@ body {
 .lhero-sub.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Hervorhebung "mehr Kunden": blau + animierte Unterstreichung */
+.lhero-highlight {
+  position: relative;
+  color: #020d7c;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.lhero-highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #39ceff, #020d7c, #39ceff);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: hl-underline 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards,
+             hl-shimmer 4s linear 1.5s infinite;
+}
+@keyframes hl-underline { to { transform: scaleX(1); } }
+@keyframes hl-shimmer   { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lhero-highlight::after { animation: none; transform: scaleX(1); }
 }
 
 /* ── Buttons ── */

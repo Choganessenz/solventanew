@@ -1,0 +1,8 @@
+# Solventa Digital Solutions, robots.txt
+# Suchmaschinen UND KI-Crawler ausdrücklich willkommen.
+
+User-agent: *
+Allow: /
+Disallow: /kontakt-senden.php
+
+Sitemap: https://solventa-digital.de/sitemap.xml
