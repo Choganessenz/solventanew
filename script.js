@@ -54,8 +54,11 @@
     if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
   }
 
+  const isMobileNav = () => window.matchMedia('(max-width: 860px)').matches;
+
   items.forEach((item, index) => {
     item.addEventListener('mouseenter', () => {
+      if (isMobileNav()) return;            // mobil: kein Hover, Burger übernimmt
       cancelClose();
       const content = item.querySelector('.nav-content');
       if (activeIndex === index) return;
@@ -82,6 +85,7 @@
   });
 
   navMenu.addEventListener('mouseleave', () => {
+    if (isMobileNav()) return;
     // Small delay prevents snap-close when the cursor briefly leaves while
     // moving from the trigger button toward the dropdown panel below.
     closeTimer = setTimeout(() => {
@@ -102,6 +106,83 @@
   });
 
   navMenu.addEventListener('mouseenter', cancelClose);
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   Mobile navbar — Burger toggle + Inline-Accordion
+   ════════════════════════════════════════════════════════ */
+(() => {
+  const navbar      = document.querySelector('.navbar');
+  const navbarInner = document.querySelector('.navbar-inner');
+  const navMenu     = document.querySelector('.nav-menu');
+  if (!navbar || !navbarInner || !navMenu) return;
+
+  const isMobile = () => window.matchMedia('(max-width: 860px)').matches;
+
+  // Burger-Button erzeugen
+  const btn = document.createElement('button');
+  btn.className = 'nav-toggle';
+  btn.setAttribute('aria-label', 'Menü öffnen');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  navbarInner.appendChild(btn);
+
+  function openMenu() {
+    navbar.classList.add('nav-open');
+    document.body.classList.add('nav-open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Menü schließen');
+  }
+  function closeMenu() {
+    navbar.classList.remove('nav-open');
+    document.body.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Menü öffnen');
+    navMenu.querySelectorAll('.nav-item.is-open').forEach(i => i.classList.remove('is-open'));
+  }
+
+  btn.addEventListener('click', () => {
+    navbar.classList.contains('nav-open') ? closeMenu() : openMenu();
+  });
+
+  // ── Accordion: reines Klassen-Toggle, Höhe animiert die CSS-Grid-Zeile (flüssig) ──
+  function toggleAcc(item) {
+    const open = item.classList.contains('is-open');
+    navMenu.querySelectorAll('.nav-item.is-open').forEach(i => { if (i !== item) i.classList.remove('is-open'); });
+    item.classList.toggle('is-open', !open);
+  }
+
+  navMenu.querySelectorAll('.nav-trigger').forEach(trigger => {
+    const isHome  = trigger.textContent.trim().toLowerCase().startsWith('home');
+    const item    = trigger.closest('.nav-item');
+    const content = item && item.querySelector('.nav-content');
+
+    trigger.addEventListener('click', (e) => {
+      if (isHome) {
+        // Mobil: nur der Pfeil klappt auf/zu, der restliche Button führt zur Startseite
+        if (isMobile() && content && e.target.closest('.chevron')) {
+          e.preventDefault();
+          toggleAcc(item);
+          return;
+        }
+        window.location.href = 'index.html';
+        return;
+      }
+      // Leistungen u. a. Dropdowns: nur mobil als Accordion
+      if (!isMobile()) return;
+      if (!content) return;            // einfacher Link (Kontakt): normal navigieren
+      e.preventDefault();
+      toggleAcc(item);
+    });
+  });
+
+  // Tap auf einen echten Link im Menü → Menü schließen (und navigieren)
+  navMenu.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', () => { if (isMobile()) closeMenu(); });
+  });
+
+  // Beim Wechsel zurück auf Desktop Menü zurücksetzen
+  window.addEventListener('resize', () => { if (!isMobile()) closeMenu(); }, { passive: true });
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -899,4 +980,191 @@
   // Start after the page's own critical load so we don't compete with it
   if (document.readyState === 'complete') run();
   else window.addEventListener('load', run);
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   Cookie-Consent: Banner + Einstellungen
+   Speichert die Auswahl in localStorage. Funktionale Kategorien:
+   notwendig (immer an), statistik, marketing. Andere Skripte können
+   window.solventaConsent lesen oder auf 'solventa:consent' lauschen.
+   ═══════════════════════════════════════════════════════════ */
+(() => {
+  const KEY = 'solventa_cookie_consent';
+  const VERSION = 1;
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      if (!data || data.v !== VERSION) return null;
+      return data;
+    } catch (_) { return null; }
+  }
+  function save(consent) {
+    const data = { v: VERSION, date: new Date().toISOString(), ...consent };
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (_) {}
+    window.solventaConsent = data;
+    window.dispatchEvent(new CustomEvent('solventa:consent', { detail: data }));
+    return data;
+  }
+
+  const ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>';
+
+  let bannerEl, modalEl, modalStat, modalMark;
+
+  function buildBanner() {
+    const b = document.createElement('div');
+    b.className = 'cc-banner';
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Cookie-Hinweis');
+    b.hidden = true;
+    b.innerHTML =
+      '<div class="cc-ico">' + ICON + '</div>' +
+      '<div class="cc-title">Wir respektieren Ihre Privatsphäre</div>' +
+      '<p class="cc-text">Wir verwenden Cookies, um diese Website bereitzustellen und Ihr Erlebnis zu verbessern. ' +
+      'Notwendige Cookies sind für den Betrieb erforderlich. Optionale Cookies setzen wir nur mit Ihrer Einwilligung. ' +
+      'Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
+      '<div class="cc-actions">' +
+        '<button class="cc-btn cc-btn--ghost" data-cc="necessary">Nur notwendige</button>' +
+        '<button class="cc-btn cc-btn--accept" data-cc="all">Alle akzeptieren</button>' +
+        '<button class="cc-btn cc-btn--text" data-cc="settings">Einstellungen</button>' +
+      '</div>';
+    document.body.appendChild(b);
+    b.querySelector('[data-cc="all"]').addEventListener('click', () => acceptAll());
+    b.querySelector('[data-cc="necessary"]').addEventListener('click', () => acceptNecessary());
+    b.querySelector('[data-cc="settings"]').addEventListener('click', () => openModal());
+    return b;
+  }
+
+  function buildModal() {
+    const m = document.createElement('div');
+    m.className = 'cc-modal';
+    m.hidden = true;
+    m.innerHTML =
+      '<div class="cc-modal-card" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">' +
+        '<div class="cc-modal-title">Cookie-Einstellungen</div>' +
+        '<p class="cc-modal-sub">Entscheiden Sie selbst, welche Cookies wir verwenden dürfen. Sie können Ihre Auswahl jederzeit anpassen.</p>' +
+        '<div class="cc-cat">' +
+          '<label class="cc-switch"><input type="checkbox" checked disabled><span class="cc-switch-track"></span></label>' +
+          '<div class="cc-cat-body"><div class="cc-cat-t">Notwendig</div>' +
+          '<div class="cc-cat-d">Für den Betrieb der Website unverzichtbar, z. B. Sicherheit und Ihre Cookie-Auswahl. Immer aktiv.</div></div>' +
+        '</div>' +
+        '<div class="cc-cat">' +
+          '<label class="cc-switch"><input type="checkbox" id="ccStat"><span class="cc-switch-track"></span></label>' +
+          '<div class="cc-cat-body"><div class="cc-cat-t">Statistik</div>' +
+          '<div class="cc-cat-d">Helfen uns anonym zu verstehen, wie die Website genutzt wird, damit wir sie verbessern können.</div></div>' +
+        '</div>' +
+        '<div class="cc-cat">' +
+          '<label class="cc-switch"><input type="checkbox" id="ccMark"><span class="cc-switch-track"></span></label>' +
+          '<div class="cc-cat-body"><div class="cc-cat-t">Marketing</div>' +
+          '<div class="cc-cat-d">Ermöglichen relevantere Inhalte und das Messen von Kampagnen.</div></div>' +
+        '</div>' +
+        '<div class="cc-modal-actions">' +
+          '<button class="cc-btn cc-btn--ghost" data-cc="save">Auswahl speichern</button>' +
+          '<button class="cc-btn cc-btn--accept" data-cc="all">Alle akzeptieren</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(m);
+    modalStat = m.querySelector('#ccStat');
+    modalMark = m.querySelector('#ccMark');
+    m.querySelector('[data-cc="save"]').addEventListener('click', () => {
+      finish({ necessary: true, statistik: !!modalStat.checked, marketing: !!modalMark.checked });
+    });
+    m.querySelector('[data-cc="all"]').addEventListener('click', () => acceptAll());
+    m.addEventListener('click', e => { if (e.target === m) closeModal(); });
+    return m;
+  }
+
+  function showBanner() {
+    if (!bannerEl) bannerEl = buildBanner();
+    bannerEl.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => bannerEl.classList.add('is-in')));
+  }
+  function hideBanner() {
+    if (!bannerEl) return;
+    bannerEl.classList.remove('is-in');
+    setTimeout(() => { if (bannerEl) bannerEl.hidden = true; }, 500);
+  }
+  function openModal() {
+    if (!modalEl) modalEl = buildModal();
+    const c = load();
+    modalStat.checked = c ? !!c.statistik : false;
+    modalMark.checked = c ? !!c.marketing : false;
+    modalEl.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => modalEl.classList.add('is-in')));
+  }
+  function closeModal() {
+    if (!modalEl) return;
+    modalEl.classList.remove('is-in');
+    setTimeout(() => { if (modalEl) modalEl.hidden = true; }, 320);
+  }
+  function finish(consent) { save(consent); hideBanner(); closeModal(); }
+  function acceptAll() { finish({ necessary: true, statistik: true, marketing: true }); }
+  function acceptNecessary() { finish({ necessary: true, statistik: false, marketing: false }); }
+
+  // Footer-Link "Cookie-Einstellungen" überall einfügen
+  function injectFooterLink() {
+    document.querySelectorAll('.ft-legal').forEach(ul => {
+      if (ul.querySelector('.cc-reopen')) return;
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cc-reopen';
+      btn.textContent = 'Cookie-Einstellungen';
+      btn.addEventListener('click', openModal);
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+  }
+
+  function init() {
+    const existing = load();
+    if (existing) window.solventaConsent = existing;
+    injectFooterLink();
+    if (!existing) showBanner();
+    // global zugänglich machen (z. B. für andere Skripte)
+    window.openCookieSettings = openModal;
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   Lange Bewertungstexte langsam auf-/abscrollen lassen
+   (nur wenn der Text höher ist als die Box; Hover pausiert via CSS)
+   ═══════════════════════════════════════════════════════════ */
+(() => {
+  const boxes = Array.from(document.querySelectorAll('.rev-text--scroll'));
+  if (!boxes.length) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const SPEED = 16; // Pixel pro Sekunde, je kleiner desto langsamer
+
+  function setup(box) {
+    const track = box.querySelector('.rev-scroll-track');
+    if (!track) return;
+    box.classList.remove('is-scrolling');
+    box.style.removeProperty('--rev-shift');
+    // im nächsten Frame messen, damit Layout/Schrift fertig ist
+    requestAnimationFrame(() => {
+      const overflow = track.scrollHeight - box.clientHeight;
+      if (overflow > 6) {
+        box.style.setProperty('--rev-shift', (-overflow) + 'px');
+        box.style.setProperty('--rev-dur', Math.max(8, overflow / SPEED).toFixed(1) + 's');
+        box.classList.add('is-scrolling');
+      }
+    });
+  }
+
+  function setupAll() { boxes.forEach(setup); }
+
+  // Nach vollständigem Laden (Schriftgrößen stehen) initialisieren
+  if (document.readyState === 'complete') setupAll();
+  else window.addEventListener('load', setupAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setupAll);
+
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(setupAll, 200); });
 })();

@@ -83,7 +83,16 @@
 
     /* Option grid */
     .kw-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 520px) { .kw-opts { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) {
+      .kw-opts { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .kw-opt { padding: 12px; }
+      .kw-imgwrap { height: 70px; }
+      .kw-opt--img .kw-opt-body { padding: 9px 11px; }
+      .kw-opt-ico { width: 34px; height: 34px; margin-bottom: 8px; border-radius: 9px; }
+      .kw-opt-t { font-size: 13px; }
+      .kw-opt-d { font-size: 11px; line-height: 1.4; }
+      .kw-opt-check { width: 18px; height: 18px; top: 9px; right: 9px; }
+    }
 
     .kw-opt {
       position: relative; border: 1.5px solid var(--border); border-radius: 14px;
@@ -124,6 +133,27 @@
     }
     .kw-opt--img:hover .kw-imgwrap img { transform: scale(1.08); }
     .kw-opt--img .kw-opt-body { padding: 13px 15px; }
+
+    /* Paket-Auswahl (einspaltige Zeilen) */
+    .kw-opts--single { grid-template-columns: 1fr; }
+    .kw-opt--row { display: flex; align-items: center; gap: 14px; }
+    .kw-opt--row .kw-opt-ico { margin-bottom: 0; flex-shrink: 0; }
+    .kw-opt--row .kw-opt-check { top: 50%; transform: translateY(-50%) scale(.4); }
+    .kw-opt--row.is-sel .kw-opt-check { transform: translateY(-50%) scale(1); }
+    .kw-paket-badge {
+      display: inline-block; vertical-align: middle; margin-left: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      color: #020d7c; background: rgba(57,206,255,.22); border-radius: 99px; padding: 2px 8px;
+    }
+    @media (max-width: 520px) { .kw-opt--row .kw-opt-d { font-size: 11.5px; } }
+
+    /* Fehlermeldung beim Senden */
+    .kw-error {
+      display: none; margin-top: 16px; font-size: 13px; line-height: 1.5;
+      color: #b4232a; background: #fdecec; border: 1px solid #f5c2c4;
+      border-radius: 10px; padding: 11px 14px;
+    }
+    .kw-error.is-on { display: block; }
 
     /* Hint when multi-select is allowed */
     .kw-multi-hint {
@@ -265,7 +295,6 @@
 
       <!-- Left visual pane -->
       <aside class="kw-aside">
-        <img class="kw-aside-bg" id="kwAsideBg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop" alt="" aria-hidden="true" onerror="this.style.display='none'" />
         <a href="index.html" class="kw-aside-brand">
           <img class="kw-aside-logo" src="material/solventa_logo_klein.png" alt="Solventa Digital" />
         </a>
@@ -275,13 +304,8 @@
           <p class="kw-aside-sub" id="kwAsideSub">Beantworten Sie ein paar kurze Fragen, in unter einer Minute. Kein Verkaufsdruck, nur ein klares Bild Ihres Vorhabens.</p>
         </div>
         <div>
-          <div class="kw-step-count" id="kwStepCount">Schritt 1 / 5</div>
-          <div class="kw-prog" id="kwProg">
-            <div class="kw-prog-seg"><span class="f"></span></div>
-            <div class="kw-prog-seg"><span class="f"></span></div>
-            <div class="kw-prog-seg"><span class="f"></span></div>
-            <div class="kw-prog-seg"><span class="f"></span></div>
-          </div>
+          <div class="kw-step-count" id="kwStepCount">Schritt 1 / 4</div>
+          <div class="kw-prog" id="kwProg"></div>
         </div>
       </aside>
 
@@ -290,7 +314,9 @@
         <div class="kw-slides" id="kwSlides">
 
           <!-- 1 · Leistung (Mehrfachauswahl) -->
-          <div class="kw-slide is-active" data-key="service" data-multi="true">
+          <div class="kw-slide is-active" data-key="service" data-multi="true"
+               data-aside-title="Womit dürfen wir starten?"
+               data-aside-sub="Wählen Sie alle Bereiche, in denen wir Sie unterstützen sollen.">
             <h1 class="kw-q">Womit können wir helfen?</h1>
             <p class="kw-hint">Wählen Sie alles aus, was passt, gern auch mehreres.</p>
             <div class="kw-opts">
@@ -322,8 +348,40 @@
             </button>
           </div>
 
-          <!-- 2 · Projektart -->
-          <div class="kw-slide" data-key="art">
+          <!-- 2 · Paket (nur wenn Webdesign gewählt) -->
+          <div class="kw-slide" data-key="paket" data-cond="webdesign"
+               data-aside-title="Welches Paket passt?"
+               data-aside-sub="Ein erster Anhaltspunkt, festgelegt wird nichts. Wir beraten Sie ehrlich.">
+            <h1 class="kw-q">Welches Webdesign-Paket schwebt Ihnen vor?</h1>
+            <p class="kw-hint">Unverbindlich, Sie können sich auch einfach beraten lassen.</p>
+            <div class="kw-opts kw-opts--single">
+              <button class="kw-opt kw-opt--row" data-val="Starter (Landingpage)">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+                <span style="flex:1"><span class="kw-opt-t" style="display:block">Starter, Landingpage</span><span class="kw-opt-d" style="display:block">Eine starke Seite. Ideal für Einsteiger &amp; Selbstständige.</span></span>
+              </button>
+              <button class="kw-opt kw-opt--row" data-val="Business (Unternehmenswebsite)">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span>
+                <span style="flex:1"><span class="kw-opt-t" style="display:block">Business, Unternehmenswebsite<span class="kw-paket-badge">Beliebt</span></span><span class="kw-opt-d" style="display:block">2 bis 5 Seiten. Für KMU &amp; Dienstleister.</span></span>
+              </button>
+              <button class="kw-opt kw-opt--row" data-val="Premium (Maßgeschneidert)">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.5 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg></span>
+                <span style="flex:1"><span class="kw-opt-t" style="display:block">Premium, Maßgeschneidert</span><span class="kw-opt-d" style="display:block">Bis 10 Seiten, individuelle Funktionen &amp; API-Anbindungen.</span></span>
+              </button>
+              <button class="kw-opt kw-opt--row" data-val="Noch unsicher, bitte beraten">
+                <span class="kw-opt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="kw-opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                <span style="flex:1"><span class="kw-opt-t" style="display:block">Noch unsicher, beraten lassen</span><span class="kw-opt-d" style="display:block">Sie wissen es noch nicht? Wir empfehlen Ihnen das Passende.</span></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 · Projektart -->
+          <div class="kw-slide" data-key="art"
+               data-aside-title="Erzählen Sie uns mehr."
+               data-aside-sub="Geht es um etwas Neues oder eine Auffrischung?">
             <h1 class="kw-q">Wie sieht Ihr Projekt aus?</h1>
             <p class="kw-hint">Damit wir den richtigen Ansatz wählen.</p>
             <div class="kw-opts">
@@ -348,8 +406,10 @@
             </div>
           </div>
 
-          <!-- 3 · Zeitrahmen -->
-          <div class="kw-slide" data-key="zeit">
+          <!-- 4 · Zeitrahmen -->
+          <div class="kw-slide" data-key="zeit"
+               data-aside-title="Alles eine Frage der Zeit."
+               data-aside-sub="Wir richten uns nach Ihrem Zeitplan.">
             <h1 class="kw-q">Wann soll es losgehen?</h1>
             <p class="kw-hint">Ganz unverbindlich, nur zur Orientierung.</p>
             <div class="kw-opts">
@@ -380,8 +440,10 @@
             </div>
           </div>
 
-          <!-- 4 · Kontaktdaten -->
-          <div class="kw-slide" data-type="contact">
+          <!-- 5 · Kontaktdaten -->
+          <div class="kw-slide" data-type="contact"
+               data-aside-title="Fast geschafft!"
+               data-aside-sub="Nur noch Ihre Kontaktdaten, dann melden wir uns persönlich.">
             <h1 class="kw-q">Wie erreichen wir Sie?</h1>
             <p class="kw-hint">Wir melden uns innerhalb von 24 Stunden, versprochen.</p>
             <div class="kw-summary" id="kwSummary"></div>
@@ -404,18 +466,22 @@
                 <label for="kwMsg">Worum geht's genau? <span class="opt">· optional</span></label>
                 <textarea class="kw-textarea" id="kwMsg" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben…"></textarea>
               </div>
+              <!-- Honeypot gegen Spam, für Menschen unsichtbar -->
+              <input type="text" id="kwBotcheck" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             </div>
+            <div class="kw-error" id="kwError" role="alert"></div>
           </div>
 
-          <!-- 5 · Erfolg -->
-          <div class="kw-slide" data-type="done">
+          <!-- 6 · Erfolg -->
+          <div class="kw-slide" data-type="done"
+               data-aside-title="Wir freuen uns auf Sie."
+               data-aside-sub="Ihre Anfrage ist bei uns angekommen.">
             <div class="kw-done">
               <div class="kw-done-badge"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
               <div class="kw-done-t">Vielen Dank!</div>
               <p class="kw-done-d" id="kwDoneText">Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen, meist deutlich schneller.</p>
               <div class="kw-done-btns">
-                <a class="kw-done-btn kw-done-btn--p" id="kwMailto" href="#">Anfrage per E-Mail senden</a>
-                <a class="kw-done-btn kw-done-btn--s" href="index.html">Zurück zur Startseite</a>
+                <a class="kw-done-btn kw-done-btn--p" href="index.html">Zurück zur Startseite</a>
               </div>
             </div>
           </div>
@@ -483,62 +549,77 @@
   <script src="script.js"></script>
   <script>
   (() => {
-    const slides  = Array.from(document.querySelectorAll('.kw-slide'));
-    const backBtn = document.getElementById('kwBack');
-    const nextBtn = document.getElementById('kwNext');
-    const nav     = document.getElementById('kwNav');
-    const summary = document.getElementById('kwSummary');
-    const addon   = document.getElementById('kwAddonWartung');
+    /* ─────────────────────────────────────────────────────────────
+       E-MAIL-VERSAND über eigenes PHP-Script (kein Drittanbieter).
+       Die Anfrage wird an kontakt-senden.php geschickt, das sie per
+       mail() an info@solventa-digital.de sendet. Voraussetzung: die
+       Seite läuft auf einem Hosting mit PHP (Standard bei fast allen
+       Anbietern). Empfänger/Absender stehen oben in kontakt-senden.php.
+       ───────────────────────────────────────────────────────────── */
+    const SEND_ENDPOINT = 'kontakt-senden.php';
+    const CONTACT_MAIL  = 'info@solventa-digital.de';
+
+    const allSlides = Array.from(document.querySelectorAll('.kw-slide'));
+    const doneSlide = allSlides.find(s => s.dataset.type === 'done');
+    const backBtn   = document.getElementById('kwBack');
+    const nextBtn   = document.getElementById('kwNext');
+    const nav       = document.getElementById('kwNav');
+    const summary   = document.getElementById('kwSummary');
+    const addon     = document.getElementById('kwAddonWartung');
+    const errorEl   = document.getElementById('kwError');
 
     const eyebrowEl = document.getElementById('kwAsideEyebrow');
     const titleEl   = document.getElementById('kwAsideTitle');
     const subEl     = document.getElementById('kwAsideSub');
-    const bgEl      = document.getElementById('kwAsideBg');
     const countEl   = document.getElementById('kwStepCount');
-    const progSegs  = Array.from(document.querySelectorAll('#kwProg .kw-prog-seg'));
+    const progEl    = document.getElementById('kwProg');
 
-    const TOTAL = 4; // Leistung, Projektart, Zeitrahmen, Kontakt
-    const ASIDE = [
-      { t: 'Womit dürfen wir starten?',  s: 'Wählen Sie alle Bereiche, in denen wir Sie unterstützen sollen.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop' },
-      { t: 'Erzählen Sie uns mehr.',     s: 'Geht es um etwas Neues oder eine Auffrischung?',                   img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&auto=format&fit=crop' },
-      { t: 'Alles eine Frage der Zeit.', s: 'Wir richten uns nach Ihrem Zeitplan.',                              img: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=900&auto=format&fit=crop' },
-      { t: 'Fast geschafft!',            s: 'Nur noch Ihre Kontaktdaten, dann melden wir uns persönlich.',      img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&auto=format&fit=crop' },
-      { t: 'Wir freuen uns auf Sie.',    s: 'Ihre Anfrage ist unterwegs zu uns.',                                img: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&auto=format&fit=crop' },
-    ];
-    const LABELS = { service: 'Leistung', art: 'Projekt', zeit: 'Zeitrahmen' };
-
+    const LABELS = { service: 'Leistung', paket: 'Paket', art: 'Projekt', zeit: 'Zeitrahmen' };
     const state = { service: [] };
-    let cur = 0;
 
-    function decode(str) { const t = document.createElement('textarea'); t.innerHTML = str; return t.value; }
+    const isMulti    = s => s.dataset.multi === 'true';
+    const isChoice   = s => !!s.dataset.key;
+    const isContact  = s => s.dataset.type === 'contact';
+    const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const decode = str => { const t = document.createElement('textarea'); t.innerHTML = str; return t.value; };
 
-    function renderAside() {
-      const a = ASIDE[cur];
-      [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '0');
-      setTimeout(() => {
-        eyebrowEl.textContent = cur >= TOTAL ? 'Geschafft' : ('Schritt ' + (cur + 1) + ' von ' + TOTAL);
-        titleEl.textContent = a.t;
-        subEl.textContent = a.s;
-        [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '1');
-      }, 160);
-      if (a && a.img && bgEl) {
-        const im = new Image();
-        im.onload = () => { bgEl.src = a.img; bgEl.style.display = ''; bgEl.style.opacity = '.3'; };
-        im.onerror = () => { bgEl.style.opacity = '0'; };
-        im.src = a.img;
+    // Schritte, die im aktuellen Flow zählen (ohne Erfolgs-Slide).
+    // Das Paket erscheint nur, wenn Webdesign gewählt wurde.
+    function buildFlow() {
+      return allSlides.filter(s => {
+        if (s.dataset.type === 'done') return false;
+        if (s.dataset.cond === 'webdesign') return state.service.includes('Webdesign');
+        return true;
+      });
+    }
+    let flow = buildFlow();
+    let cur  = 0;
+
+    function renderProg(fillAll) {
+      progEl.innerHTML = '';
+      const n = fillAll ? flow.length : flow.length;
+      for (let i = 0; i < n; i++) {
+        const seg = document.createElement('div');
+        seg.className = 'kw-prog-seg' + (fillAll || i <= cur ? ' fill' : '');
+        seg.innerHTML = '<span class="f"></span>';
+        progEl.appendChild(seg);
       }
-      countEl.textContent = cur >= TOTAL ? 'Abgeschlossen' : ('Schritt ' + (cur + 1) + ' / ' + TOTAL);
-      progSegs.forEach((seg, i) => seg.classList.toggle('fill', cur >= TOTAL ? true : i <= cur));
     }
 
-    const isMulti   = s => s.dataset.multi === 'true';
-    const isChoice  = s => !!s.dataset.key;
-    const isContact = s => s.dataset.type === 'contact';
-    const isDone    = s => s.dataset.type === 'done';
-    const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    function renderAside(slide, doneMode) {
+      [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '0');
+      setTimeout(() => {
+        eyebrowEl.textContent = doneMode ? 'Geschafft' : ('Schritt ' + (cur + 1) + ' von ' + flow.length);
+        titleEl.textContent = slide.dataset.asideTitle || '';
+        subEl.textContent   = slide.dataset.asideSub || '';
+        [eyebrowEl, titleEl, subEl].forEach(el => el.style.opacity = '1');
+      }, 160);
+      countEl.textContent = doneMode ? 'Abgeschlossen' : ('Schritt ' + (cur + 1) + ' / ' + flow.length);
+    }
 
     function canProceed() {
-      const s = slides[cur];
+      const s = flow[cur];
+      if (!s) return false;
       if (isChoice(s)) {
         const v = state[s.dataset.key];
         return Array.isArray(v) ? v.length > 0 : !!v;
@@ -552,52 +633,61 @@
     }
 
     function updateNav() {
-      const s = slides[cur];
-      if (isDone(s)) { nav.style.display = 'none'; return; }
       nav.style.display = '';
       backBtn.hidden = cur === 0;
       nextBtn.disabled = !canProceed();
-      nextBtn.childNodes[0].nodeValue = isContact(s) ? 'Anfrage senden ' : 'Weiter ';
+      nextBtn.childNodes[0].nodeValue = isContact(flow[cur]) ? 'Anfrage senden ' : 'Weiter ';
     }
 
-    function show(i) {
-      slides[cur].classList.remove('is-active');
-      cur = i;
-      slides[cur].classList.add('is-active');
-      if (isContact(slides[cur])) buildSummary();
-      renderAside();
+    function scrollUp() {
+      const w = document.querySelector('.kw-wrap');
+      if (w) w.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showStep(i) {
+      allSlides.forEach(s => s.classList.remove('is-active'));
+      cur = Math.max(0, Math.min(i, flow.length - 1));
+      const slide = flow[cur];
+      slide.classList.add('is-active');
+      if (isContact(slide)) buildSummary();
+      renderProg(false);
+      renderAside(slide, false);
       updateNav();
-      document.querySelector('.kw-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      scrollUp();
     }
 
+    function showDone() {
+      allSlides.forEach(s => s.classList.remove('is-active'));
+      doneSlide.classList.add('is-active');
+      renderProg(true);
+      renderAside(doneSlide, true);
+      nav.style.display = 'none';
+      scrollUp();
+    }
+
+    function refreshFlow() {
+      flow = buildFlow();
+      if (cur > flow.length - 1) cur = flow.length - 1;
+      renderProg(false);
+    }
+
+    function chip(html) {
+      const c = document.createElement('span');
+      c.className = 'kw-chip';
+      c.innerHTML = html;
+      summary.appendChild(c);
+    }
     function buildSummary() {
       summary.innerHTML = '';
-      // Leistungen (kann mehrere sein)
-      if (state.service.length) {
-        const chip = document.createElement('span');
-        chip.className = 'kw-chip';
-        chip.innerHTML = '<span>' + LABELS.service + ':</span> ' + state.service.join(', ');
-        summary.appendChild(chip);
-      }
-      if (state.wartung) {
-        const chip = document.createElement('span');
-        chip.className = 'kw-chip';
-        chip.innerHTML = '<span>Zusatz:</span> Wartung &amp; Support';
-        summary.appendChild(chip);
-      }
-      ['art', 'zeit'].forEach(k => {
-        if (!state[k]) return;
-        const chip = document.createElement('span');
-        chip.className = 'kw-chip';
-        chip.innerHTML = '<span>' + LABELS[k] + ':</span> ' + state[k];
-        summary.appendChild(chip);
-      });
+      if (state.service.length) chip('<span>' + LABELS.service + ':</span> ' + state.service.join(', '));
+      if (state.wartung)        chip('<span>Zusatz:</span> Wartung &amp; Support');
+      if (state.paket)          chip('<span>' + LABELS.paket + ':</span> ' + state.paket);
+      ['art', 'zeit'].forEach(k => { if (state[k]) chip('<span>' + LABELS[k] + ':</span> ' + state[k]); });
     }
 
-    // ── Add-on (Wartung) visibility + toggle ──
+    // ── Add-on (Wartung) Sichtbarkeit + Umschalten ──
     function syncAddon() {
-      const webselected = state.service.includes('Webdesign');
-      if (webselected) {
+      if (state.service.includes('Webdesign')) {
         if (addon.hidden) { addon.hidden = false; addon.classList.add('kw-addon--in'); }
       } else {
         addon.hidden = true;
@@ -610,7 +700,7 @@
       addon.classList.toggle('is-sel', state.wartung);
     });
 
-    // ── Option selection (multi for service, single otherwise) ──
+    // ── Optionsauswahl (Mehrfach für Leistung, sonst einzeln) ──
     document.querySelectorAll('.kw-opt').forEach(opt => {
       opt.addEventListener('click', () => {
         const slide = opt.closest('.kw-slide');
@@ -621,7 +711,7 @@
           const arr = state[key] || (state[key] = []);
           const idx = arr.indexOf(val);
           if (idx === -1) arr.push(val); else arr.splice(idx, 1);
-          if (key === 'service') syncAddon();
+          if (key === 'service') { syncAddon(); if (!state.service.includes('Webdesign')) state.paket = null; refreshFlow(); }
         } else {
           slide.querySelectorAll('.kw-opt').forEach(o => o.classList.remove('is-sel'));
           opt.classList.add('is-sel');
@@ -633,46 +723,66 @@
 
     ['kwName', 'kwEmail'].forEach(id => document.getElementById(id).addEventListener('input', updateNav));
 
-    backBtn.addEventListener('click', () => { if (cur > 0) show(cur - 1); });
+    backBtn.addEventListener('click', () => { if (cur > 0) showStep(cur - 1); });
+
+    // ── Anfrage senden (Web3Forms) ──
+    async function sendRequest() {
+      state.name  = document.getElementById('kwName').value.trim();
+      state.email = document.getElementById('kwEmail').value.trim();
+      state.phone = document.getElementById('kwPhone').value.trim();
+      state.msg   = document.getElementById('kwMsg').value.trim();
+      const botcheck = document.getElementById('kwBotcheck');
+
+      const leistung = state.service.join(', ') + (state.wartung ? ' + Wartung & Support' : '');
+      const payload = {
+        name:     state.name,
+        email:    state.email,
+        phone:    state.phone,
+        leistung: leistung,
+        paket:    state.paket || '',
+        art:      state.art || '',
+        zeit:     state.zeit || '',
+        message:  state.msg || '',
+        botcheck: botcheck && botcheck.value ? botcheck.value : ''
+      };
+
+      errorEl.classList.remove('is-on');
+      nextBtn.disabled = true;
+      backBtn.disabled = true;
+      nextBtn.childNodes[0].nodeValue = 'Wird gesendet… ';
+
+      const doneTxt = document.getElementById('kwDoneText');
+      if (doneTxt) doneTxt.textContent = 'Danke, ' + state.name.split(' ')[0] + '! Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen, meist deutlich schneller.';
+
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.success) {
+          showDone();
+        } else {
+          throw new Error(data && data.message ? data.message : 'Senden fehlgeschlagen');
+        }
+      } catch (err) {
+        errorEl.innerHTML = 'Das Senden hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an <a href="mailto:' + CONTACT_MAIL + '" style="color:#020d7c;font-weight:600">' + CONTACT_MAIL + '</a>.';
+        errorEl.classList.add('is-on');
+      } finally {
+        backBtn.disabled = false;
+        nextBtn.childNodes[0].nodeValue = 'Anfrage senden ';
+        updateNav();
+      }
+    }
 
     nextBtn.addEventListener('click', () => {
       if (!canProceed()) return;
-      const s = slides[cur];
-      if (isContact(s)) {
-        state.name  = document.getElementById('kwName').value.trim();
-        state.email = document.getElementById('kwEmail').value.trim();
-        state.phone = document.getElementById('kwPhone').value.trim();
-        state.msg   = document.getElementById('kwMsg').value.trim();
-
-        const leistung = state.service.join(', ') + (state.wartung ? ' + Wartung & Support' : '');
-        const lines = [
-          'Neue Projektanfrage über die Website', '',
-          'Leistung:   ' + (leistung || ', '),
-          'Projektart: ' + (state.art || ', '),
-          'Zeitrahmen: ' + (state.zeit || ', '), '',
-          'Name:       ' + state.name,
-          'E-Mail:     ' + state.email,
-          'Telefon:    ' + (state.phone || ', '), '',
-          'Nachricht:', (state.msg || ', '),
-        ];
-        const subject = 'Projektanfrage: ' + (state.service.join(', ') || 'Solventa');
-        const mailto = 'mailto:kontakt@solventa-digital.de'
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(lines.join('\n'));
-        const mailBtn = document.getElementById('kwMailto');
-        if (mailBtn) mailBtn.href = mailto;
-
-        const doneTxt = document.getElementById('kwDoneText');
-        if (doneTxt) doneTxt.textContent = 'Danke, ' + state.name.split(' ')[0] + '! Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen, meist deutlich schneller.';
-
-        show(cur + 1);
-      } else {
-        show(cur + 1);
-      }
+      if (isContact(flow[cur])) sendRequest();
+      else showStep(cur + 1);
     });
 
-    renderAside();
-    updateNav();
+    showStep(0);
   })();
   </script>
 </body>
