@@ -1,0 +1,50 @@
+# ============================================================
+#  Solventa Digital, Server-Konfiguration (Apache)
+#  Saubere URLs ohne .html  +  Komprimierung & Cache
+# ============================================================
+
+Options -MultiViews
+RewriteEngine On
+DirectoryIndex index.html
+
+# Immer OHNE www und über HTTPS (301)
+# www.solventa-digital.de/... -> solventa-digital.de/...   |   http -> https
+# Falls noch kein SSL aktiv ist, die HTTPS-Zeile unten auskommentieren.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# index bzw. index.html immer auf die Startseite "/" umleiten (301)
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# Aufrufe mit ".html" dauerhaft auf die saubere URL umleiten (301, gut für SEO)
+RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Saubere URL intern an die passende .html-Datei weiterreichen
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# ── Komprimierung (nur wenn Modul vorhanden) ──
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# ── Browser-Cache für statische Dateien ──
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 month"
+  ExpiresByType application/javascript  "access plus 1 month"
+  ExpiresByType image/jpeg              "access plus 6 months"
+  ExpiresByType image/png               "access plus 6 months"
+  ExpiresByType image/webp              "access plus 6 months"
+  ExpiresByType image/svg+xml           "access plus 6 months"
+  ExpiresByType video/mp4               "access plus 6 months"
+  ExpiresByType video/webm              "access plus 6 months"
+  ExpiresByType image/x-icon            "access plus 6 months"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
