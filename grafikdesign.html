@@ -128,10 +128,10 @@
       transition: transform 200ms ease, box-shadow 200ms ease;
     }
     .gd-btn:hover { transform: translateY(-2px); }
-    .gd-btn--primary { background: #39ceff; color: #020d7c; box-shadow: 0 8px 24px -8px rgba(57,206,255,.5); }
-    .gd-btn--primary:hover { box-shadow: 0 14px 32px -8px rgba(57,206,255,.65); }
-    .gd-btn--ghost { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); }
-    .gd-btn--ghost:hover { background: rgba(255,255,255,.18); }
+    .gd-btn--primary { background: #020d7c; color: #fff; box-shadow: 0 8px 24px -8px rgba(2,13,124,.45); }
+    .gd-btn--primary:hover { box-shadow: 0 14px 32px -8px rgba(2,13,124,.6); }
+    .gd-btn--ghost { background: #fff; color: #020d7c; border: 1px solid #fff; }
+    .gd-btn--ghost:hover { background: #f0f0f5; }
 
     /* ── Services cards ── */
     /* Shared section typography */
@@ -299,7 +299,7 @@
     .gd-board-social { display: flex; gap: 12px; align-items: stretch; }
     .gd-bs-phone { width: 58px; border-radius: 12px; background: #09090b; padding: 6px 5px; flex-shrink: 0; }
     .gd-bs-screen { background: linear-gradient(160deg,#1a2a6e,#020d7c); border-radius: 8px; height: 100%; min-height: 86px; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
-    .gd-bs-post { background: rgba(255,255,255,.18); border-radius: 4px; height: 14px; }
+    .gd-bs-post { background: #f0f0f5; border-radius: 4px; height: 14px; }
     .gd-bs-post.s { width: 60%; }
     .gd-bs-grid { flex: 1; display: flex; flex-direction: column; gap: 6px; }
     .gd-bs-grow { display: flex; gap: 6px; flex: 1; }
@@ -404,10 +404,16 @@
     .gd-proc-step {
       background: var(--background);
       padding: 32px 28px;
-      transition: background 220ms ease;
+      transition: background 220ms ease,
+                  opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
       cursor: default;
     }
     .gd-proc-step:hover { background: linear-gradient(135deg, rgba(57,206,255,.05), rgba(2,13,124,.03)); }
+    /* sanft nacheinander einblenden (auch mobil) */
+    .gd-proc-step.reveal:nth-child(2) { transition-delay: .12s; }
+    .gd-proc-step.reveal:nth-child(3) { transition-delay: .24s; }
+    .gd-proc-step.reveal:nth-child(4) { transition-delay: .36s; }
     .gd-proc-num {
       font-size: 40px; font-weight: 800; letter-spacing: -0.04em;
       background: linear-gradient(135deg, #39ceff, #020d7c);
@@ -550,13 +556,13 @@
     .gd-cta-btn {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 16px 36px; border-radius: 9999px;
-      background: #39ceff; color: #020d7c;
+      background: #fff; color: #020d7c;
       font-family: var(--font); font-size: 15px; font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 12px 32px -8px rgba(57,206,255,.5);
+      box-shadow: 0 12px 32px -8px rgba(2,13,124,.22);
       transition: transform 200ms ease, box-shadow 200ms ease;
     }
-    .gd-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -8px rgba(57,206,255,.6); }
+    .gd-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -8px rgba(2,13,124,.32); }
   </style>
 </head>
 <body>
@@ -1000,20 +1006,35 @@
     if (!steps.length) return;
 
     const TAGS = ['Logo', 'Corporate Identity', 'Print', 'Digital'];
-    let current = -2; // force first paint
+    let current = -2;       // aktiver Schritt (blaues Highlight)
+    let boardFull = false;  // mobil: Tafel bereits komplett gebaut?
 
-    // Reversible: layers reflect the CURRENT active step, not a max.
-    function setActive(idx) {
+    // Nur das Schritt-Highlight + Tag (für Desktop UND Mobil)
+    function setSteps(idx) {
       if (idx === current) return;
       current = idx;
       steps.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      if (tagEl) tagEl.textContent = idx < 0 ? 'Markentafel' : TAGS[Math.max(0, idx)];
+    }
+    // Tafel-Layer passend zum aktiven Schritt (nur Desktop)
+    function setBoard(idx) {
       items.forEach(it => {
         const layer = parseInt(it.dataset.layer, 10);
         it.classList.toggle('is-on', layer <= idx);
       });
-      if (tagEl) tagEl.textContent = idx < 0 ? 'Markentafel' : TAGS[idx];
+    }
+    function nearestStep(mid) {
+      let best = 0, bestDist = Infinity;
+      steps.forEach((s, i) => {
+        const r = s.getBoundingClientRect();
+        const c = r.top + r.height / 2;
+        const d = Math.abs(c - mid);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      return best;
     }
 
+    const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
     let ticking = false;
     function onScroll() {
       if (ticking) return;
@@ -1022,18 +1043,19 @@
         ticking = false;
         const mid = window.innerHeight / 2;
 
-        // Before the block reaches the middle → board empty (un-built)
-        if (steps[0].getBoundingClientRect().top > mid) { setActive(-1); return; }
+        if (!isDesktop()) {
+          // Mobil: Tafel bleibt komplett sichtbar ...
+          if (!boardFull) { items.forEach(it => it.classList.add('is-on')); boardFull = true; }
+          // ... aber die Schritte leuchten beim Scrollen nacheinander blau auf
+          setSteps(steps[0].getBoundingClientRect().top > mid ? -1 : nearestStep(mid));
+          return;
+        }
 
-        // Pick the step whose centre is nearest the viewport middle → never skips
-        let best = 0, bestDist = Infinity;
-        steps.forEach((s, i) => {
-          const r = s.getBoundingClientRect();
-          const c = r.top + r.height / 2;
-          const d = Math.abs(c - mid);
-          if (d < bestDist) { bestDist = d; best = i; }
-        });
-        setActive(best);
+        // Desktop: Tafel + Schritt bauen sich reversibel beim Scrollen auf
+        boardFull = false;
+        const idx = (steps[0].getBoundingClientRect().top > mid) ? -1 : nearestStep(mid);
+        setSteps(idx);
+        setBoard(idx);
       });
     }
 
