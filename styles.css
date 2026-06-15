@@ -5,14 +5,13 @@
   padding: 0;
 }
 
-/* Smooth-scroll to in-page anchors (Home-Dropdown sections etc.) */
+/* Anchor offset so in-page targets land below the 60px navbar.
+   NOTE: scroll-behavior: smooth is NOT set globally — while the page is still
+   loading (lazy media, layout settling) a global smooth-scroll can turn the
+   browser's own scroll-anchoring corrections into a visible "jump to top".
+   Smooth scrolling for anchor clicks is handled per-click in JS instead. */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 76px;   /* keeps target below the 60px navbar */
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  scroll-padding-top: 76px;
 }
 
 /* ─── Design tokens (shadcn/zinc defaults) ───────────────── */
@@ -36,6 +35,10 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  /* Keep the browser's scroll-anchoring active so content loading ABOVE the
+     viewport doesn't jump the page (default is auto, but state it explicitly
+     and make sure nothing disables it). */
+  overflow-anchor: auto;
 }
 
 /* ─── Navbar ─────────────────────────────────────────────── */
@@ -47,6 +50,22 @@ body {
   height: 60px;
   border-bottom: 1px solid var(--border);
   background: var(--background);
+  /* sticky so it can slide back in on scroll-up without shifting layout */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 320ms ease;
+}
+
+/* hidden: slid up out of view (set by JS on scroll-down) */
+.navbar.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* once scrolled past the top, add a subtle shadow when visible */
+.navbar.is-stuck {
+  box-shadow: 0 4px 20px -8px rgba(2, 13, 124, 0.18);
 }
 
 /* Logo anchored left, nav centered absolutely inside the bar */
@@ -456,6 +475,22 @@ body {
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  /* hidden until it actually plays; the poster (= exact frame 0) shows meanwhile,
+     so the swap to live video is seamless */
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.lhero-video.is-playing {
+  opacity: 1;
+}
+
+/* keep the poster frame visible behind the video as the instant-load backdrop */
+.lhero-video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: center / cover no-repeat url('material/hero_wall_poster.webp');
+  pointer-events: none;
 }
 
 /* Soft scrim so the dark text stays readable on top of the video */
@@ -711,6 +746,11 @@ body {
     padding: 0 16px;
   }
 
+  /* portrait backdrop poster matches the mobile (9:16) hero video */
+  .lhero-video-poster {
+    background-image: url('material/hero_wall_mobile_poster.webp');
+  }
+
   /* Stack buttons vertically on small screens */
   .lhero-buttons {
     flex-direction: column;
@@ -821,7 +861,9 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+  /* opacity+transform included so the .reveal fade-in animates (no pop) */
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 220ms ease;
 }
 
@@ -1318,8 +1360,10 @@ body {
   border-radius: 16px;
   background: var(--muted);
   border: 1px solid var(--border);
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 220ms ease, border-color 220ms ease;
+  /* longer transform/opacity so the .reveal fade-in isn't overridden here */
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 220ms ease, border-color 220ms ease,
+              opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .feat7-feature:hover {
@@ -1718,6 +1762,10 @@ body {
   gap: 14px;
 }
 
+/* staggered fade-in: title → text → button */
+.mcta-text.reveal { transition-delay: 90ms; }
+.mcta-btn.reveal  { transition-delay: 180ms; }
+
 /* Prominent CTA button with sweeping shine on hover */
 .mcta-btn {
   position: relative;
@@ -1732,7 +1780,8 @@ body {
   letter-spacing: 0.01em;
   text-decoration: none;
   overflow: hidden;
-  transition: transform 240ms ease, box-shadow 240ms ease, background 240ms ease;
+  transition: transform 240ms ease, box-shadow 240ms ease, background 240ms ease,
+              opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mcta-btn > span:not(.mcta-shine) { position: relative; z-index: 1; }
@@ -1875,7 +1924,10 @@ body {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  /* include opacity+transform so the .reveal fade-in isn't overridden here */
+  transition: border-color 200ms ease, box-shadow 200ms ease,
+              opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq-item.is-open {
@@ -2194,8 +2246,10 @@ body {
 .nav-toggle { display: none; }
 
 @media (max-width: 860px) {
-  /* kein horizontales Scrollen auf kleinen Geräten */
-  html, body { overflow-x: hidden; }
+  /* kein horizontales Scrollen auf kleinen Geräten.
+     overflow-x: clip statt hidden → erzeugt KEINEN Scroll-Container,
+     damit position: sticky der Navbar weiter funktioniert */
+  html, body { overflow-x: clip; }
 
   .navbar-inner { justify-content: flex-start; }
   .navbar-logo { position: static; left: auto; }
@@ -2231,7 +2285,24 @@ body {
     backface-visibility: hidden;
   }
   .navbar.nav-open .nav-menu { transform: translateX(0) translateZ(0); }
-  body.nav-open { overflow: hidden; }
+  /* lock scroll while the menu panel is open (body fixed via JS-set top) */
+  body.nav-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* the body is fixed/offset while open, so sticky no longer pins the bar —
+     fix it to the viewport top so the logo + close (X) stay visible */
+  body.nav-open .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;   /* cancel any hide-on-scroll transform */
+  }
 
   .nav-list { flex-direction: column; align-items: stretch; gap: 0; width: 100%; }
   .nav-item { width: 100%; border-bottom: 1px solid var(--border); }

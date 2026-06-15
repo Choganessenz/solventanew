@@ -31,7 +31,8 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 
 # ── Komprimierung (nur wenn Modul vorhanden) ──
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/ttf application/x-font-ttf
+  # woff2 ist bereits komprimiert, daher hier NICHT erneut deflaten
 </IfModule>
 
 # ── Browser-Cache für statische Dateien ──
@@ -46,5 +47,8 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   ExpiresByType video/mp4               "access plus 6 months"
   ExpiresByType video/webm              "access plus 6 months"
   ExpiresByType image/x-icon            "access plus 6 months"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType font/ttf                "access plus 1 year"
+  ExpiresByType application/font-woff2  "access plus 1 year"
   ExpiresByType text/html               "access plus 0 seconds"
 </IfModule>
