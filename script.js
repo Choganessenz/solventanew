@@ -109,6 +109,64 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════
+   Navbar, hide on scroll-down / slide back in on scroll-up
+   ════════════════════════════════════════════════════════ */
+(() => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+
+  // overflow-x:hidden on html/body (mobile) can move scrolling onto the
+  // document element, so read whichever source actually reports a position.
+  const scrollY = () =>
+    window.scrollY ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop || 0;
+
+  let lastY = scrollY();
+  const REVEAL_AT_TOP = 8;     // always show within this many px of the top
+  const DELTA = 6;             // ignore tiny jitter
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const y = scrollY();
+
+    // while the mobile menu panel is open, keep the bar pinned & visible
+    if (navbar.classList.contains('nav-open')) {
+      navbar.classList.remove('is-hidden');
+      lastY = y;
+      return;
+    }
+
+    // shadow once scrolled away from the very top
+    navbar.classList.toggle('is-stuck', y > REVEAL_AT_TOP);
+
+    // near the top → always visible
+    if (y <= REVEAL_AT_TOP) {
+      navbar.classList.remove('is-hidden');
+      lastY = y;
+      return;
+    }
+
+    const diff = y - lastY;
+    if (Math.abs(diff) < DELTA) return;   // too small to act on
+
+    // keep an open dropdown from lingering when the bar hides
+    if (diff > 0) {
+      navbar.classList.add('is-hidden');                 // scrolling down → hide
+      document.querySelectorAll('.nav-item.is-open').forEach(i => i.classList.remove('is-open'));
+    } else {
+      navbar.classList.remove('is-hidden');              // scrolling up → reveal
+    }
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+})();
+
+/* ═══════════════════════════════════════════════════════════
    Mobile navbar — Burger toggle + Inline-Accordion
    ════════════════════════════════════════════════════════ */
 (() => {
@@ -127,15 +185,27 @@
   btn.innerHTML = '<span></span><span></span><span></span>';
   navbarInner.appendChild(btn);
 
+  let savedScrollY = 0;
+
   function openMenu() {
+    // lock scrolling reliably (incl. iOS Safari) by fixing the body in place
+    savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
     navbar.classList.add('nav-open');
     document.body.classList.add('nav-open');
+    document.body.style.top = `-${savedScrollY}px`;
     btn.setAttribute('aria-expanded', 'true');
     btn.setAttribute('aria-label', 'Menü schließen');
   }
   function closeMenu() {
     navbar.classList.remove('nav-open');
     document.body.classList.remove('nav-open');
+    document.body.style.top = '';
+    // jump back to the saved position INSTANTLY (bypass scroll-behavior:smooth
+    // so it doesn't visibly animate from the top back down)
+    const prev = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, savedScrollY);
+    document.documentElement.style.scrollBehavior = prev;
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Menü öffnen');
     navMenu.querySelectorAll('.nav-item.is-open').forEach(i => i.classList.remove('is-open'));
@@ -557,6 +627,18 @@
    Scroll reveal, fade/slide elements in as they enter view
    ════════════════════════════════════════════════════════ */
 (() => {
+  // Auto-tag common content blocks that should fade in but weren't marked
+  // with .reveal by hand (review cards, service cards, footer, etc.).
+  const AUTO = [
+    '.reviews-header', '.rev-card',
+  ];
+  document.querySelectorAll(AUTO.join(',')).forEach((el) => {
+    // skip if it (or an ancestor) is already a reveal target
+    if (!el.classList.contains('reveal') && !el.closest('.reveal')) {
+      el.classList.add('reveal');
+    }
+  });
+
   const els = Array.from(document.querySelectorAll('.reveal'));
   if (els.length === 0) return;
 
@@ -565,6 +647,9 @@
     return;
   }
 
+  // threshold 0 + slight negative bottom margin: the fade starts as soon as
+  // the element's top edge enters the viewport (a touch early), so large
+  // blocks (CTA, FAQ) ease in instead of being already on-screen when they fade.
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -572,7 +657,7 @@
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 
   els.forEach(el => io.observe(el));
 })();
@@ -727,8 +812,8 @@
         label: 'Scroll-Aufnahme der Website von Bautrocknung OWL',
       },
       stats: [
-        { target: 212, prefix: '+', suffix: NB + '%' },
-        { target: 180, prefix: '+', suffix: NB + '%' },
+        { target: 212, prefix: '×', suffix: NB + '%' },
+        { target: 180, prefix: '×', suffix: NB + '%' },
         { static: '#1' },
       ],
     },
@@ -742,41 +827,21 @@
         label: 'Scroll-Aufnahme der Website des Garten- und Landschaftsbauers Grünwerk',
       },
       stats: [
-        { target: 165, prefix: '+', suffix: NB + '%' },
-        { target: 140, prefix: '+', suffix: NB + '%' },
+        { target: 165, prefix: '×', suffix: NB + '%' },
+        { target: 140, prefix: '×', suffix: NB + '%' },
         { static: '#3' },
-      ],
-    },
-    {
-      name: 'Bistro in NRW',
-      media: {
-        type: 'video',
-        webm: 'material/koya.webm',
-        mp4:  'material/koya.mp4',
-        poster: 'material/koya_poster.jpg',
-        label: 'Scroll-Aufnahme der Website von Koya',
-      },
-      stats: [
-        { target: 190, prefix: '+', suffix: NB + '%' },
-        { target: 220, prefix: '+', suffix: NB + '%' },
-        { static: '#2' },
       ],
     },
   ];
 
-  // Register the project media that isn't in the DOM yet so the global
-  // preloader fetches it in order (chronological, after this section).
-  // Skip index 0, it's already in the DOM and preloads itself.
+  // Only warm the small POSTER images ahead of time, not the heavy video files.
+  // The actual webm/mp4 are fetched on demand when the user reaches that slide
+  // (see prefetchNext below) — saves ~10 MB of speculative downloads.
   window.__preloadQueue = window.__preloadQueue || [];
   PROJECTS.slice(1).forEach((p) => {
     const m = p.media;
-    if (m.type === 'video') {
-      if (m.poster) window.__preloadQueue.push(m.poster);
-      if (m.webm)   window.__preloadQueue.push(m.webm);
-      if (m.mp4)    window.__preloadQueue.push(m.mp4);
-    } else if (m.src) {
-      window.__preloadQueue.push(m.src);
-    }
+    if (m.type === 'video' && m.poster) window.__preloadQueue.push(m.poster);
+    else if (m.src) window.__preloadQueue.push(m.src);
   });
 
   const fvals = Array.from(swap.querySelectorAll('.feat7-fval'));
@@ -870,6 +935,27 @@
   const OFFSET = 56;   // px slide distance
   let busy = false;
 
+  // Quietly warm the neighbouring slide's video so the next click is instant.
+  // Picks one format the browser can actually play (no double download).
+  const probe = document.createElement('video');
+  const canWebm = !!probe.canPlayType && probe.canPlayType('video/webm') !== '';
+  const prefetched = new Set();
+  function prefetchAdjacent() {
+    [ (current + 1) % PROJECTS.length, (current - 1 + PROJECTS.length) % PROJECTS.length ]
+      .forEach((idx) => {
+        const m = PROJECTS[idx].media;
+        if (!m || m.type !== 'video') return;
+        const url = (canWebm && m.webm) ? m.webm : m.mp4;
+        if (!url || prefetched.has(url)) return;
+        prefetched.add(url);
+        const l = document.createElement('link');
+        l.rel = 'prefetch';      // low-priority, idle-time fetch
+        l.as = 'video';
+        l.href = url;
+        document.head.appendChild(l);
+      });
+  }
+
   // ── Navigate with a directional slide (like the navbar dropdowns) ──
   function goTo(dir, explicitIndex) {
     const next = explicitIndex != null
@@ -894,6 +980,7 @@
       swap.style.opacity    = '1';
       setTimeout(runCounters, 180);                // count up, slightly delayed
       setTimeout(() => { busy = false; }, 380);
+      prefetchAdjacent();                          // warm the next neighbours
     }, 200);
   }
 
@@ -911,12 +998,13 @@
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) { firstCount(); io.disconnect(); }
+        if (e.isIntersecting) { firstCount(); prefetchAdjacent(); io.disconnect(); }
       });
     }, { threshold: 0.3 });
     io.observe(section);
   } else {
     firstCount();
+    prefetchAdjacent();
   }
 })();
 
@@ -925,19 +1013,44 @@
    Handles static videos (hero); the feat7 carousel manages its own.
    ════════════════════════════════════════════════════════ */
 (() => {
-  if (!('IntersectionObserver' in window)) return;
-  // threshold 0 → intersecting while any pixel is visible; pause only once fully off-screen
+  if (!('IntersectionObserver' in window)) {
+    // no observer: just let videos autoplay normally
+    document.querySelectorAll('video[preload="none"]').forEach(v => { try { v.load(); } catch (_) {} });
+    return;
+  }
+
+  // Videos use preload="none" so nothing downloads until needed. When a video
+  // is about to enter the viewport we kick off the load; when visible we play,
+  // when fully off-screen we pause (saves CPU/battery + bandwidth).
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
-      if (e.isIntersecting) e.target.play?.().catch(() => {});
-      else e.target.pause?.();
+      const v = e.target;
+      if (e.isIntersecting) {
+        if (v.preload === 'none' && !v.dataset.loaded) {
+          v.dataset.loaded = '1';
+          v.preload = 'auto';
+          try { v.load(); } catch (_) {}
+        }
+        v.play?.().catch(() => {});
+      } else {
+        v.pause?.();
+      }
     });
-  }, { threshold: 0 });
+  }, { threshold: 0, rootMargin: '200px 0px 200px 0px' });  // start ~200px early
 
   document.querySelectorAll('video').forEach((v) => {
     // skip feat7 carousel (own module) and any video that manages its own playback
     if (!v.closest('.feat7') && !v.hasAttribute('data-manual')) io.observe(v);
   });
+
+  // Hero: reveal the video only once it's truly playing, so the poster
+  // (exact frame 0) covers the gap and the swap is invisible.
+  const hero = document.querySelector('.lhero-video');
+  if (hero) {
+    hero.addEventListener('playing', () => hero.classList.add('is-playing'));
+    // if it stalls/ends up paused while off-screen, drop back to the poster
+    hero.addEventListener('emptied', () => hero.classList.remove('is-playing'));
+  }
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -950,36 +1063,30 @@
     const urls = [];
     const add = (u) => { if (u && !seen.has(u)) { seen.add(u); urls.push(u); } };
 
-    // Document order: every image; for videos only the poster
-    // (the <video preload="auto"> loads its own sources itself).
-    document.querySelectorAll('img, video').forEach((el) => {
-      if (el.tagName === 'IMG') add(el.currentSrc || el.getAttribute('src'));
-      else { const ps = el.getAttribute('poster'); if (ps) add(ps); }
-    });
-
-    // Then media that JS swaps in later (registered by the carousel)
+    // Only warm the small swap-in media registered by the carousel (posters +
+    // image-only slides). Regular <img> use loading="lazy"; heavy videos load
+    // on demand. This keeps the idle preloader lightweight.
     (window.__preloadQueue || []).forEach(add);
 
     let i = 0;
     const step = () => {
       if (i >= urls.length) return;
       const url = urls[i++];
-      const done = () => setTimeout(step, 40);   // strict order: next after current
-      if (/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(url)) {
-        fetch(url).then((r) => r.blob()).then(done).catch(done);   // warm HTTP cache
-      } else {
-        const im = new Image();
-        im.decoding = 'async';
-        im.onload = im.onerror = done;
-        im.src = url;
-      }
+      const done = () => setTimeout(step, 60);   // gentle, one at a time
+      const im = new Image();
+      im.decoding = 'async';
+      im.onload = im.onerror = done;
+      im.src = url;
     };
     step();
   }
 
-  // Start after the page's own critical load so we don't compete with it
-  if (document.readyState === 'complete') run();
-  else window.addEventListener('load', run);
+  // Run when the browser is idle, after the page's own critical load
+  const start = () => ('requestIdleCallback' in window)
+    ? requestIdleCallback(run, { timeout: 2000 })
+    : setTimeout(run, 600);
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -1167,4 +1274,30 @@
 
   let t;
   window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(setupAll, 200); });
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   Smooth scroll for in-page anchor clicks only.
+   Replaces the global CSS `scroll-behavior: smooth`, which could
+   amplify the browser's scroll-anchoring into a jump-to-top while
+   the page was still loading lazy media.
+   ════════════════════════════════════════════════════════ */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const OFFSET = 76;   // matches scroll-padding-top (navbar height + gap)
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+
+    e.preventDefault();
+    const y = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+    window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    // keep the URL hash without an extra jump
+    history.pushState(null, '', id);
+  });
 })();
