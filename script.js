@@ -806,7 +806,6 @@
       name: 'Bautrocknung in NRW',
       media: {
         type: 'video',
-        webm: 'material/bautrocknung.webm',
         mp4:  'material/bautrocknung.mp4',
         poster: 'material/bautrocknung_poster.jpg',
         label: 'Scroll-Aufnahme der Website von Bautrocknung OWL',
@@ -821,7 +820,6 @@
       name: 'Gala Bau in Baden-Württemberg',
       media: {
         type: 'video',
-        webm: 'material/gruenwerk.webm',
         mp4:  'material/gruenwerk.mp4',
         poster: 'material/gruenwerk_poster.jpg',
         label: 'Scroll-Aufnahme der Website des Garten- und Landschaftsbauers Grünwerk',
@@ -901,7 +899,6 @@
       media.innerHTML =
         `<video class="feat7-img" muted loop playsinline preload="auto" ` +
         `poster="${m.poster || ''}" aria-label="${m.label || ''}">` +
-        (m.webm ? `<source src="${m.webm}" type="video/webm">` : '') +
         `<source src="${m.mp4}" type="video/mp4"></video>`;
       if (inView) media.querySelector('video')?.play?.().catch(() => {});
     } else {
@@ -935,17 +932,14 @@
   const OFFSET = 56;   // px slide distance
   let busy = false;
 
-  // Quietly warm the neighbouring slide's video so the next click is instant.
-  // Picks one format the browser can actually play (no double download).
-  const probe = document.createElement('video');
-  const canWebm = !!probe.canPlayType && probe.canPlayType('video/webm') !== '';
+  // Quietly warm the neighbouring slide's video (MP4) so the next click is instant.
   const prefetched = new Set();
   function prefetchAdjacent() {
     [ (current + 1) % PROJECTS.length, (current - 1 + PROJECTS.length) % PROJECTS.length ]
       .forEach((idx) => {
         const m = PROJECTS[idx].media;
         if (!m || m.type !== 'video') return;
-        const url = (canWebm && m.webm) ? m.webm : m.mp4;
+        const url = m.mp4;
         if (!url || prefetched.has(url)) return;
         prefetched.add(url);
         const l = document.createElement('link');
