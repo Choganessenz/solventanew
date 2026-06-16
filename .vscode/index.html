@@ -37,6 +37,8 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-700-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Self-hosted Inter (no render-blocking Google Fonts round-trip) -->
+  <link rel="stylesheet" href="fonts/inter.css" />
 </head>
 <body>
 
@@ -205,11 +207,10 @@
     <!-- Background video loop, fades in once it actually plays (seamless over the poster).
          Mobile loads a portrait 9:16 version, desktop the landscape one. The browser
          picks the first matching source, so phones never download the big desktop file. -->
-    <!-- No <source> here on purpose: JS picks ONE file by viewport width so a
-         phone never downloads the big desktop video (and vice-versa). -->
-    <video class="lhero-video" muted loop playsinline preload="none" aria-hidden="true"
-      data-src-mobile="material/hero_wall_mobile_web.mp4"
-      data-src-desktop="material/hero_wall.mp4"></video>
+    <video class="lhero-video" muted loop playsinline preload="none" aria-hidden="true">
+      <source src="material/hero_wall_mobile_web.mp4" type="video/mp4"  media="(max-width: 767px)" />
+      <source src="material/hero_wall.mp4" type="video/mp4" />
+    </video>
     <div class="lhero-video-overlay" aria-hidden="true"></div>
 
     <!-- Central content -->
