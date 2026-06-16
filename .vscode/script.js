@@ -1007,20 +1007,9 @@
    Handles static videos (hero); the feat7 carousel manages its own.
    ════════════════════════════════════════════════════════ */
 (() => {
-  // Helper: set the right source for data-src videos (hero) by viewport width
-  function pickSrc(v) {
-    if (v.dataset.srcMobile && v.dataset.srcDesktop && !v.src) {
-      const mobile = window.matchMedia('(max-width: 767px)').matches;
-      v.src = mobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
-    }
-  }
-
   if (!('IntersectionObserver' in window)) {
-    // no observer: pick source + load directly
-    document.querySelectorAll('video').forEach(v => {
-      pickSrc(v);
-      try { v.load(); v.play?.().catch(() => {}); } catch (_) {}
-    });
+    // no observer: just let videos autoplay normally
+    document.querySelectorAll('video[preload="none"]').forEach(v => { try { v.load(); } catch (_) {} });
     return;
   }
 
@@ -1033,7 +1022,6 @@
       if (e.isIntersecting) {
         if (v.preload === 'none' && !v.dataset.loaded) {
           v.dataset.loaded = '1';
-          pickSrc(v);             // one file only, chosen by viewport width
           v.preload = 'auto';
           try { v.load(); } catch (_) {}
         }
