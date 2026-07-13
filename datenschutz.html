@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js), GA4 + Google Ads, mit Consent Mode v2 (DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5KEYLY4EQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    // DSGVO: standardmäßig alles verweigern, erst nach Einwilligung aktivieren
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
+    gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
+  </script>
   <title>Datenschutz | Solventa Digital Solutions</title>
   <meta name="description" content="Datenschutzerklärung von Solventa Digital Solutions aus Paderborn." />
   <link rel="canonical" href="https://solventa-digital.de/datenschutz" />
@@ -157,6 +174,14 @@
           <li class="nav-item"><a href="kontakt" class="nav-trigger nav-trigger--link">Kontakt</a></li>
         </ul>
       </nav>
+
+      <!-- Telefon-CTA, rechts in der Navbar (Desktop: Nummer, Mobil: nur Icon) -->
+      <a href="tel:+4915510457759" class="navbar-phone" aria-label="Jetzt anrufen: 0155 10457759">
+        <svg class="navbar-phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="navbar-phone-text">0155 10457759</span>
+      </a>
     </div>
   </header>
 
@@ -249,8 +274,22 @@
         <p class="legal-p"><strong>Zweck der Datenverarbeitung:</strong> Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen.</p>
         <p class="legal-p"><strong>Rechtsgrundlage:</strong> Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit widerrufen.</p>
         <p class="legal-p"><strong>Browser-Plugin:</strong> Sie können die Erfassung durch Google Analytics verhindern, indem Sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">https://tools.google.com/dlpage/gaoptout</a></p>
-        <h3 class="legal-h3">Google Tag Manager</h3>
-        <p class="legal-p">Wir setzen den Google Tag Manager ein. Der Google Tag Manager ist eine Lösung, mit der wir sog. Website-Tags über eine Oberfläche verwalten und so andere Dienste in unser Online-Angebot einbinden können. Der Tag Manager selbst, welcher die Tags implementiert, verarbeitet keine personenbezogenen Daten der Nutzer.</p>
+        <p class="legal-p">Wir nutzen Google Analytics 4 (GA4). Weitere Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.</p>
+
+        <h3 class="legal-h3">Google Ads &amp; Conversion-Tracking</h3>
+        <p class="legal-p">Diese Website nutzt Google Ads, ein Online-Werbeprogramm der Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland. Im Rahmen von Google Ads setzen wir das sogenannte Conversion-Tracking ein.</p>
+        <p class="legal-p">Wenn Sie auf eine von Google geschaltete Anzeige klicken, wird ein Cookie für das Conversion-Tracking gesetzt. Klicken Sie anschließend auf unserer Website eine bestimmte Aktion an (z.&nbsp;B. das Absenden des Kontaktformulars, einen Klick auf unsere Telefonnummer oder E-Mail-Adresse), können Google und wir erkennen, dass Sie auf die Anzeige geklickt und diese Aktion ausgeführt haben. Die dabei erhobenen Informationen dienen dazu, eine Conversion-Statistik zu erstellen. So erfahren wir die Gesamtzahl der Nutzer, die auf unsere Anzeigen geklickt und eine Aktion durchgeführt haben. Wir erhalten keine Informationen, mit denen sich Nutzer persönlich identifizieren lassen.</p>
+        <div class="legal-callout">
+          <h4>Erfasste Conversions auf dieser Website</h4>
+          <p><strong>Kontaktformular:</strong> erfolgreiches Absenden einer Anfrage.</p>
+          <p><strong>Telefon-Klick:</strong> Klick auf eine Telefonnummer (<code>tel:</code>-Link).</p>
+          <p><strong>E-Mail-Klick:</strong> Klick auf eine E-Mail-Adresse (<code>mailto:</code>-Link).</p>
+        </div>
+        <p class="legal-p"><strong>Rechtsgrundlage:</strong> Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die Sie über unseren Cookie-Banner erteilen. Die Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie Ihre Cookie-Einstellungen auf dieser Website anpassen.</p>
+        <p class="legal-p"><strong>Datenübermittlung in die USA:</strong> Beim Einsatz von Google Ads können personenbezogene Daten an Server von Google, auch in den USA, übermittelt werden. Google ist unter dem EU-US Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.</p>
+
+        <h3 class="legal-h3">Google Consent Mode v2</h3>
+        <p class="legal-p">Wir verwenden den Google Consent Mode v2. Dabei werden Google-Dienste (Google Analytics und Google Ads) standardmäßig im cookielosen Zustand geladen, bei dem keine personenbezogenen Cookies gesetzt werden. Erst wenn Sie über unseren Cookie-Banner Ihre Einwilligung in die jeweiligen Kategorien (Statistik bzw. Marketing) erteilen, werden die entsprechenden Cookies aktiviert. Ohne Ihre Einwilligung werden keine für Statistik oder Marketing genutzten Cookies gesetzt.</p>
       </div>
 
       <div class="legal-block" id="externe-dienste">

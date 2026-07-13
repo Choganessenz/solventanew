@@ -2119,6 +2119,47 @@ body {
   box-shadow: 0 8px 20px -6px rgba(2,13,124,.5);
 }
 
+/* ── Telefon-CTA in der Navbar (rechts) ── */
+.navbar-phone {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 18px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1230d6, #020d7c);
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 2;
+  box-shadow: 0 10px 24px -10px rgba(2, 13, 124, 0.55);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.navbar-phone:hover {
+  transform: translateY(-50%) scale(1.04);
+  box-shadow: 0 16px 32px -12px rgba(18, 48, 214, 0.6);
+}
+.navbar-phone-icon { flex-shrink: 0; }
+
+/* Mobil: nur Icon-Button, links neben dem Burger */
+@media (max-width: 860px) {
+  .navbar-phone {
+    right: 68px;            /* Platz für den Burger (right:18px, 42px breit) */
+    gap: 0;
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+  .navbar-phone-text { display: none; }   /* Nummer ausblenden, nur Telefon-Icon */
+}
+
 /* ═══════════════════════════════════════════════════════════
    Leistungen dropdown grid (2-col with icons)
    ════════════════════════════════════════════════════════ */
