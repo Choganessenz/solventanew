@@ -1,0 +1,179 @@
+# Tracking-Setup für Solventa Digital Solutions
+**Google Ads Conversion-Tracking + GA4, DSGVO-konform (Consent Mode v2)**
+Für eine Plain-HTML/CSS/JS-Seite. Diese Datei kannst du komplett an **Claude Code** in deinem Repo übergeben.
+
+---
+
+## Übersicht – was hier passiert
+
+1. **Eine Google-Tag-Basis** (`gtag.js`) im `<head>` jeder Seite – lädt GA4 **und** Google Ads.
+2. **Consent Mode v2** (DSGVO): standardmäßig wird alles verweigert, erst nach Einwilligung über den Cookie-Banner aktiviert.
+3. **Drei Conversions:**
+   - **Lead** = Kontaktformular erfolgreich abgeschickt → zählt fürs Bidding (Haupt-Conversion)
+   - **Telefon-Klick** (sekundär)
+   - **E-Mail-Klick** (sekundär)
+
+> Die `G-…`- und `AW-…`-IDs unten sind **Platzhalter**. Du erzeugst sie in GA4 bzw. Google Ads (Schritt-für-Schritt ganz unten) und trägst sie dann ein.
+
+---
+
+## Schritt 1 – Basis-Tag in den `<head>` (auf JEDER Seite)
+
+So weit oben wie möglich im `<head>` einfügen:
+
+```html
+<!-- Google tag (gtag.js) – GA4 + Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  // --- DSGVO: Consent Mode v2 – standardmäßig ALLES verweigern ---
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');   // <-- GA4 Measurement-ID
+  gtag('config', 'AW-XXXXXXXXXX');  // <-- Google Ads Conversion-ID
+</script>
+```
+
+---
+
+## Schritt 2 – Conversion-Logik vor `</body>` (auf JEDER Seite)
+
+```html
+<script>
+(function () {
+  // === IDs aus Google Ads hier eintragen ===
+  var ADS_ID     = 'AW-XXXXXXXXXX';        // Google Ads Conversion-ID
+  var LABEL_LEAD = 'XXXXXXXXXXXXXXXXXX';   // Label der Conversion "Lead – Kontaktformular"
+  var LABEL_TEL  = 'XXXXXXXXXXXXXXXXXX';   // Label der Conversion "Telefon-Klick"
+  var LABEL_MAIL = 'XXXXXXXXXXXXXXXXXX';   // Label der Conversion "E-Mail-Klick"
+
+  function fire(adsLabel, gaEvent, params) {
+    if (typeof gtag !== 'function') return;
+    if (adsLabel) {
+      gtag('event', 'conversion', { 'send_to': ADS_ID + '/' + adsLabel }); // Google Ads
+    }
+    gtag('event', gaEvent, params || {}); // GA4 (zur Analyse)
+  }
+
+  // 1) LEAD – wird vom Kontaktformular aufgerufen (siehe Schritt 3)
+  window.trackSolventaLead = function () {
+    if (window.__solventaLeadFired) return;   // verhindert Doppel-Zählung
+    window.__solventaLeadFired = true;
+    fire(LABEL_LEAD, 'generate_lead', { form: 'kontakt' });
+  };
+
+  // 2) Telefon- & E-Mail-Klicks (automatisch, kein weiterer Code nötig)
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var tel = e.target.closest('a[href^="tel:"]');
+    if (tel)  fire(LABEL_TEL,  'click_phone', { link: tel.getAttribute('href') });
+    var mail = e.target.closest('a[href^="mailto:"]');
+    if (mail) fire(LABEL_MAIL, 'click_email', { link: mail.getAttribute('href') });
+  });
+})();
+</script>
+```
+
+> Telefon- und E-Mail-Tracking läuft damit **automatisch** für alle `tel:`- und `mailto:`-Links. Nur die Lead-Conversion muss noch verdrahtet werden → Schritt 3.
+
+---
+
+## Schritt 3 – Lead-Conversion ins Formular einhängen (WICHTIG)
+
+Die Lead-Conversion darf **erst feuern, wenn das Formular wirklich erfolgreich abgeschickt wurde** – also genau dann, wenn der „Vielen Dank!"-Schritt erscheint. **Nicht** beim Klick auf „Weiter" und **nicht** vor der Validierung, sonst zählst du Abbrecher mit und das Bidding lernt falsch.
+
+**Aufgabe für Claude Code:**
+> Suche im Code der `/kontakt`-Seite die Stelle, an der der mehrstufige Funnel erfolgreich abgeschlossen wird (dort, wo der „Vielen Dank! Ihre Anfrage ist angekommen."-Schritt sichtbar gemacht wird, bzw. der `fetch`/`submit` erfolgreich zurückkommt). Füge dort genau diese Zeile ein:
+> ```js
+> trackSolventaLead();
+> ```
+
+**Falls das Formular die Daten per `fetch` sendet**, sieht das typischerweise so aus:
+
+```js
+// ... nach erfolgreichem Absenden:
+.then(function (res) {
+  if (res.ok) {
+    zeigeDankeSchritt();   // eure bestehende Funktion
+    trackSolventaLead();   // <-- DIESE Zeile ergänzen
+  }
+})
+```
+
+---
+
+## Schritt 4 – DSGVO / Cookie-Banner (Pflicht in DE)
+
+GA4 und Google Ads setzen Cookies → es braucht eine **Einwilligung** und einen **Cookie-Banner**. Dank Consent Mode v2 oben ist bis zur Einwilligung alles cookielos (Google modelliert dann einen Teil der Conversions trotzdem).
+
+Wenn der Nutzer im Banner auf **„Akzeptieren"** klickt, muss diese Funktion aufgerufen werden:
+
+```js
+function solventaConsentGranted() {
+  gtag('consent', 'update', {
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'analytics_storage': 'granted'
+  });
+}
+```
+
+Außerdem:
+- **Datenschutzerklärung ergänzen** um Google Analytics 4 und Google Ads (Conversion-Tracking).
+- Falls ihr noch keinen Banner habt: sag Bescheid, ich baue dir einen schlanken, DSGVO-tauglichen Consent-Banner als Plain-JS dazu.
+
+---
+
+## Schritt 5 – Was du in Google anlegen musst (um die IDs zu bekommen)
+
+Diese Schritte kann nur du machen (Konto/Anmeldung). Danach hast du alle Platzhalter-Werte.
+
+### A) GA4-Property (Measurement-ID `G-…`)
+1. analytics.google.com → Property anlegen → Datenstream „Web" für `solventa-digital.de`.
+2. Die **Measurement-ID `G-XXXXXXXXXX`** kopieren → in Schritt 1 eintragen.
+
+### B) Google Ads Konto + 3 Conversions
+1. Google-Ads-Konto anlegen, **Expertenmodus** wählen (nicht „Smart").
+2. Tools → **Conversions** → „Neue Conversion-Aktion" → **Website**. Lege drei Aktionen an:
+
+| Name (Vorschlag) | Kategorie | Wert | Zählung |
+|---|---|---|---|
+| Lead – Kontaktformular | Lead / Kontaktformular abgeschickt | z. B. 50 € | **Einmal** |
+| Telefon-Klick | Telefonanruf / Kontakt | optional (z. B. 20 €) | Einmal |
+| E-Mail-Klick | Kontakt | optional | Einmal |
+
+3. Bei „Tag einrichten" wähle **„Tag selbst hinzufügen"**. Du bekommst:
+   - die **Conversion-ID `AW-XXXXXXXXXX`** (für alle Aktionen gleich)
+   - je Aktion ein **Conversion-Label** (z. B. `AbCdEf123…`)
+4. Trage `AW-…` in Schritt 1 **und** Schritt 2 ein, und die drei Labels in Schritt 2 (`LABEL_LEAD`, `LABEL_TEL`, `LABEL_MAIL`).
+5. **GA4 mit Google Ads verknüpfen** (in Google Ads → Tools → Verknüpfungen) – ermöglicht später wertbasiertes Bidding.
+
+---
+
+## Schritt 6 – Testen (bevor Budget fließt)
+
+1. **Google Tag Assistant** (tagassistant.google.com) → eure Seite verbinden, Formular einmal komplett ausfüllen → prüfen, ob das `conversion`-Event und `generate_lead` feuern.
+2. **GA4 → DebugView** zeigt `generate_lead`, `click_phone`, `click_email` in Echtzeit.
+3. In **Google Ads → Conversions** springt der Status der Aktion nach dem ersten echten Test auf **„Aktiv"** (kann ein paar Stunden dauern).
+4. Erst wenn die Lead-Conversion „Aktiv" meldet → Kampagne scharf schalten.
+
+---
+
+## Reihenfolge in Kürze
+1. GA4 + 3 Conversions anlegen → IDs/Labels holen (Schritt 5)
+2. Snippets einbauen (Schritte 1–3) + Banner (Schritt 4) → via Claude Code, GitHub, FileZilla → Strato
+3. Testen (Schritt 6)
+4. **Dann** baue ich dir die komplette Kampagne.
+
+---
+*Optional später: „Enhanced Conversions" (verbessert die Messgenauigkeit) – lohnt sich, sobald die Basis steht. Sag Bescheid, wenn du es ergänzen willst.*

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js), GA4 + Google Ads, mit Consent Mode v2 (DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5KEYLY4EQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    // DSGVO: standardmäßig alles verweigern, erst nach Einwilligung aktivieren
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
+    gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
+    // Lead-Conversion NUR hier auf der Danke-Seite feuern: Nach dem Absenden des
+    // Kontaktformulars wird hierher weitergeleitet, sodass kein Redirect den Hit
+    // abbricht (anders als beim direkten Feuern auf der Kontaktseite).
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18263876791/BQ3ZCOfrtsQcELfJ8oRE',
+      'value': 50.0,
+      'currency': 'EUR'
+    });
+</script>
+  <title>Vielen Dank | Solventa Digital Solutions</title>
+  <meta name="description" content="Ihre Anfrage ist bei Solventa Digital Solutions angekommen. Wir melden uns innerhalb von 24 Stunden." />
+  <link rel="canonical" href="https://solventa-digital.de/danke" />
+  <link rel="icon" type="image/png" href="material/favicon.png" />
+  <!-- Danke-Seite nicht indexieren (nur Ziel nach Formular-Absenden) -->
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Solventa Digital Solutions" />
+  <meta name="theme-color" content="#020d7c" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .danke-wrap {
+      min-height: calc(100vh - 60px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 24px;
+      background:
+        radial-gradient(1000px 500px at 50% -10%, rgba(57,206,255,.10), transparent 60%),
+        var(--background);
+    }
+    .danke-card {
+      max-width: 620px; width: 100%; text-align: center;
+    }
+    .danke-icon {
+      width: 88px; height: 88px; margin: 0 auto 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #39ceff, #020d7c);
+      color: #fff;
+      box-shadow: 0 20px 44px -16px rgba(2,13,124,.5);
+      animation: danke-pop .5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes danke-pop { from { opacity:0; transform: scale(.7); } to { opacity:1; transform: scale(1); } }
+    .danke-eyebrow {
+      font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: #39ceff; margin-bottom: 14px; display: block;
+    }
+    .danke-title {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -.03em;
+      line-height: 1.1; color: var(--foreground); margin-bottom: 18px;
+    }
+    .danke-text {
+      font-size: 17px; color: var(--muted-foreground); line-height: 1.65;
+      max-width: 480px; margin: 0 auto 36px;
+    }
+    .danke-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .danke-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 28px; border-radius: 12px; font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .danke-btn--primary {
+      background: linear-gradient(135deg, #1230d6, #020d7c); color: #fff;
+      box-shadow: 0 14px 30px -10px rgba(2,13,124,.55);
+    }
+    .danke-btn--primary:hover { transform: translateY(-2px) scale(1.03); }
+    .danke-btn--ghost {
+      background: var(--muted); color: var(--foreground); border: 1px solid var(--border);
+    }
+    .danke-btn--ghost:hover { transform: translateY(-2px); }
+    @media (max-width: 600px) { .danke-actions { flex-direction: column; } .danke-btn { justify-content: center; } }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="material/solventa_logo_klein.webp" alt="Solventa Digital Solutions" class="navbar-logo-img" width="1080" height="244" />
+      </a>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-trigger">Home<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="home-grid">
+                <li class="home-featured-li"><a href="/" class="home-featured-link"><img src="material/solventa_logo_klein.webp" alt="Solventa Digital Solutions" class="featured-logo" loading="lazy" decoding="async" /><div class="featured-name">Solventa Digital Solutions</div><p class="featured-desc">Webdesign, Grafikdesign &amp; digitale Systeme, aus Paderborn.</p></a></li>
+                <li><a href="/#reviews" class="nav-link-item"><div class="link-title">Bewertungen</div><p class="link-desc">Was unsere Kunden über uns sagen.</p></a></li>
+                <li><a href="/#erfolge" class="nav-link-item"><div class="link-title">Referenzen</div><p class="link-desc">Projekte, die Ergebnisse liefern.</p></a></li>
+                <li><a href="/#ablauf" class="nav-link-item"><div class="link-title">So arbeiten wir</div><p class="link-desc">Unser Ablauf in vier klaren Schritten.</p></a></li>
+                <li><a href="/#faq" class="nav-link-item"><div class="link-title">FAQ</div><p class="link-desc">Häufige Fragen, klar beantwortet.</p></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">Leistungen<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="leistungen-grid">
+                <li><a href="webdesign" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div><div class="leist-body"><div class="leist-title">Webdesign</div><p class="leist-desc">Professionelle Websites, die Besucher überzeugen.</p></div></a></li>
+                <li><a href="grafikdesign" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div><div class="leist-body"><div class="leist-title">Grafikdesign</div><p class="leist-desc">Logos, Corporate Identity und Branding.</p></div></a></li>
+                <li><a href="seo" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M8 11l2 2 4-4"/></svg></div><div class="leist-body"><div class="leist-title">SEO</div><p class="leist-desc">Bei Google gefunden werden, ganz oben.</p></div></a></li>
+                <li><a href="digitale-geschaeftssysteme" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10M7 12h5"/></svg></div><div class="leist-body"><div class="leist-title">Digitale Geschäftssysteme</div><p class="leist-desc">Portale, Dashboards und Datenbanklösungen.</p></div></a></li>
+                <li><a href="wartung-support" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="leist-body"><div class="leist-title">Wartung &amp; Support</div><p class="leist-desc">Updates, Sicherheit und schneller Support.</p></div></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"><a href="kontakt" class="nav-trigger nav-trigger--link">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- Telefon-CTA, rechts in der Navbar (Desktop: Nummer, Mobil: nur Icon) -->
+      <a href="tel:+4915510457759" class="navbar-phone" aria-label="Jetzt anrufen: 0155 10457759">
+        <svg class="navbar-phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="navbar-phone-text">0155 10457759</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="danke-wrap">
+    <div class="danke-card">
+      <div class="danke-icon" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </div>
+      <span class="danke-eyebrow">Anfrage erhalten</span>
+      <h1 class="danke-title">Vielen Dank!</h1>
+      <p class="danke-text">Ihre Anfrage ist bei uns angekommen. Wir melden uns innerhalb von 24&nbsp;Stunden bei Ihnen, meist deutlich schneller. Eine Bestätigung haben wir Ihnen per E-Mail geschickt.</p>
+      <div class="danke-actions">
+        <a href="/" class="danke-btn danke-btn--primary">Zur Startseite</a>
+        <a href="tel:+4915510457759" class="danke-btn danke-btn--ghost">Direkt anrufen</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="ft">
+    <div class="ft-inner">
+
+      <div class="ft-top">
+        <a href="/" class="ft-brand" aria-label="Solventa Digital Solutions">
+          <img src="material/logo.webp" alt="Solventa Digital Solutions" class="ft-logo" loading="lazy" decoding="async" />
+        </a>
+        <ul class="ft-socials">
+          <li>
+            <a href="mailto:info@solventa-digital.de" class="ft-social" aria-label="E-Mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ft-bottom">
+        <div class="ft-copy">
+          <div>© 2026 Solventa Digital Solutions</div>
+          <div>Webdesign · Grafikdesign · SEO · Digitale Systeme</div>
+        </div>
+        <nav class="ft-nav" aria-label="Footer">
+          <ul class="ft-links">
+            <li><a href="webdesign">Webdesign</a></li>
+            <li><a href="grafikdesign">Grafikdesign</a></li>
+            <li><a href="seo">SEO</a></li>
+            <li><a href="digitale-geschaeftssysteme">Digitale Systeme</a></li>
+            <li><a href="wartung-support">Wartung &amp; Support</a></li>
+            <li><a href="kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+        <ul class="ft-legal">
+          <li><a href="impressum">Impressum</a></li>
+          <li><a href="datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</body>
+</html>

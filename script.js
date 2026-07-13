@@ -1307,3 +1307,67 @@
     history.pushState(null, '', id);
   });
 })();
+
+/* ═══════════════════════════════════════════════════════════
+   Google Ads / GA4 — Conversion-Tracking + Consent Mode v2
+   IDs sind Platzhalter (G-… / AW-… / Labels) und werden später
+   in index <head> (Schritt 1) und hier unten eingetragen.
+   ════════════════════════════════════════════════════════ */
+(() => {
+  // === IDs aus Google Ads hier eintragen ===
+  const ADS_ID     = 'AW-18263876791';       // Google Ads Conversion-ID
+  const LABEL_LEAD = 'BQ3ZCOfrtsQcELfJ8oRE'; // Conversion "Lead – Kontaktformular"
+  const LABEL_TEL  = 'qmUFCOrrtsQcELfJ8oRE'; // Conversion "Telefon-Klick"
+  const LABEL_MAIL = 'XXXXXXXXXXXXXXXXXX';   // Conversion "E-Mail-Klick" (noch nicht angelegt)
+
+  function fire(adsLabel, gaEvent, params, convExtra) {
+    if (typeof gtag !== 'function') return;
+    if (adsLabel && adsLabel.indexOf('X') === -1) {           // nur feuern, wenn echtes Label gesetzt
+      gtag('event', 'conversion',
+        Object.assign({ 'send_to': ADS_ID + '/' + adsLabel }, convExtra || {}));
+    }
+    gtag('event', gaEvent, params || {});                     // GA4 (zur Analyse)
+  }
+
+  // 1) LEAD — vom Kontaktformular aufgerufen (kontakt.html, nach Erfolg).
+  //    Hier NUR das GA4-Event feuern: Die Google-Ads-Lead-Conversion würde vom
+  //    anschließenden Redirect auf /danke abgebrochen ("keine Treffer gesendet"),
+  //    deshalb feuert sie stattdessen beim Laden der /danke-Seite (siehe danke.html).
+  window.trackSolventaLead = function () {
+    if (window.__solventaLeadFired) return;
+    window.__solventaLeadFired = true;
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', { form: 'kontakt' });
+  };
+
+  // 2) Telefon- & E-Mail-Klicks — automatisch für alle tel:/mailto:-Links
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest) return;
+    const tel = e.target.closest('a[href^="tel:"]');
+    if (tel)  fire(LABEL_TEL,  'click_phone', { link: tel.getAttribute('href') },
+                   { 'value': 20.0, 'currency': 'EUR' });
+    const mail = e.target.closest('a[href^="mailto:"]');
+    if (mail) fire(LABEL_MAIL, 'click_email', { link: mail.getAttribute('href') });
+  });
+
+  // 3) Consent Mode v2 — an den bestehenden Cookie-Banner koppeln.
+  //    Banner liefert { necessary, statistik, marketing } via 'solventa:consent'.
+  function applyConsent(c) {
+    if (typeof gtag !== 'function' || !c) return;
+    gtag('consent', 'update', {
+      'analytics_storage':  c.statistik ? 'granted' : 'denied',
+      'ad_storage':         c.marketing ? 'granted' : 'denied',
+      'ad_user_data':       c.marketing ? 'granted' : 'denied',
+      'ad_personalization': c.marketing ? 'granted' : 'denied'
+    });
+  }
+  // auf neue Einwilligung reagieren (Banner feuert dieses Event)
+  window.addEventListener('solventa:consent', (e) => applyConsent(e.detail));
+  // bereits gespeicherte Einwilligung beim Laden anwenden — nach DOM-ready,
+  // da der Cookie-Banner window.solventaConsent erst in seinem init() setzt.
+  function applyStored() { if (window.solventaConsent) applyConsent(window.solventaConsent); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyStored);
+  } else {
+    applyStored();
+  }
+})();

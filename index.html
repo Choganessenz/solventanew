@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js), GA4 + Google Ads, mit Consent Mode v2 (DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5KEYLY4EQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    // DSGVO: standardmäßig alles verweigern, erst nach Einwilligung aktivieren
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
+    gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
+  </script>
   <title>Webdesign Paderborn | Solventa Digital Solutions</title>
   <meta name="description" content="Webagentur aus Paderborn: professionelles Webdesign, Grafikdesign, SEO und digitale Geschäftssysteme. Moderne Websites, die mehr Kunden bringen." />
   <link rel="canonical" href="https://solventa-digital.de/" />
@@ -193,6 +210,14 @@
         </ul>
       </nav>
 
+      <!-- Telefon-CTA, rechts in der Navbar (Desktop: Nummer, Mobil: nur Icon) -->
+      <a href="tel:+4915510457759" class="navbar-phone" aria-label="Jetzt anrufen: 0155 10457759">
+        <svg class="navbar-phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="navbar-phone-text">0155 10457759</span>
+      </a>
+
 
     </div>
   </header>
@@ -314,9 +339,9 @@
             },
             {
               "@type": "Review",
-              "author": {"@type": "Person", "name": "Platzmacher"},
+              "author": {"@type": "Person", "name": "Igor L."},
               "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-              "reviewBody": "Schnelle, unkomplizierte Zusammenarbeit und ein rundum überzeugendes Ergebnis. Gerne wieder, klare Empfehlung!"
+              "reviewBody": "Sehr empfehlenswerte Firma! Solventa Digital Solutions hat für uns eine wirklich starke und professionelle Homepage erstellt. Der gesamte Ablauf war von Anfang bis Ende sehr angenehm. Der Service war hervorragend, die Erreichbarkeit jederzeit gegeben und auf unsere Wünsche wurde schnell und zuverlässig eingegangen. Auch das Preis-Leistungs-Verhältnis ist absolut exzellent. Man merkt sofort, dass hier mit Fachwissen, Engagement und viel Sorgfalt gearbeitet wird. Wir sind mit dem Ergebnis sehr zufrieden und können Solventa Digital Solutions uneingeschränkt weiterempfehlen."
             },
             {
               "@type": "Review",
@@ -390,12 +415,12 @@
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
           </svg>
         </div>
-        <blockquote class="rev-text">„Schnelle, unkomplizierte Zusammenarbeit und ein rundum überzeugendes Ergebnis. Gerne wieder, klare Empfehlung!"</blockquote>
+        <blockquote class="rev-text rev-text--scroll"><span class="rev-scroll-track">„Sehr empfehlenswerte Firma! Solventa Digital Solutions hat für uns eine wirklich starke und professionelle Homepage erstellt. Der gesamte Ablauf war von Anfang bis Ende sehr angenehm. Der Service war hervorragend, die Erreichbarkeit jederzeit gegeben und auf unsere Wünsche wurde schnell und zuverlässig eingegangen. Auch das Preis-Leistungs-Verhältnis ist absolut exzellent. Man merkt sofort, dass hier mit Fachwissen, Engagement und viel Sorgfalt gearbeitet wird. Wir sind mit dem Ergebnis sehr zufrieden und können Solventa Digital Solutions uneingeschränkt weiterempfehlen."</span></blockquote>
         <div class="rev-author">
-          <div class="rev-avatar" style="background:#39ceff;color:#020d7c">PL</div>
+          <div class="rev-avatar" style="background:#39ceff;color:#020d7c">IL</div>
           <div>
-            <div class="rev-name">Platzmacher</div>
-            <div class="rev-service">Google-Bewertung</div>
+            <div class="rev-name">Igor L.</div>
+            <div class="rev-service">Professionelle Homepage</div>
           </div>
         </div>
       </div>

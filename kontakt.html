@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js), GA4 + Google Ads, mit Consent Mode v2 (DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5KEYLY4EQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    // DSGVO: standardmäßig alles verweigern, erst nach Einwilligung aktivieren
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
+    gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
+  </script>
   <title>Kontakt | Solventa Digital Solutions Paderborn</title>
   <meta name="description" content="Kontakt zu Solventa Digital Solutions aus Paderborn. Erzählen Sie uns von Ihrem Projekt, wir melden uns innerhalb von 24 Stunden." />
   <link rel="canonical" href="https://solventa-digital.de/kontakt" />
@@ -220,6 +237,15 @@
     .kw-textarea { resize: vertical; min-height: 80px; }
     .kw-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 520px) { .kw-row2 { grid-template-columns: 1fr; } }
+    /* Datenschutz-Einwilligung */
+    .kw-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 2px; }
+    .kw-consent-box {
+      flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; cursor: pointer;
+      accent-color: #020d7c;
+    }
+    .kw-consent-text { font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+    .kw-consent-text a { color: #020d7c; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .kw-consent.kw-consent--error .kw-consent-box { outline: 2px solid #e11d48; outline-offset: 2px; border-radius: 4px; }
 
     /* Summary chips */
     .kw-summary {
@@ -308,6 +334,14 @@
           <li class="nav-item"><a href="kontakt" class="nav-trigger nav-trigger--link">Kontakt</a></li>
         </ul>
       </nav>
+
+      <!-- Telefon-CTA, rechts in der Navbar (Desktop: Nummer, Mobil: nur Icon) -->
+      <a href="tel:+4915510457759" class="navbar-phone" aria-label="Jetzt anrufen: 0155 10457759">
+        <svg class="navbar-phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="navbar-phone-text">0155 10457759</span>
+      </a>
     </div>
   </header>
 
@@ -490,6 +524,11 @@
               </div>
               <!-- Honeypot gegen Spam, für Menschen unsichtbar -->
               <input type="text" id="kwBotcheck" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+              <!-- Datenschutz-Einwilligung (Pflicht) -->
+              <label class="kw-consent" for="kwConsent">
+                <input type="checkbox" id="kwConsent" class="kw-consent-box" />
+                <span class="kw-consent-text">Ich habe die <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</span>
+              </label>
             </div>
             <div class="kw-error" id="kwError" role="alert"></div>
           </div>
@@ -649,7 +688,8 @@
       if (isContact(s)) {
         const n = document.getElementById('kwName').value.trim();
         const e = document.getElementById('kwEmail').value.trim();
-        return n.length > 1 && validEmail(e);
+        const consent = document.getElementById('kwConsent');
+        return n.length > 1 && validEmail(e) && !!(consent && consent.checked);
       }
       return false;
     }
@@ -744,6 +784,7 @@
     });
 
     ['kwName', 'kwEmail'].forEach(id => document.getElementById(id).addEventListener('input', updateNav));
+    document.getElementById('kwConsent').addEventListener('change', updateNav);
 
     backBtn.addEventListener('click', () => { if (cur > 0) showStep(cur - 1); });
 
@@ -784,7 +825,10 @@
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.success) {
-          showDone();
+          // Google-Ads Lead-Conversion feuern (falls Tracking aktiv)
+          if (typeof window.trackSolventaLead === 'function') window.trackSolventaLead();
+          // Auf die Danke-Seite weiterleiten (eigene URL für sauberes Conversion-Tracking)
+          window.location.assign('/danke');
         } else {
           throw new Error(data && data.message ? data.message : 'Senden fehlgeschlagen');
         }
