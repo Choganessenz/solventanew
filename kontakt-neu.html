@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js), GA4 + Google Ads, mit Consent Mode v2 (DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5KEYLY4EQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    // DSGVO: standardmäßig alles verweigern, erst nach Einwilligung aktivieren
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
+    gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
+  </script>
+  <title>Kontakt (Vorschau) | Solventa Digital Solutions Paderborn</title>
+  <meta name="description" content="Kontakt zu Solventa Digital Solutions aus Paderborn. Erzählen Sie uns von Ihrem Projekt, wir melden uns innerhalb von 24 Stunden." />
+  <link rel="canonical" href="https://solventa-digital.de/kontakt" />
+  <link rel="icon" type="image/png" href="material/favicon.png" />
+  <!-- Test-/Vorschauseite: nicht indexieren -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="Solventa Digital Solutions" />
+  <meta name="theme-color" content="#020d7c" />
+  <meta name="geo.region" content="DE-NW" />
+  <meta name="geo.placename" content="Paderborn" />
+  <meta name="geo.position" content="51.7189;8.7575" />
+  <meta name="ICBM" content="51.7189, 8.7575" />
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, KI-Vorschauen) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Solventa Digital Solutions" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:title" content="Kontakt | Solventa Digital Solutions Paderborn" />
+  <meta property="og:description" content="Kontakt zu Solventa Digital Solutions aus Paderborn. Erzählen Sie uns von Ihrem Projekt, wir melden uns innerhalb von 24 Stunden." />
+  <meta property="og:url" content="https://solventa-digital.de/kontakt" />
+  <meta property="og:image" content="https://solventa-digital.de/material/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kontakt | Solventa Digital Solutions Paderborn" />
+  <meta name="twitter:description" content="Kontakt zu Solventa Digital Solutions aus Paderborn. Erzählen Sie uns von Ihrem Projekt, wir melden uns innerhalb von 24 Stunden." />
+  <meta name="twitter:image" content="https://solventa-digital.de/material/og-image.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ═══ Cleanes 2-Schritt-Kontaktformular (cf) ═══ */
+    .cf-section {
+      min-height: calc(100vh - 60px);
+      padding: 56px 24px 76px;
+      background:
+        radial-gradient(900px 440px at 50% -10%, rgba(57,206,255,.12), transparent 62%),
+        var(--muted);
+      display: flex; justify-content: center;
+    }
+    @media (max-width: 560px) { .cf-section { padding: 28px 14px 52px; } }
+
+    .cf-shell { width: 100%; max-width: 760px; }
+
+    /* Schrittanzeige (2 Schritte + verbindende Linie) */
+    .cf-steps { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+    .cf-step { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--muted-foreground); transition: color .3s ease; }
+    .cf-step-no {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; background: #fff; color: var(--muted-foreground);
+      border: 1.5px solid var(--border); transition: background .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .cf-step.is-current { color: var(--foreground); }
+    .cf-step.is-current .cf-step-no { background: #020d7c; color: #fff; border-color: #020d7c; box-shadow: 0 0 0 4px rgba(2,13,124,.1); }
+    .cf-step.is-done .cf-step-no { background: #39ceff; color: #020d7c; border-color: #39ceff; }
+    .cf-step-line { flex: 1; height: 2px; border-radius: 2px; background: var(--border); position: relative; overflow: hidden; }
+    .cf-step-line::after { content: ''; position: absolute; inset: 0; width: var(--cf-fill, 0%); background: linear-gradient(90deg, #020d7c, #39ceff); transition: width .45s cubic-bezier(0.22,1,0.36,1); }
+
+    /* Card */
+    .cf-card-wrap {
+      background: var(--background); border: 1px solid var(--border); border-radius: 24px;
+      padding: 40px; box-shadow: 0 40px 90px -50px rgba(2,13,124,.35);
+    }
+    @media (max-width: 560px) { .cf-card-wrap { padding: 24px 20px; border-radius: 20px; } }
+
+    .cf-slide { display: none; }
+    .cf-slide.is-active { display: block; animation: cf-in .4s cubic-bezier(0.22,1,0.36,1); }
+    @keyframes cf-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+    .cf-h { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.02em; color: var(--foreground); margin-bottom: 8px; }
+    .cf-sub { font-size: 15px; color: var(--muted-foreground); margin-bottom: 26px; line-height: 1.55; }
+    .cf-sub b { color: #020d7c; font-weight: 600; }
+
+    /* Service-Bildkacheln */
+    .cf-services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .cf-services { grid-template-columns: 1fr; gap: 12px; } }
+    .cf-card {
+      position: relative; text-align: left; cursor: pointer; padding: 0; overflow: hidden;
+      background: var(--background); border: 1.5px solid var(--border); border-radius: 18px;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .cf-card:hover { transform: translateY(-4px); border-color: rgba(57,206,255,.6); box-shadow: 0 22px 44px -24px rgba(2,13,124,.45); }
+    .cf-card.is-sel { border-color: #020d7c; box-shadow: 0 0 0 3px rgba(2,13,124,.12); }
+    .cf-card-img { position: relative; height: 132px; overflow: hidden; background: linear-gradient(135deg, #39ceff, #020d7c); display: block; }
+    @media (max-width: 640px) { .cf-card-img { height: 128px; } }
+    .cf-card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.03);
+      transition: transform .55s cubic-bezier(0.22,1,0.36,1); backface-visibility: hidden;
+    }
+    .cf-card:hover .cf-card-img img { transform: scale(1.09); }
+    .cf-card-b { display: block; padding: 14px 16px 16px; }
+    .cf-card-t { font-size: 16px; font-weight: 700; color: var(--foreground); }
+    .cf-card-d { font-size: 13px; color: var(--muted-foreground); margin-top: 3px; line-height: 1.45; }
+    .cf-check {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      width: 26px; height: 26px; border-radius: 50%; background: #020d7c; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(.4); box-shadow: 0 4px 12px rgba(2,13,124,.45);
+      transition: opacity .2s ease, transform .2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cf-card.is-sel .cf-check { opacity: 1; transform: scale(1); }
+
+    /* Add-on (Wartung, nur bei Webdesign) */
+    .cf-addon {
+      margin-top: 16px; width: 100%; display: flex; align-items: center; gap: 13px;
+      border: 1.5px dashed var(--border); border-radius: 14px; padding: 14px 16px;
+      background: var(--muted); cursor: pointer; text-align: left;
+      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, opacity .3s ease, transform .3s ease;
+    }
+    .cf-addon[hidden] { display: none; }
+    .cf-addon.cf-addon--in { animation: cf-in .35s cubic-bezier(0.34,1.56,0.64,1); }
+    .cf-addon:hover { border-color: rgba(57,206,255,.6); }
+    .cf-addon.is-sel { border-style: solid; border-color: #020d7c; background: #fff; box-shadow: 0 0 0 3px rgba(2,13,124,.1); }
+    .cf-addon-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; transition: all .2s ease; }
+    .cf-addon.is-sel .cf-addon-box { background: #020d7c; border-color: #020d7c; }
+    .cf-addon-box svg { opacity: 0; transition: opacity .2s ease; }
+    .cf-addon.is-sel .cf-addon-box svg { opacity: 1; }
+    .cf-addon-ico { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; background: linear-gradient(135deg, rgba(57,206,255,.18), rgba(2,13,124,.1)); color: #020d7c; display: flex; align-items: center; justify-content: center; }
+    .cf-addon-t { font-size: 14px; font-weight: 700; color: var(--foreground); }
+    .cf-addon-d { font-size: 12.5px; color: var(--muted-foreground); margin-top: 2px; line-height: 1.4; }
+
+    /* Zusammenfassung als Chips (mit Mini-Thumbnails) */
+    .cf-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .cf-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #020d7c; background: var(--muted); border: 1px solid var(--border); padding: 5px 13px 5px 5px; border-radius: 99px; }
+    .cf-chip img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .cf-chip--txt { padding: 6px 13px; }
+
+    /* Kontaktfelder */
+    .cf-fields { display: flex; flex-direction: column; gap: 16px; }
+    .cf-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 560px) { .cf-row2 { grid-template-columns: 1fr; } }
+    .cf-field label { font-size: 13px; font-weight: 600; color: var(--foreground); display: block; margin-bottom: 6px; }
+    .cf-field label .opt { color: var(--muted-foreground); font-weight: 400; }
+    .cf-input, .cf-textarea {
+      width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 11px;
+      font-family: var(--font); font-size: 14.5px; color: var(--foreground); background: #fff;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .cf-input:focus, .cf-textarea:focus { outline: none; border-color: #39ceff; box-shadow: 0 0 0 3px rgba(57,206,255,.16); }
+    .cf-textarea { resize: vertical; min-height: 90px; }
+    .cf-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+    .cf-consent-box { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; cursor: pointer; accent-color: #020d7c; }
+    .cf-consent-text { font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+    .cf-consent-text a { color: #020d7c; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Fehlermeldung */
+    .cf-error { display: none; margin-top: 16px; font-size: 13px; line-height: 1.5; color: #b4232a; background: #fdecec; border: 1px solid #f5c2c4; border-radius: 10px; padding: 11px 14px; }
+    .cf-error.is-on { display: block; }
+
+    /* Footer der Card: Trust + Navigation */
+    .cf-foot { margin-top: 30px; }
+    .cf-trust { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted-foreground); margin-bottom: 16px; }
+    .cf-trust svg { color: #39ceff; flex-shrink: 0; }
+    .cf-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cf-back { background: none; border: none; color: var(--muted-foreground); font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); padding: 8px 6px; transition: color .2s ease; }
+    .cf-back:hover { color: var(--foreground); }
+    .cf-back[hidden] { display: none; }
+    .cf-next { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; background: #020d7c; color: #fff; border: none; border-radius: 99px; padding: 14px 32px; font-size: 14.5px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease; }
+    .cf-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(2,13,124,.55); }
+    .cf-next:disabled { opacity: .45; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Navbar ═════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="material/solventa_logo_klein.webp" alt="Solventa Digital Solutions" class="navbar-logo-img" width="1080" height="244" />
+      </a>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-trigger">Home<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="home-grid">
+                <li class="home-featured-li"><a href="/" class="home-featured-link"><img src="material/solventa_logo_klein.webp" alt="Solventa Digital Solutions" class="featured-logo" loading="lazy" decoding="async" /><div class="featured-name">Solventa Digital Solutions</div><p class="featured-desc">Webdesign, Grafikdesign &amp; digitale Systeme, aus Paderborn.</p></a></li>
+                <li><a href="/#reviews" class="nav-link-item"><div class="link-title">Bewertungen</div><p class="link-desc">Was unsere Kunden über uns sagen.</p></a></li>
+                <li><a href="/#erfolge" class="nav-link-item"><div class="link-title">Referenzen</div><p class="link-desc">Projekte, die Ergebnisse liefern.</p></a></li>
+                <li><a href="/#ablauf" class="nav-link-item"><div class="link-title">So arbeiten wir</div><p class="link-desc">Unser Ablauf in vier klaren Schritten.</p></a></li>
+                <li><a href="/#faq" class="nav-link-item"><div class="link-title">FAQ</div><p class="link-desc">Häufige Fragen, klar beantwortet.</p></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">Leistungen<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-content">
+              <ul class="leistungen-grid">
+                <li><a href="webdesign" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div><div class="leist-body"><div class="leist-title">Webdesign</div><p class="leist-desc">Professionelle Websites, die Besucher überzeugen.</p></div></a></li>
+                <li><a href="grafikdesign" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div><div class="leist-body"><div class="leist-title">Grafikdesign</div><p class="leist-desc">Logos, Corporate Identity und Branding.</p></div></a></li>
+                <li><a href="seo" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M8 11l2 2 4-4"/></svg></div><div class="leist-body"><div class="leist-title">SEO</div><p class="leist-desc">Bei Google gefunden werden, ganz oben.</p></div></a></li>
+                <li><a href="digitale-geschaeftssysteme" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10M7 12h5"/></svg></div><div class="leist-body"><div class="leist-title">Digitale Geschäftssysteme</div><p class="leist-desc">Portale, Dashboards und Datenbanklösungen.</p></div></a></li>
+                <li><a href="wartung-support" class="leist-link"><div class="leist-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="leist-body"><div class="leist-title">Wartung &amp; Support</div><p class="leist-desc">Updates, Sicherheit und schneller Support.</p></div></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"><a href="kontakt" class="nav-trigger nav-trigger--link">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- Telefon-CTA, rechts in der Navbar (Desktop: Nummer, Mobil: nur Icon) -->
+      <a href="tel:+4915510457759" class="navbar-phone" aria-label="Jetzt anrufen: 0155 10457759">
+        <svg class="navbar-phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="navbar-phone-text">0155 10457759</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ Interaktiver Kontakt-Wizard ════════════════════════ -->
+  <!-- ═══ Cleanes 2-Schritt-Kontaktformular ═══ -->
+  <section class="cf-section">
+    <div class="cf-shell">
+
+      <!-- Schrittanzeige -->
+      <div class="cf-steps">
+        <div class="cf-step is-current" id="cfStep1"><span class="cf-step-no">1</span> Leistung</div>
+        <div class="cf-step-line" id="cfLine"></div>
+        <div class="cf-step" id="cfStep2"><span class="cf-step-no">2</span> Kontakt</div>
+      </div>
+
+      <div class="cf-card-wrap">
+
+        <!-- Schritt 1: Leistung -->
+        <div class="cf-slide is-active" data-step="service">
+          <h1 class="cf-h">Womit können wir helfen?</h1>
+          <p class="cf-sub">Wählen Sie alles aus, was passt, gern auch mehreres.</p>
+          <div class="cf-services">
+            <button class="cf-card" data-val="Webdesign">
+              <span class="cf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="cf-card-img"><img src="material/kontakt-webdesign.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.minHeight='0'"></span>
+              <span class="cf-card-b"><span class="cf-card-t" style="display:block">Webdesign</span><span class="cf-card-d" style="display:block">Eine neue Website, die verkauft.</span></span>
+            </button>
+            <button class="cf-card" data-val="Grafikdesign">
+              <span class="cf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="cf-card-img"><img src="material/kontakt-grafik.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.minHeight='0'"></span>
+              <span class="cf-card-b"><span class="cf-card-t" style="display:block">Grafikdesign</span><span class="cf-card-d" style="display:block">Logo, Branding &amp; Print.</span></span>
+            </button>
+            <button class="cf-card" data-val="Digitale Geschäftssysteme">
+              <span class="cf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="cf-card-img"><img src="material/kontakt-systeme.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.style.minHeight='0'"></span>
+              <span class="cf-card-b"><span class="cf-card-t" style="display:block">Digitale Systeme</span><span class="cf-card-d" style="display:block">Portale, Dashboards, Tools.</span></span>
+            </button>
+          </div>
+
+          <button class="cf-addon" id="cfAddon" data-addon="Wartung &amp; Support (laufende Betreuung)" hidden>
+            <span class="cf-addon-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="cf-addon-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+            <span style="flex:1">
+              <span class="cf-addon-t" style="display:block">Wartung &amp; Support dazubuchen</span>
+              <span class="cf-addon-d" style="display:block">Laufende Betreuung, Updates, Sicherheit &amp; schneller Support.</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Schritt 2: Kontaktdaten -->
+        <div class="cf-slide" data-step="contact">
+          <h1 class="cf-h">Wie erreichen wir Sie?</h1>
+          <p class="cf-sub">Wir melden uns <b>innerhalb von 24&nbsp;Stunden</b> bei Ihnen, versprochen.</p>
+          <div class="cf-summary" id="cfSummary"></div>
+          <div class="cf-fields">
+            <div class="cf-row2">
+              <div class="cf-field">
+                <label for="cfName">Ihr Name</label>
+                <input class="cf-input" id="cfName" type="text" placeholder="Max Mustermann" autocomplete="name" />
+              </div>
+              <div class="cf-field">
+                <label for="cfEmail">E-Mail</label>
+                <input class="cf-input" id="cfEmail" type="email" placeholder="max@firma.de" autocomplete="email" />
+              </div>
+            </div>
+            <div class="cf-field">
+              <label for="cfPhone">Telefon <span class="opt">· optional</span></label>
+              <input class="cf-input" id="cfPhone" type="tel" placeholder="05251 1234567" autocomplete="tel" />
+            </div>
+            <div class="cf-field">
+              <label for="cfMsg">Worum geht's genau? <span class="opt">· optional</span></label>
+              <textarea class="cf-textarea" id="cfMsg" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben…"></textarea>
+            </div>
+            <input type="text" id="cfBotcheck" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+            <label class="cf-consent" for="cfConsent">
+              <input type="checkbox" id="cfConsent" class="cf-consent-box" />
+              <span class="cf-consent-text">Ich habe die <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</span>
+            </label>
+          </div>
+          <div class="cf-error" id="cfError" role="alert"></div>
+        </div>
+
+        <!-- Footer: Trust + Navigation -->
+        <div class="cf-foot">
+          <div class="cf-trust">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Unverbindlich · Antwort in 24&nbsp;h · DSGVO-konform
+          </div>
+          <div class="cf-nav">
+            <button class="cf-back" id="cfBack" hidden>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              Zurück
+            </button>
+            <button class="cf-next" id="cfNext" disabled>
+              Weiter
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="ft">
+    <div class="ft-inner">
+
+      <div class="ft-top">
+        <a href="/" class="ft-brand" aria-label="Solventa Digital Solutions">
+          <img src="material/logo.webp" alt="Solventa Digital Solutions" class="ft-logo" loading="lazy" decoding="async" />
+        </a>
+        <ul class="ft-socials">
+          <li>
+            <a href="mailto:info@solventa-digital.de" class="ft-social" aria-label="E-Mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ft-bottom">
+        <div class="ft-copy">
+          <div>© 2026 Solventa Digital Solutions</div>
+          <div>Webdesign · Grafikdesign · SEO · Digitale Systeme</div>
+        </div>
+        <nav class="ft-nav" aria-label="Footer">
+          <ul class="ft-links">
+            <li><a href="webdesign">Webdesign</a></li>
+            <li><a href="grafikdesign">Grafikdesign</a></li>
+            <li><a href="seo">SEO</a></li>
+            <li><a href="digitale-geschaeftssysteme">Digitale Systeme</a></li>
+            <li><a href="wartung-support">Wartung &amp; Support</a></li>
+            <li><a href="kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+        <ul class="ft-legal">
+          <li><a href="impressum">Impressum</a></li>
+          <li><a href="datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+  (() => {
+    const SEND_ENDPOINT = 'kontakt-senden.php';
+    const CONTACT_MAIL  = 'info@solventa-digital.de';
+
+    const slides  = Array.from(document.querySelectorAll('.cf-slide'));
+    const stepEls = [document.getElementById('cfStep1'), document.getElementById('cfStep2')];
+    const lineEl  = document.getElementById('cfLine');
+    const backBtn = document.getElementById('cfBack');
+    const nextBtn = document.getElementById('cfNext');
+    const summary = document.getElementById('cfSummary');
+    const addon   = document.getElementById('cfAddon');
+    const errorEl = document.getElementById('cfError');
+
+    // Leistung -> Mini-Thumbnail für die Zusammenfassung
+    const THUMB = {
+      'Webdesign': 'material/kontakt-webdesign.webp',
+      'Grafikdesign': 'material/kontakt-grafik.webp',
+      'Digitale Geschäftssysteme': 'material/kontakt-systeme.webp'
+    };
+
+    const state = { service: [], wartung: false };
+    let cur = 0;   // 0 = Leistung, 1 = Kontakt
+
+    const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const decode = str => { const t = document.createElement('textarea'); t.innerHTML = str; return t.value; };
+
+    function renderSteps() {
+      stepEls.forEach((el, i) => {
+        el.classList.toggle('is-current', i === cur);
+        el.classList.toggle('is-done', i < cur);
+      });
+      lineEl.style.setProperty('--cf-fill', cur >= 1 ? '100%' : '0%');
+    }
+
+    function canProceed() {
+      if (cur === 0) return state.service.length > 0;
+      const n = document.getElementById('cfName').value.trim();
+      const e = document.getElementById('cfEmail').value.trim();
+      const c = document.getElementById('cfConsent');
+      return n.length > 1 && validEmail(e) && !!(c && c.checked);
+    }
+
+    function updateNav() {
+      backBtn.hidden = cur === 0;
+      nextBtn.disabled = !canProceed();
+      nextBtn.childNodes[0].nodeValue = (cur === 1 ? 'Anfrage senden ' : 'Weiter ');
+    }
+
+    function buildSummary() {
+      summary.innerHTML = '';
+      state.service.forEach(s => {
+        const chip = document.createElement('span');
+        chip.className = 'cf-chip';
+        const thumb = THUMB[s];
+        chip.innerHTML = (thumb ? '<img src="' + thumb + '" alt="" onerror="this.remove()">' : '') + '<span>' + s + '</span>';
+        summary.appendChild(chip);
+      });
+      if (state.wartung) {
+        const chip = document.createElement('span');
+        chip.className = 'cf-chip cf-chip--txt';
+        chip.innerHTML = '<span>+ Wartung &amp; Support</span>';
+        summary.appendChild(chip);
+      }
+    }
+
+    function showStep(i) {
+      cur = Math.max(0, Math.min(i, 1));
+      slides.forEach(s => s.classList.remove('is-active'));
+      slides[cur].classList.add('is-active');
+      if (cur === 1) buildSummary();
+      renderSteps();
+      updateNav();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Add-on (Wartung) nur sichtbar, wenn Webdesign gewählt ist
+    function syncAddon() {
+      if (state.service.includes('Webdesign')) {
+        if (addon.hidden) { addon.hidden = false; addon.classList.add('cf-addon--in'); }
+      } else {
+        addon.hidden = true; addon.classList.remove('is-sel'); state.wartung = false;
+      }
+    }
+    addon.addEventListener('click', () => {
+      state.wartung = !state.wartung;
+      addon.classList.toggle('is-sel', state.wartung);
+    });
+
+    // Leistungs-Kacheln (Mehrfachauswahl)
+    document.querySelectorAll('.cf-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const val = decode(card.dataset.val);
+        card.classList.toggle('is-sel');
+        const idx = state.service.indexOf(val);
+        if (idx === -1) state.service.push(val); else state.service.splice(idx, 1);
+        syncAddon();
+        updateNav();
+      });
+    });
+
+    ['cfName', 'cfEmail'].forEach(id => document.getElementById(id).addEventListener('input', updateNav));
+    document.getElementById('cfConsent').addEventListener('change', updateNav);
+    backBtn.addEventListener('click', () => { if (cur > 0) showStep(cur - 1); });
+
+    // ── Anfrage senden (identische Logik/Endpunkte wie das Original) ──
+    async function sendRequest() {
+      const name  = document.getElementById('cfName').value.trim();
+      const email = document.getElementById('cfEmail').value.trim();
+      const phone = document.getElementById('cfPhone').value.trim();
+      const msg   = document.getElementById('cfMsg').value.trim();
+      const botcheck = document.getElementById('cfBotcheck');
+
+      const leistung = state.service.join(', ') + (state.wartung ? ' + Wartung & Support' : '');
+      const payload = {
+        name: name, email: email, phone: phone,
+        leistung: leistung,
+        paket: '', art: '', zeit: '',
+        message: msg,
+        botcheck: botcheck && botcheck.value ? botcheck.value : ''
+      };
+
+      errorEl.classList.remove('is-on');
+      nextBtn.disabled = true; backBtn.disabled = true;
+      nextBtn.childNodes[0].nodeValue = 'Wird gesendet… ';
+
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.success) {
+          // Google-Ads Lead-Conversion feuern (falls Tracking aktiv)
+          if (typeof window.trackSolventaLead === 'function') window.trackSolventaLead();
+          // Auf die Danke-Seite weiterleiten (eigene URL für sauberes Conversion-Tracking)
+          window.location.assign('/danke');
+        } else {
+          throw new Error(data && data.message ? data.message : 'Senden fehlgeschlagen');
+        }
+      } catch (err) {
+        errorEl.innerHTML = 'Das Senden hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an <a href="mailto:' + CONTACT_MAIL + '" style="color:#020d7c;font-weight:600">' + CONTACT_MAIL + '</a>.';
+        errorEl.classList.add('is-on');
+      } finally {
+        backBtn.disabled = false;
+        nextBtn.childNodes[0].nodeValue = 'Anfrage senden ';
+        updateNav();
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (!canProceed()) return;
+      if (cur === 1) sendRequest();
+      else showStep(1);
+    });
+
+    showStep(0);
+  })();
+  </script>
+</body>
+</html>

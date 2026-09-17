@@ -4,3 +4,11 @@ material/*.mov
 # macOS
 .DS_Store
 **/.DS_Store
+
+# Editor-Einstellungen & alte Seitenkopie
+.vscode/
+
+# Interne Notizen, gehören nicht ins öffentliche Repo
+Plan.txt
+styleguide.txt
+google_ads.txt

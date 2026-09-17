@@ -7,6 +7,11 @@ Options -MultiViews
 RewriteEngine On
 DirectoryIndex index.html
 
+# Interne Dateien & Ordner sperren (404): .git, .vscode, .DS_Store usw.
+# sowie Notizdateien. .well-known bleibt erreichbar (SSL-Zertifikate).
+RewriteRule (^|/)\.(?!well-known(/|$)) - [R=404,L]
+RewriteRule ^(Plan|styleguide|google_ads)\.txt$ - [R=404,L]
+
 # Immer OHNE www und über HTTPS (301)
 # www.solventa-digital.de/... -> solventa-digital.de/...   |   http -> https
 # Falls noch kein SSL aktiv ist, die HTTPS-Zeile unten auskommentieren.
