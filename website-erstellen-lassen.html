@@ -20,9 +20,9 @@
     gtag('config', 'G-X5KEYLY4EQ');   // GA4 Measurement-ID
     gtag('config', 'AW-18263876791');  // Google Ads Conversion-ID
   </script>
-  <title>Webdesign Paderborn | Solventa Digital Solutions</title>
-  <meta name="description" content="Webagentur aus Paderborn: professionelles Webdesign, Grafikdesign, SEO und digitale Geschäftssysteme. Moderne Websites, die mehr Kunden bringen." />
-  <link rel="canonical" href="https://solventa-digital.de/" />
+  <title>Webseite erstellen lassen | Festpreis aus Paderborn | Solventa Digital</title>
+  <meta name="description" content="Webseite oder Website professionell erstellen lassen – zum Festpreis aus Paderborn. Klarer Ablauf, feste Kosten, persönlicher Ansprechpartner. Jetzt kostenloses Erstgespräch." />
+  <link rel="canonical" href="https://solventa-digital.de/website-erstellen-lassen" />
   <link rel="icon" type="image/png" href="material/favicon.png" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="author" content="Solventa Digital Solutions" />
@@ -35,16 +35,16 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Solventa Digital Solutions" />
   <meta property="og:locale" content="de_DE" />
-  <meta property="og:title" content="Webdesign Paderborn | Solventa Digital Solutions" />
-  <meta property="og:description" content="Webagentur aus Paderborn: professionelles Webdesign, Grafikdesign, SEO und digitale Geschäftssysteme. Moderne Websites, die mehr Kunden bringen." />
-  <meta property="og:url" content="https://solventa-digital.de/" />
+  <meta property="og:title" content="Webseite erstellen lassen | Festpreis aus Paderborn | Solventa Digital" />
+  <meta property="og:description" content="Webseite oder Website professionell erstellen lassen – zum Festpreis aus Paderborn. Klarer Ablauf, feste Kosten, persönlicher Ansprechpartner. Jetzt kostenloses Erstgespräch." />
+  <meta property="og:url" content="https://solventa-digital.de/website-erstellen-lassen" />
   <meta property="og:image" content="https://solventa-digital.de/material/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Webdesign Paderborn | Solventa Digital Solutions" />
-  <meta name="twitter:description" content="Webagentur aus Paderborn: professionelles Webdesign, Grafikdesign, SEO und digitale Geschäftssysteme. Moderne Websites, die mehr Kunden bringen." />
+  <meta name="twitter:title" content="Webseite erstellen lassen | Festpreis aus Paderborn | Solventa Digital" />
+  <meta name="twitter:description" content="Webseite oder Website professionell erstellen lassen – zum Festpreis aus Paderborn. Klarer Ablauf, feste Kosten, persönlicher Ansprechpartner. Jetzt kostenloses Erstgespräch." />
   <meta name="twitter:image" content="https://solventa-digital.de/material/og-image.jpg" />
   <!-- LCP: hero poster shows instantly while the background video loads on demand.
        Each viewport preloads only its matching poster (portrait on phones). -->
@@ -54,10 +54,104 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-700-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+<style>
+    /* ── Landingpage-spezifisch: /website-erstellen-lassen ── */
+    /* Hero: nur mobil anpassen (Desktop bleibt wie zuvor: 2 Zeilen, kein Umbruch) */
+    @media (max-width: 767px) {
+      #lhero { height: auto; min-height: 100svh; padding-top: 28px; padding-bottom: 36px; }
+      #lhero .lhero-title-line { white-space: normal; }   /* nur mobil umbrechen */
+      #lhero .lhero-title { font-size: clamp(1.7rem, 7vw, 2.3rem); line-height: 1.12; }
+      #lhero .lhero-sub { font-size: 1.02rem; line-height: 1.45; margin-top: 14px; }
+      #lhero .lhero-buttons { margin-top: 22px; }
+    }
+    /* Section-Hintergründe: abwechselnd weiß / grau */
+    .proc    { background: var(--background); }
+    #preise  { background: var(--muted); }
+    .reviews { background: var(--background); }
+    .feat7   { background: var(--muted); }
+    .faq     { background: var(--background); padding-top: 96px; }
+    @media (max-width: 560px) { .faq { padding-top: 60px; } }
+    .lp-section { padding: 88px 24px; }
+    @media (max-width: 560px) { .lp-section { padding: 56px 18px; } }
+    .lp-inner { max-width: 1040px; margin: 0 auto; }
+    .lp-head { text-align: center; max-width: 680px; margin: 0 auto 46px; }
+    .lp-h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; color: var(--foreground); line-height: 1.12; }
+    .lp-sub { font-size: 16px; color: var(--muted-foreground); line-height: 1.6; margin-top: 12px; }
+
+    /* Preis-Karten */
+    .lp-price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto; }
+    @media (max-width: 640px) { .lp-price-grid { grid-template-columns: 1fr; } }
+    .lp-price-card { position: relative; background: var(--background); border: 1.5px solid var(--border); border-radius: 20px; padding: 30px 28px; box-shadow: 0 30px 70px -50px rgba(2,13,124,.4); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .lp-price-card:hover { transform: translateY(-4px); box-shadow: 0 34px 70px -40px rgba(2,13,124,.45); }
+    .lp-price-card--featured { border-color: #020d7c; box-shadow: 0 0 0 3px rgba(2,13,124,.1), 0 30px 70px -45px rgba(2,13,124,.5); }
+    .lp-badge { position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #020d7c; background: rgba(57,206,255,.2); border-radius: 99px; padding: 4px 11px; }
+    .lp-price-name { font-size: 15px; font-weight: 700; color: var(--foreground); }
+    .lp-price-amount { font-size: 2rem; font-weight: 800; letter-spacing: -.03em; color: #020d7c; margin: 8px 0 12px; }
+    .lp-price-desc { font-size: 14.5px; color: var(--muted-foreground); line-height: 1.55; }
+    .lp-price-note { max-width: 720px; margin: 26px auto 0; text-align: center; font-size: 14px; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* Abschluss-CTA über dem Formular */
+    .lp-contact-head { background: transparent; padding: 72px 24px 8px; text-align: center; }
+    .lp-contact-head .lp-inner { max-width: 640px; }
+    @media (max-width: 560px) { .lp-contact-head { padding: 48px 18px 4px; } }
+
+    /* Kontakt-Zone: herausstechender Hintergrund – blaue Linien/Spuren, Mitte zu Weiß verblassend */
+    .lp-contact-zone { position: relative; overflow: hidden; isolation: isolate; }
+    .lp-contact-fx {
+      position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 62% 48% at 50% 63%, #ffffff 0%, rgba(255,255,255,.94) 34%, rgba(255,255,255,0) 72%),
+        repeating-linear-gradient(45deg, rgba(2,13,124,.06) 0 1px, transparent 1px 26px),
+        repeating-linear-gradient(-45deg, rgba(2,13,124,.05) 0 1px, transparent 1px 26px),
+        radial-gradient(120% 85% at 100% 0%, rgba(57,206,255,.30), transparent 55%),
+        radial-gradient(120% 85% at 0% 100%, rgba(2,13,124,.24), transparent 55%),
+        linear-gradient(180deg, #e7eeff 0%, #f5f8ff 100%);
+    }
+    /* Kompaktes Kontaktformular (Landingpage) */
+    .cf2-wrap { background: transparent; padding: 8px 24px 84px; display: flex; justify-content: center; }
+    @media (max-width: 560px) { .cf2-wrap { padding: 4px 16px 56px; } }
+    .cf2-card { width: 100%; max-width: 520px; background: var(--background); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: 0 30px 70px -50px rgba(2,13,124,.4); display: flex; flex-direction: column; gap: 16px; }
+    @media (max-width: 560px) { .cf2-card { padding: 22px 18px; } }
+    .cf2-label { font-size: 14px; font-weight: 700; color: var(--foreground); margin-bottom: 10px; display: block; }
+    .cf2-options { display: grid; gap: 10px; }
+    .cf2-opt { position: relative; text-align: left; font-family: var(--font); font-size: 14.5px; font-weight: 600; color: var(--foreground); background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 13px 44px 13px 16px; cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .cf2-opt:hover { border-color: rgba(57,206,255,.6); }
+    .cf2-opt.is-sel { border-color: #020d7c; background: rgba(2,13,124,.04); box-shadow: 0 0 0 3px rgba(2,13,124,.1); }
+    .cf2-opt.is-sel::after { content: ''; position: absolute; right: 15px; top: 50%; width: 7px; height: 12px; margin-top: -8px; border: solid #020d7c; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
+    .cf2-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .cf2-row { grid-template-columns: 1fr; } }
+    .cf2-input, .cf2-textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 11px; font-family: var(--font); font-size: 14.5px; color: var(--foreground); background: #fff; transition: border-color .2s ease, box-shadow .2s ease; }
+    .cf2-input:focus, .cf2-textarea:focus { outline: none; border-color: #39ceff; box-shadow: 0 0 0 3px rgba(57,206,255,.16); }
+    .cf2-textarea { resize: vertical; min-height: 62px; }
+    .cf2-consent { display: flex; align-items: flex-start; gap: 9px; font-size: 12.5px; line-height: 1.5; color: var(--muted-foreground); cursor: pointer; }
+    .cf2-consent input { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; accent-color: #020d7c; cursor: pointer; }
+    .cf2-consent a { color: #020d7c; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .cf2-error { display: none; font-size: 13px; color: #b4232a; background: #fdecec; border: 1px solid #f5c2c4; border-radius: 10px; padding: 10px 13px; }
+    .cf2-error.is-on { display: block; }
+    .cf2-submit { background: #020d7c; color: #fff; border: none; border-radius: 99px; padding: 14px 24px; font-size: 15px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease; }
+    .cf2-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(2,13,124,.55); }
+    .cf2-submit:disabled { opacity: .45; cursor: not-allowed; }
+    .cf2-trust { text-align: center; font-size: 12px; color: var(--muted-foreground); }
+    /* Zwei-Schritt-Formular */
+    .cf2-badge { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--foreground); background: transparent; border: 1.5px solid #020d7c; border-radius: 99px; padding: 6px 13px; }
+    .cf2-steps { display: flex; align-items: center; gap: 10px; }
+    .cf2-stepdot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #fff; color: #020d7c; border: 1.5px solid var(--border); transition: border-color .25s ease, box-shadow .25s ease; }
+    .cf2-stepdot.is-active { border-color: #020d7c; box-shadow: 0 0 0 3px rgba(2,13,124,.1); }
+    .cf2-stepdot.is-done { border-color: #020d7c; }
+    .cf2-stepline { flex: 1; height: 2px; border-radius: 2px; background: var(--border); }
+    .cf2-slide { display: none; flex-direction: column; gap: 14px; }
+    .cf2-slide.is-active { display: flex; animation: cf2-in .3s ease; }
+    @keyframes cf2-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+    .cf2-actions { display: flex; align-items: center; gap: 12px; }
+    .cf2-actions .cf2-submit { flex: 1; margin-left: auto; }
+    .cf2-back { background: none; border: none; color: var(--muted-foreground); font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer; padding: 8px 6px; transition: color .2s ease; }
+    .cf2-back:hover { color: var(--foreground); }
+    .cf2-trust strong { color: #020d7c; }
+  </style>
 </head>
 <body>
 
-  <header class="navbar">
+<header class="navbar">
     <div class="navbar-inner">
 
       <!-- Logo -->
@@ -80,7 +174,7 @@
             <div class="nav-content">
               <ul class="home-grid">
                 <li class="home-featured-li">
-                  <a href="#lhero" class="home-featured-link">
+                  <a href="/" class="home-featured-link">
                     <span class="featured-glow" aria-hidden="true"></span>
                     <span class="featured-glow featured-glow--2" aria-hidden="true"></span>
                     <img src="material/solventa_logo_klein.webp" alt="Solventa Digital Solutions" class="featured-logo" width="1080" height="244" loading="lazy" decoding="async" />
@@ -92,25 +186,25 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#reviews" class="nav-link-item">
+                  <a href="/#reviews" class="nav-link-item">
                     <div class="link-title">Bewertungen</div>
                     <p class="link-desc">Was unsere Kunden über uns sagen.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#erfolge" class="nav-link-item">
+                  <a href="/#erfolge" class="nav-link-item">
                     <div class="link-title">Referenzen</div>
                     <p class="link-desc">Projekte, die Ergebnisse liefern.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#ablauf" class="nav-link-item">
+                  <a href="/#ablauf" class="nav-link-item">
                     <div class="link-title">So arbeiten wir</div>
                     <p class="link-desc">Unser Ablauf in vier klaren Schritten.</p>
                   </a>
                 </li>
                 <li>
-                  <a href="#faq" class="nav-link-item">
+                  <a href="/#faq" class="nav-link-item">
                     <div class="link-title">FAQ</div>
                     <p class="link-desc">Häufige Fragen, klar beantwortet.</p>
                   </a>
@@ -222,8 +316,7 @@
     </div>
   </header>
 
-  <!-- ═══ Hero Section, LandingHero ════════════════════════ -->
-  <section class="lhero" id="lhero">
+<section class="lhero" id="lhero">
 
     <!-- Instant backdrop: exact frame 0 of the video, heavily compressed (~33 KB) -->
     <div class="lhero-video-poster" aria-hidden="true"></div>
@@ -240,23 +333,20 @@
     <!-- Central content -->
     <div class="lhero-center z50" id="lheroCenter">
       <h1 class="lhero-title" id="lheroTitle">
-        <span class="lhero-title-line lhero-title-line--flex">
-          <!-- Keyword rotiert per JS, steht aber als echter Text im HTML (wichtig fürs SEO) -->
-          <span class="lhero-rotate" id="lheroRotate" aria-live="polite">Webdesign</span>
-        </span>
-        <span class="lhero-title-line">aus Paderborn.</span>
+        <span class="lhero-title-line">Webseite erstellen lassen</span>
+        <span class="lhero-title-line">zum Festpreis aus Paderborn</span>
       </h1>
       <p class="lhero-sub" id="lheroSub">
-        Websites und digitale Lösungen, die <span class="lhero-highlight">mehr Kunden</span> bringen und Ihren Umsatz steigern.
+        Ihre professionelle Website – mit klarem Ablauf, <span class="lhero-highlight">festem Preis</span> und einem persönlichen Ansprechpartner. Kein Baukasten, keine Überraschungen auf der Rechnung.
       </p>
       <div class="lhero-buttons" id="lheroButtons">
-        <a href="kontakt" class="lhero-btn lhero-btn--primary">
-          <span>Kostenloses Erstgespräch</span>
+        <a href="#kontaktformular" class="lhero-btn lhero-btn--primary">
+          <span>Kostenloses Erstgespräch anfragen</span>
           <span class="lhero-btn-arrow" aria-hidden="true">→</span>
           <span class="lhero-shine" aria-hidden="true"></span>
         </a>
-        <a href="#leistungen" class="lhero-btn lhero-btn--secondary">
-          <span>Leistungen ansehen</span>
+        <a href="#preise" class="lhero-btn lhero-btn--secondary">
+          <span>Preise ansehen</span>
           <span class="lhero-shine" aria-hidden="true"></span>
         </a>
       </div>
@@ -264,8 +354,99 @@
 
   </section>
 
-  <!-- ═══ Reviews Section ════════════════════════════════════ -->
-  <section class="reviews" id="reviews" aria-label="Kundenbewertungen">
+<section class="proc" id="ablauf" aria-label="So arbeiten wir">
+    <div class="proc-inner">
+
+      <div class="proc-head reveal">
+        <h2 class="proc-title">So arbeiten wir</h2>
+        <p class="proc-sub">Vom ersten Gespräch bis zum fertigen Ergebnis, ein klarer Weg in vier Schritten. Transparent und ohne Umwege.</p>
+      </div>
+
+      <ol class="proc-steps" id="procSteps">
+        <!-- animated connecting line (desktop horizontal / mobile vertical) -->
+        <div class="proc-line" aria-hidden="true"><span class="proc-line-fill" id="procLineFill"></span></div>
+
+        <li class="proc-step" style="--i:0">
+          <div class="proc-node-wrap">
+            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg></div>
+            <span class="proc-num">01</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Kostenloses Erstgespräch</h3>
+            <p class="proc-step-desc">Wir klären Ziel, Umfang und nennen einen verbindlichen Festpreis.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:1">
+          <div class="proc-node-wrap">
+            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
+            </svg></div>
+            <span class="proc-num">02</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Konzept &amp; Design</h3>
+            <p class="proc-step-desc">Sie bekommen einen Entwurf, der zu Ihrer Marke passt.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:2">
+          <div class="proc-node-wrap">
+            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg></div>
+            <span class="proc-num">03</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Umsetzung</h3>
+            <p class="proc-step-desc">Wir bauen die Seite: schnell, mobil optimiert, DSGVO-konform.</p>
+          </div>
+        </li>
+
+        <li class="proc-step" style="--i:3">
+          <div class="proc-node-wrap">
+            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg></div>
+            <span class="proc-num">04</span>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-step-title">Livegang &amp; Support</h3>
+            <p class="proc-step-desc">Ihre Seite geht online, auf Wunsch mit Wartung.</p>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ═══ Preisrahmen ══════════════════════════════════════ -->
+  <section class="lp-section" id="preise" aria-label="Preise">
+    <div class="lp-inner">
+      <div class="lp-head reveal">
+        <h2 class="lp-h2">Klare Preise, fester Rahmen</h2>
+        <p class="lp-sub">Transparente Startpreise. Den genauen Festpreis nennen wir Ihnen nach dem kostenlosen Erstgespräch.</p>
+      </div>
+      <div class="lp-price-grid">
+        <div class="lp-price-card reveal">
+          <div class="lp-price-name">Landingpage / Ein-Seiter</div>
+          <div class="lp-price-amount">ab 1.500&nbsp;€</div>
+          <p class="lp-price-desc">Eine fokussierte Seite für ein Angebot oder eine Kampagne.</p>
+        </div>
+        <div class="lp-price-card lp-price-card--featured reveal">
+          <span class="lp-badge">Beliebt</span>
+          <div class="lp-price-name">Unternehmensseite</div>
+          <div class="lp-price-amount">ab 2.000&nbsp;€</div>
+          <p class="lp-price-desc">Mehrseitige Website mit allen wichtigen Inhalten Ihres Unternehmens.</p>
+        </div>
+      </div>
+      <p class="lp-price-note reveal">Alle Preise sind Startpreise. Den genauen Festpreis nennen wir Ihnen nach dem kostenlosen Erstgespräch – transparent, ohne versteckte Kosten.</p>
+    </div>
+  </section>
+
+<section class="reviews" id="reviews" aria-label="Kundenbewertungen">
 
     <!-- Schema.org LocalBusiness + AggregateRating → Rich Snippets in Google -->
     <script type="application/ld+json">
@@ -454,113 +635,7 @@
 
   </section>
 
-  <!-- ═══ Leistungen, Gallery4 ══════════════════════════════ -->
-  <section class="g4" id="leistungen">
-
-    <!-- Header: title left, nav arrows right -->
-    <div class="g4-head-wrap">
-      <div class="g4-head">
-        <div class="g4-head-left">
-          <h2 class="g4-title">Unsere Leistungen</h2>
-          <p class="g4-desc">Von der ersten Idee bis zum fertigen Produkt, wir begleiten Sie bei jedem Schritt Ihrer digitalen Entwicklung.</p>
-        </div>
-        <div class="g4-arrows">
-          <button class="g4-arrow" id="g4Prev" aria-label="Vorherige" disabled>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-            </svg>
-          </button>
-          <button class="g4-arrow" id="g4Next" aria-label="Nächste">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Carousel, full width, bleeds right -->
-    <div class="g4-carousel">
-      <div class="g4-track" id="g4Track">
-
-        <div class="g4-item">
-          <a href="webdesign" class="g4-card">
-            <img class="g4-img" src="material/webdesign.webp" alt="Webdesign" width="900" height="1200" loading="lazy" decoding="async" />
-            <div class="g4-overlay"></div>
-            <div class="g4-body">
-              <div class="g4-card-title">Webdesign</div>
-              <p class="g4-card-desc">Professionelle Websites, die Besucher überzeugen und qualifizierte Anfragen generieren.</p>
-              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="g4-item">
-          <a href="grafikdesign" class="g4-card">
-            <video class="g4-img" autoplay muted loop playsinline preload="none"
-              poster="material/grafikdesign_poster.webp" aria-label="Grafikdesign mit Photoshop">
-              <source src="material/grafikdesign.mp4" type="video/mp4" />
-            </video>
-            <div class="g4-overlay"></div>
-            <div class="g4-body">
-              <div class="g4-card-title">Grafikdesign</div>
-              <p class="g4-card-desc">Logos, Corporate Identity und Print-Design, das Ihr Unternehmen unverwechselbar macht.</p>
-              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="g4-item">
-          <a href="digitale-geschaeftssysteme" class="g4-card">
-            <img class="g4-img" src="material/geschaeftssysteme.webp" alt="Digitale Geschäftssysteme" width="900" height="1200" loading="lazy" decoding="async" />
-            <div class="g4-overlay"></div>
-            <div class="g4-body">
-              <div class="g4-card-title">Digitale Geschäftssysteme</div>
-              <p class="g4-card-desc">Individuelle Portale, Dashboards und Datenbanklösungen, die Ihre Prozesse effizienter machen.</p>
-              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="g4-item">
-          <a href="seo" class="g4-card">
-            <video class="g4-img" autoplay muted loop playsinline preload="none"
-              poster="material/seo_poster.webp" aria-label="SEO – Suchmaschinenoptimierung">
-              <source src="material/seo.mp4" type="video/mp4" />
-            </video>
-            <div class="g4-overlay"></div>
-            <div class="g4-body">
-              <div class="g4-card-title">SEO</div>
-              <p class="g4-card-desc">Auf Google die Nummer eins sein – mehr Sichtbarkeit, mehr Besucher, mehr Anfragen.</p>
-              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="g4-item">
-          <a href="wartung-support" class="g4-card">
-            <img class="g4-img" src="material/support.webp" alt="Wartung & Support" width="900" height="1200" loading="lazy" decoding="async" />
-            <div class="g4-overlay"></div>
-            <div class="g4-body">
-              <div class="g4-card-title">Wartung &amp; Support</div>
-              <p class="g4-card-desc">Zuverlässige Betreuung Ihrer Website, Updates, Sicherheit und schneller Support wenn es zählt.</p>
-              <div class="g4-card-link">Mehr erfahren <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Dot indicators -->
-    <div class="g4-dots" id="g4Dots"></div>
-
-  </section>
-
-  <!-- ═══ Projekte / Erfolge, Features-7 (tailark / 21st.dev) ═ -->
-  <section class="feat7" id="erfolge" aria-label="Projekte, die Ergebnisse liefern">
+<section class="feat7" id="erfolge" aria-label="Projekte, die Ergebnisse liefern">
     <div class="feat7-inner">
 
       <!-- Heading + reference navigation -->
@@ -633,240 +708,180 @@
     </div>
   </section>
 
-  <!-- ═══ So arbeiten wir, animated timeline ════════════════ -->
-  <section class="proc" id="ablauf" aria-label="So arbeiten wir">
-    <div class="proc-inner">
-
-      <div class="proc-head reveal">
-        <h2 class="proc-title">So arbeiten wir</h2>
-        <p class="proc-sub">Vom ersten Gespräch bis zum fertigen Ergebnis, ein klarer Weg in vier Schritten. Transparent und ohne Umwege.</p>
-      </div>
-
-      <ol class="proc-steps" id="procSteps">
-        <!-- animated connecting line (desktop horizontal / mobile vertical) -->
-        <div class="proc-line" aria-hidden="true"><span class="proc-line-fill" id="procLineFill"></span></div>
-
-        <li class="proc-step" style="--i:0">
-          <div class="proc-node-wrap">
-            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg></div>
-            <span class="proc-num">01</span>
-          </div>
-          <div class="proc-card">
-            <h3 class="proc-step-title">Erstgespräch</h3>
-            <p class="proc-step-desc">Wir klären deine Ziele, Wünsche und den Rahmen, kostenlos und unverbindlich.</p>
-          </div>
-        </li>
-
-        <li class="proc-step" style="--i:1">
-          <div class="proc-node-wrap">
-            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
-            </svg></div>
-            <span class="proc-num">02</span>
-          </div>
-          <div class="proc-card">
-            <h3 class="proc-step-title">Konzept &amp; Design</h3>
-            <p class="proc-step-desc">Wir entwickeln Struktur und Design, passgenau auf deine Marke abgestimmt.</p>
-          </div>
-        </li>
-
-        <li class="proc-step" style="--i:2">
-          <div class="proc-node-wrap">
-            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-            </svg></div>
-            <span class="proc-num">03</span>
-          </div>
-          <div class="proc-card">
-            <h3 class="proc-step-title">Umsetzung</h3>
-            <p class="proc-step-desc">Wir setzen deine Website oder dein System sauber, schnell und zuverlässig um.</p>
-          </div>
-        </li>
-
-        <li class="proc-step" style="--i:3">
-          <div class="proc-node-wrap">
-            <div class="proc-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-            </svg></div>
-            <span class="proc-num">04</span>
-          </div>
-          <div class="proc-card">
-            <h3 class="proc-step-title">Launch &amp; Betreuung</h3>
-            <p class="proc-step-desc">Wir gehen live, und bleiben auch danach dein Ansprechpartner.</p>
-          </div>
-        </li>
-      </ol>
-
-    </div>
-  </section>
-
-  <!-- ═══ CTA, Text-Marquee (uimix / 21st.dev) ══════════════ -->
-  <section class="mcta" id="kontakt" aria-label="Kostenloses Erstgespräch anfragen">
-    <div class="mcta-inner">
-
-      <!-- Left content -->
-      <div class="mcta-left">
-        <h2 class="mcta-title reveal">In wenigen Tagen startklar</h2>
-        <p class="mcta-text reveal">Mehr Sichtbarkeit, mehr Anfragen, mehr Wachstum. Lass uns in einem kostenlosen Erstgespräch über dein Projekt sprechen, unverbindlich.</p>
-        <div class="mcta-buttons">
-          <a href="kontakt" class="mcta-btn mcta-btn--primary reveal">
-            <span>Kostenloses Erstgespräch</span>
-            <span class="mcta-btn-arrow" aria-hidden="true">→</span>
-            <span class="mcta-shine" aria-hidden="true"></span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right: vertical text marquee -->
-      <div class="mcta-marquee reveal" id="mctaMarquee" aria-hidden="true">
-        <div class="mcta-viewport">
-          <div class="mcta-track">
-            <span class="mcta-item">Handwerksbetriebe</span>
-            <span class="mcta-item">Selbstständige</span>
-            <span class="mcta-item">Mittelstand</span>
-            <span class="mcta-item">Online-Shops</span>
-            <span class="mcta-item">Dienstleister</span>
-            <span class="mcta-item">Lokale Unternehmen</span>
-            <!-- duplicate for seamless loop -->
-            <span class="mcta-item">Handwerksbetriebe</span>
-            <span class="mcta-item">Selbstständige</span>
-            <span class="mcta-item">Mittelstand</span>
-            <span class="mcta-item">Online-Shops</span>
-            <span class="mcta-item">Dienstleister</span>
-            <span class="mcta-item">Lokale Unternehmen</span>
-          </div>
-        </div>
-        <div class="mcta-fade mcta-fade--top"></div>
-        <div class="mcta-fade mcta-fade--bottom"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══ FAQ ════════════════════════════════════════════════ -->
+  <!-- ═══ FAQ (FAQPage-Schema) ═══════════════════════════════ -->
   <section class="faq" id="faq" aria-label="Häufige Fragen">
 
-    <!-- Schema.org FAQPage → Rich Snippets + KI-Verständnis -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Was kostet eine Website bei Solventa Digital Solutions?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Der Preis hängt vom Umfang ab, von einer einzelnen Landingpage bis zur umfangreichen Unternehmenswebsite oder einem individuellen Geschäftssystem. Nach dem kostenlosen Erstgespräch erhältst du ein transparentes Festpreis-Angebot ohne versteckte Kosten."}
-        },
-        {
-          "@type": "Question",
-          "name": "Wie lange dauert die Umsetzung?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Eine einfache Landingpage steht oft in wenigen Tagen, eine typische Unternehmenswebsite in der Regel innerhalb von 1 bis 3 Wochen. Größere digitale Geschäftssysteme dauern entsprechend länger. Den genauen Zeitrahmen legen wir gemeinsam zu Beginn fest."}
-        },
-        {
-          "@type": "Question",
-          "name": "Werden wir mit der neuen Website auch bei Google gefunden?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Ja. Wir bauen jede Website von Anfang an suchmaschinenfreundlich: sauberer, handgeschriebener Code, schnelle Ladezeiten, mobile Optimierung und korrekte Metadaten. Auf Wunsch übernehmen wir auch die gezielte laufende SEO-Betreuung, damit du bei Google ganz oben stehst und sogar von KI-Assistenten wie ChatGPT empfohlen wirst."}
-        },
-        {
-          "@type": "Question",
-          "name": "Kümmert ihr euch auch um Hosting, Updates und Sicherheit?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Ja. Mit unserem Paket Wartung & Hosting (ab 99 € im Monat) hosten und pflegen wir deine Seite komplett, inklusive SSL, Updates, Backups und schnellem Support. Wenn du dein eigenes Hosting nutzen möchtest, richten wir deine fertige Website kostenlos bei deinem Anbieter ein."}
-        },
-        {
-          "@type": "Question",
-          "name": "Was sind digitale Geschäftssysteme?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Damit meinen wir individuelle digitale Lösungen für Unternehmensprozesse, zum Beispiel Mitarbeiterportale, interne Dashboards, Kundenverwaltungen (CRM), Buchungssysteme oder Geräteverwaltungen. Alles maßgeschneidert auf deine Abläufe."}
-        },
-        {
-          "@type": "Question",
-          "name": "Für wen seid ihr geeignet und in welcher Region arbeitet ihr?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Wir arbeiten mit kleinen und mittelständischen Unternehmen, Selbstständigen und Handwerksbetrieben. Unser Sitz ist in Paderborn und wir sind in ganz Ostwestfalen-Lippe (OWL) aktiv, setzen Projekte aber auch ortsunabhängig in ganz Deutschland um."}
-        }
-      ]
+      "@type": "Question",
+      "name": "Was kostet es, eine Webseite erstellen zu lassen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Landingpage gibt es ab 1.500 €, eine Unternehmensseite ab 2.000 €. Den finalen Festpreis nennen wir nach dem Erstgespräch – ohne versteckte Kosten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert es, bis meine Website online ist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Landingpage setzen wir in der Regel innerhalb einer Woche um. Eine mehrseitige Unternehmensseite mit zusätzlichen Unterseiten dauert etwa zwei Wochen – abhängig davon, wie schnell Inhalte und Feedback vorliegen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist im Festpreis enthalten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Design, Umsetzung, mobile Optimierung und DSGVO-konforme Einrichtung – plus ein starkes SEO-Fundament. Kein Standard-SEO von der Stange, sondern gezielt darauf ausgelegt, bei Google weit oben zu ranken und dauerhaft mehr Anfragen zu bringen. Wie gut das funktioniert, sehen Sie an unseren Referenzen weiter oben auf dieser Seite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fallen laufende Kosten an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das entscheiden Sie. Auf Wunsch übernehmen wir Hosting und Wartung komplett für 99 € im Monat – Sie müssen sich um nichts kümmern. Möchten Sie lieber selbst hosten, richten wir alles ein, begleiten Sie beim Livegang und beraten Sie bei der Wahl des Anbieters; die laufenden Kosten liegen dann je nach Anbieter meist zwischen 1 und 5 € im Monat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was unterscheidet euch von einem Website-Baukasten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Baukasten liefert eine Vorlage – wir liefern ein Ergebnis. Sie bekommen individuelles Design statt Massenware, einen festen persönlichen Ansprechpartner statt anonymer Hotline und sauberen, handgeschriebenen Code, der blitzschnell lädt. Vor allem aber bauen wir Ihre Seite so, dass sie bei Google gefunden wird, Besucher überzeugt und aus Klicks echte Kundenanfragen macht – genau daran scheitert ein Baukasten. Was das konkret bringt, sehen Sie an unseren Referenzen oben: mehr Sichtbarkeit, mehr Besucher, mehr Neukunden."
+      }
     }
+  ]
+}
     </script>
 
     <div class="faq-inner">
       <div class="faq-head reveal">
-        <h2 class="faq-title">Häufige Fragen</h2>
-        <p class="faq-sub">Du hast eine andere Frage? Schreib uns einfach, wir antworten schnell.</p>
+        <h2 class="faq-title">Häufige Fragen zur Webseite-Erstellung</h2>
+        <p class="faq-sub">Noch etwas offen? Schreiben Sie uns einfach, wir antworten schnell.</p>
       </div>
 
       <div class="faq-list">
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            <span>Was kostet eine Website bei Solventa Digital Solutions?</span>
+            <span>Was kostet es, eine Webseite erstellen zu lassen?</span>
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div class="faq-a"><p>Der Preis hängt vom Umfang ab, von einer einzelnen Landingpage bis zur umfangreichen Unternehmenswebsite oder einem individuellen Geschäftssystem. Nach dem kostenlosen Erstgespräch erhältst du ein transparentes Festpreis-Angebot ohne versteckte Kosten.</p></div>
+          <div class="faq-a"><p>Eine Landingpage gibt es ab 1.500 €, eine Unternehmensseite ab 2.000 €. Den finalen Festpreis nennen wir nach dem Erstgespräch – ohne versteckte Kosten.</p></div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            <span>Wie lange dauert die Umsetzung?</span>
+            <span>Wie lange dauert es, bis meine Website online ist?</span>
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div class="faq-a"><p>Eine einfache Landingpage steht oft in wenigen Tagen, eine typische Unternehmenswebsite in der Regel innerhalb von 1 bis 3 Wochen. Größere digitale Geschäftssysteme dauern entsprechend länger. Den genauen Zeitrahmen legen wir gemeinsam zu Beginn fest.</p></div>
+          <div class="faq-a"><p>Eine Landingpage setzen wir in der Regel innerhalb einer Woche um. Eine mehrseitige Unternehmensseite mit zusätzlichen Unterseiten dauert etwa zwei Wochen – abhängig davon, wie schnell Inhalte und Feedback vorliegen.</p></div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            <span>Werden wir mit der neuen Website auch bei Google gefunden?</span>
+            <span>Was ist im Festpreis enthalten?</span>
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div class="faq-a"><p>Ja. Wir bauen jede Website von Anfang an suchmaschinenfreundlich: sauberer, handgeschriebener Code, schnelle Ladezeiten, mobile Optimierung und korrekte Metadaten. Auf Wunsch übernehmen wir auch die gezielte laufende SEO-Betreuung, damit du bei Google ganz oben stehst und sogar von KI-Assistenten wie ChatGPT empfohlen wirst.</p></div>
+          <div class="faq-a"><p>Design, Umsetzung, mobile Optimierung und DSGVO-konforme Einrichtung – plus ein starkes SEO-Fundament. Kein Standard-SEO von der Stange, sondern gezielt darauf ausgelegt, bei Google weit oben zu ranken und dauerhaft mehr Anfragen zu bringen. Wie gut das funktioniert, sehen Sie an unseren Referenzen weiter oben auf dieser Seite.</p></div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            <span>Kümmert ihr euch auch um Hosting, Updates und Sicherheit?</span>
+            <span>Fallen laufende Kosten an?</span>
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div class="faq-a"><p>Ja. Mit unserem Paket Wartung &amp; Hosting (ab 99 € im Monat) hosten und pflegen wir deine Seite komplett, inklusive SSL, Updates, Backups und schnellem Support. Wenn du dein eigenes Hosting nutzen möchtest, richten wir deine fertige Website kostenlos bei deinem Anbieter ein.</p></div>
+          <div class="faq-a"><p>Das entscheiden Sie. Auf Wunsch übernehmen wir Hosting und Wartung komplett für 99 € im Monat – Sie müssen sich um nichts kümmern. Möchten Sie lieber selbst hosten, richten wir alles ein, begleiten Sie beim Livegang und beraten Sie bei der Wahl des Anbieters; die laufenden Kosten liegen dann je nach Anbieter meist zwischen 1 und 5 € im Monat.</p></div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            <span>Was sind digitale Geschäftssysteme?</span>
+            <span>Was unterscheidet euch von einem Website-Baukasten?</span>
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div class="faq-a"><p>Damit meinen wir individuelle digitale Lösungen für Unternehmensprozesse, zum Beispiel Mitarbeiterportale, interne Dashboards, Kundenverwaltungen (CRM), Buchungssysteme oder Geräteverwaltungen. Alles maßgeschneidert auf deine Abläufe.</p></div>
+          <div class="faq-a"><p>Ein Baukasten liefert eine Vorlage – wir liefern ein Ergebnis. Sie bekommen individuelles Design statt Massenware, einen festen persönlichen Ansprechpartner statt anonymer Hotline und sauberen, handgeschriebenen Code, der blitzschnell lädt. Vor allem aber bauen wir Ihre Seite so, dass sie bei Google gefunden wird, Besucher überzeugt und aus Klicks echte Kundenanfragen macht – genau daran scheitert ein Baukasten. Was das konkret bringt, sehen Sie an unseren Referenzen oben: mehr Sichtbarkeit, mehr Besucher, mehr Neukunden.</p></div>
         </div>
 
-        <div class="faq-item reveal">
-          <button class="faq-q" aria-expanded="false">
-            <span>Für wen seid ihr geeignet und in welcher Region arbeitet ihr?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
-          <div class="faq-a"><p>Wir arbeiten mit kleinen und mittelständischen Unternehmen, Selbstständigen und Handwerksbetrieben. Unser Sitz ist in Paderborn und wir sind in ganz Ostwestfalen-Lippe (OWL) aktiv, setzen Projekte aber auch ortsunabhängig in ganz Deutschland um.</p></div>
-        </div>
       </div>
     </div>
-
   </section>
 
-  <!-- ═══ Footer (nevsky118 / 21st.dev) — schwarz ════════════ -->
-  <footer class="ft">
+  <!-- ═══ Abschluss-CTA + Formular ═══════════════════════════ -->
+  <section class="lp-contact-zone" id="kontaktformular" aria-label="Kostenloses Erstgespräch anfragen">
+    <div class="lp-contact-fx" aria-hidden="true"></div>
+    <div class="lp-contact-head">
+    <div class="lp-inner reveal">
+      <h2 class="lp-h2">Lassen Sie uns über Ihre Webseite sprechen.</h2>
+      <p class="lp-sub">Kostenloses Erstgespräch – unverbindlich. In unter einer Minute ausgefüllt.</p>
+    </div>
+    </div>
+
+    <div class="cf2-wrap">
+    <form class="cf2-card" id="cf2Form" novalidate>
+      <div class="cf2-badge">Kostenlos &amp; unverbindlich</div>
+      <div class="cf2-steps" aria-hidden="true">
+        <span class="cf2-stepdot is-active" id="cf2Dot0">1</span>
+        <span class="cf2-stepline"></span>
+        <span class="cf2-stepdot" id="cf2Dot1">2</span>
+      </div>
+
+      <!-- Schritt 1: Produkt wählen -->
+      <div class="cf2-slide is-active" data-step="0">
+        <span class="cf2-label">Was dürfen wir für Sie tun?</span>
+        <div class="cf2-options" id="cf2Options">
+          <button type="button" class="cf2-opt" data-val="Landingpage / Ein-Seiter">Landingpage / Ein-Seiter</button>
+          <button type="button" class="cf2-opt" data-val="Unternehmensseite">Unternehmensseite</button>
+          <button type="button" class="cf2-opt" data-val="Ich möchte mich beraten lassen">Ich möchte mich beraten lassen</button>
+        </div>
+        <button type="button" class="cf2-submit" id="cf2Next" disabled>Weiter</button>
+      </div>
+
+      <!-- Schritt 2: Angaben -->
+      <div class="cf2-slide" data-step="1">
+        <div class="cf2-row">
+          <input class="cf2-input" id="cf2Name" type="text" placeholder="Ihr Name" autocomplete="name" />
+          <input class="cf2-input" id="cf2Email" type="email" placeholder="E-Mail" autocomplete="email" />
+        </div>
+        <input class="cf2-input" id="cf2Phone" type="tel" placeholder="Telefonnummer" autocomplete="tel" />
+        <textarea class="cf2-textarea" id="cf2Msg" placeholder="Kurz zu Ihrem Vorhaben (optional)"></textarea>
+        <input type="text" id="cf2Botcheck" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <label class="cf2-consent" for="cf2Consent">
+          <input type="checkbox" id="cf2Consent" />
+          <span>Ich habe die <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</span>
+        </label>
+        <div class="cf2-error" id="cf2Error" role="alert"></div>
+        <div class="cf2-actions">
+          <button type="button" class="cf2-back" id="cf2Back">Zurück</button>
+          <button type="submit" class="cf2-submit" id="cf2Submit" disabled>Kostenloses Erstgespräch anfragen</button>
+        </div>
+      </div>
+
+      <div class="cf2-trust">Komplett <strong>unverbindlich</strong> &middot; Antwort in 24&nbsp;h</div>
+    </form>
+    </div>
+  </section>
+
+<footer class="ft">
     <div class="ft-inner">
 
       <!-- Top row: brand + socials -->
@@ -912,5 +927,91 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  (() => {
+    const SEND_ENDPOINT = 'kontakt-senden.php';
+    const CONTACT_MAIL  = 'info@solventa-digital.de';
+    const byId = id => document.getElementById(id);
+    const form   = byId('cf2Form');
+    const opts   = Array.from(document.querySelectorAll('.cf2-opt'));
+    const slides = Array.from(document.querySelectorAll('.cf2-slide'));
+    const dots   = [byId('cf2Dot0'), byId('cf2Dot1')];
+    const nextBtn= byId('cf2Next');
+    const backBtn= byId('cf2Back');
+    const submit = byId('cf2Submit');
+    const nameEl = byId('cf2Name');
+    const mailEl = byId('cf2Email');
+    const phoneEl= byId('cf2Phone');
+    const msgEl  = byId('cf2Msg');
+    const consent= byId('cf2Consent');
+    const botEl  = byId('cf2Botcheck');
+    const errEl  = byId('cf2Error');
+    let choice = '', cur = 0;
+    const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    const step1Valid = () => !!choice;
+    const step2Valid = () => nameEl.value.trim().length > 1
+      && validEmail(mailEl.value.trim())
+      && phoneEl.value.trim().length >= 5
+      && consent.checked;
+    const syncStep1 = () => { nextBtn.disabled = !step1Valid(); };
+    const syncStep2 = () => { submit.disabled = !step2Valid(); };
+
+    function show(i) {
+      cur = i;
+      slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+      dots.forEach((d, idx) => { d.classList.toggle('is-active', idx === i); d.classList.toggle('is-done', idx < i); });
+      if (i === 1) syncStep2();
+    }
+
+    opts.forEach(o => o.addEventListener('click', () => {
+      opts.forEach(x => x.classList.remove('is-sel'));
+      o.classList.add('is-sel');
+      choice = o.dataset.val;
+      syncStep1();
+    }));
+    nextBtn.addEventListener('click', () => { if (step1Valid()) show(1); });
+    backBtn.addEventListener('click', () => show(0));
+    [nameEl, mailEl, phoneEl].forEach(el => el.addEventListener('input', syncStep2));
+    consent.addEventListener('change', syncStep2);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!step2Valid()) return;
+      errEl.classList.remove('is-on');
+      submit.disabled = true;
+      const label = submit.textContent;
+      submit.textContent = 'Wird gesendet…';
+      const payload = {
+        name: nameEl.value.trim(),
+        email: mailEl.value.trim(),
+        phone: phoneEl.value.trim(),
+        leistung: choice,
+        paket: '', art: '', zeit: '',
+        message: msgEl.value.trim(),
+        botcheck: botEl && botEl.value ? botEl.value : ''
+      };
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.success) {
+          if (typeof window.trackSolventaLead === 'function') window.trackSolventaLead();
+          window.location.assign('/danke');
+        } else {
+          throw new Error(data && data.message ? data.message : 'Senden fehlgeschlagen');
+        }
+      } catch (err) {
+        errEl.innerHTML = 'Das Senden hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an <a href="mailto:' + CONTACT_MAIL + '" style="color:#020d7c;font-weight:600">' + CONTACT_MAIL + '</a>.';
+        errEl.classList.add('is-on');
+        submit.disabled = false;
+        submit.textContent = label;
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
