@@ -296,6 +296,7 @@
     .kw-done-btn--s { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
     .kw-done-btn--s:hover { background: #e8e8ec; }
   </style>
+<script defer src="https://emwebstudios.de/t.js" data-site="f6bee455da6665e671cf"></script>
 </head>
 <body>
 
@@ -829,6 +830,7 @@
           // Google-Ads Lead-Conversion feuern (falls Tracking aktiv)
           if (typeof window.trackSolventaLead === 'function') window.trackSolventaLead();
           // Auf die Danke-Seite weiterleiten (eigene URL für sauberes Conversion-Tracking)
+          if (window.solventaTrack) window.solventaTrack('form'); // Solventa-Zähler: nur erfolgreich gesendete Anfragen
           window.location.assign('/danke');
         } else {
           throw new Error(data && data.message ? data.message : 'Senden fehlgeschlagen');
