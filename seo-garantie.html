@@ -175,6 +175,13 @@
     .sg-portal-note { font-size: 13px; color: var(--muted-foreground); margin-top: 12px; text-align: center; }
 
     /* Preise */
+    .sg-term { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: 280px; max-width: 100%; margin: 0 auto 40px; padding: 5px; border-radius: 99px; background: var(--muted); border: 1px solid var(--border); }
+    .sg-term-thumb { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 99px; background: #020d7c; box-shadow: 0 10px 24px -10px rgba(2,13,124,.6); transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .sg-term[data-term="12"] .sg-term-thumb { transform: translateX(100%); }
+    .sg-term-opt { position: relative; z-index: 1; padding: 11px 0; border: none; background: none; cursor: pointer; font-family: var(--font); font-size: 14.5px; font-weight: 700; color: #52525b; transition: color .3s ease; }
+    .sg-term-opt.is-active { color: #fff; }
+    .sg-price-amount span { display: inline-block; transition: opacity .2s ease, transform .2s ease; }
+    .sg-price-amount span.is-swap { opacity: 0; transform: translateY(-6px); }
     .sg-prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
     @media (max-width: 920px) { .sg-prices { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
     .sg-price { position: relative; display: flex; flex-direction: column; background: var(--background); border: 1.5px solid var(--border); border-radius: 22px; padding: 30px 26px 26px; box-shadow: 0 30px 70px -55px rgba(2,13,124,.4); }
@@ -575,8 +582,8 @@
           <div class="sg-book-body"><div class="sg-book-page"><p>Stehen Sie in einem Monat nicht oft genug oben, schreiben wir keine Rechnung. Auch keine Teilrechnung und keine Nachzahlung später.</p></div></div>
         </div>
         <div class="sg-book reveal">
-          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">2</span><span class="sg-book-title">Das gilt alle 24 Monate lang</span><span class="sg-book-icon" aria-hidden="true"></span></button>
-          <div class="sg-book-body"><div class="sg-book-page"><p>Rutschen Sie im 14. Monat ab, ist auch dieser Monat frei. Und wir arbeiten weiter, bis Sie wieder oben stehen.</p></div></div>
+          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">2</span><span class="sg-book-title">Das gilt über die ganze Laufzeit</span><span class="sg-book-icon" aria-hidden="true"></span></button>
+          <div class="sg-book-body"><div class="sg-book-page"><p>Rutschen Sie mitten in der Laufzeit ab, ist auch dieser Monat frei. Und wir arbeiten weiter, bis Sie wieder oben stehen.</p></div></div>
         </div>
         <div class="sg-book reveal">
           <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">3</span><span class="sg-book-title">Zwei schwache Monate, und Sie dürfen gehen</span><span class="sg-book-icon" aria-hidden="true"></span></button>
@@ -631,11 +638,16 @@
         <h2 class="sg-h2">Sie entscheiden, wie viel Risiko Sie tragen</h2>
         <p class="sg-sub">Drei Wege, ein Ziel. Bei A und B zahlen Sie den Monatsbeitrag erst, wenn Sie auf Platz 1 bis 3 stehen.</p>
       </div>
+      <div class="sg-term reveal" role="radiogroup" aria-label="Laufzeit wählen">
+        <span class="sg-term-thumb" aria-hidden="true"></span>
+        <button type="button" class="sg-term-opt is-active" role="radio" aria-checked="true" data-term="24">24 Monate</button>
+        <button type="button" class="sg-term-opt" role="radio" aria-checked="false" data-term="12">12 Monate</button>
+      </div>
       <div class="sg-prices">
         <div class="sg-price reveal">
           <div class="sg-price-tag">Angebot A</div>
           <div class="sg-price-name">Volle Garantie</div>
-          <div class="sg-price-amount">1.000&nbsp;€ <small>/ Monat</small></div>
+          <div class="sg-price-amount"><span data-p24="1.000" data-p12="1.490">1.000</span>&nbsp;€ <small>/ Monat</small></div>
           <div class="sg-price-then">erst ab Platz 1 bis 3</div>
           <div class="sg-price-start">Anzahlung: 0&nbsp;€</div>
           <ul>
@@ -643,7 +655,7 @@
             <li>SEO-Betreuung, damit Sie oben bleiben</li>
             <li>Ziel: Nennung in ChatGPT &amp; Co.</li>
             <li>Monatlicher Bericht und Kundenbereich</li>
-            <li>Laufzeit 24 Monate</li>
+            <li>Laufzeit <span data-term-label>24</span> Monate</li>
           </ul>
           <div class="sg-price-foot">Nach 2 Monaten nicht auf Platz 1 bis 3? Sie zahlen nichts und behalten die Website.</div>
         </div>
@@ -651,7 +663,7 @@
           <span class="sg-price-badge">Unsere Empfehlung</span>
           <div class="sg-price-tag">Angebot B</div>
           <div class="sg-price-name">Teilgarantie</div>
-          <div class="sg-price-amount">690&nbsp;€ <small>/ Monat</small></div>
+          <div class="sg-price-amount"><span data-p24="690" data-p12="790">690</span>&nbsp;€ <small>/ Monat</small></div>
           <div class="sg-price-then">erst ab Platz 1 bis 3</div>
           <div class="sg-price-start">Anzahlung: 1.990&nbsp;€</div>
           <ul>
@@ -659,7 +671,7 @@
             <li>SEO-Betreuung, damit Sie oben bleiben</li>
             <li>Ziel: Nennung in ChatGPT &amp; Co.</li>
             <li>Monatlicher Bericht und Kundenbereich</li>
-            <li>Laufzeit 24 Monate</li>
+            <li>Laufzeit <span data-term-label>24</span> Monate</li>
           </ul>
           <div class="sg-price-foot">Nach 2 Monaten nicht auf Platz 1 bis 3? Keine Monatsbeiträge. Die Website gehört Ihnen, nur die Anzahlung bleibt.</div>
         </div>
@@ -1159,6 +1171,24 @@
         if (open) { book.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
       });
     });
+  })();
+  /* Preise: Laufzeit 24 oder 12 Monate */
+  (() => {
+    const term = document.querySelector('.sg-term');
+    if (!term) return;
+    const opts = Array.from(term.querySelectorAll('.sg-term-opt'));
+    term.dataset.term = '24';
+    opts.forEach((opt) => opt.addEventListener('click', () => {
+      const t = opt.dataset.term;
+      if (term.dataset.term === t) return;
+      term.dataset.term = t;
+      opts.forEach((o) => { const on = o === opt; o.classList.toggle('is-active', on); o.setAttribute('aria-checked', on ? 'true' : 'false'); });
+      document.querySelectorAll('[data-p24]').forEach((el) => {
+        el.classList.add('is-swap');
+        setTimeout(() => { el.textContent = el.dataset['p' + t]; el.classList.remove('is-swap'); }, 200);
+      });
+      document.querySelectorAll('[data-term-label]').forEach((el) => { el.textContent = t; });
+    }));
   })();
   </script>
 </body>
