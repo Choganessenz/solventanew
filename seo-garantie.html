@@ -62,55 +62,53 @@
     .sg-white { background: var(--background); }
 
     /* Website-Check */
-    .sg-inner--wide { max-width: 1200px; }
-    .sg-audit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
-    @media (max-width: 1000px) { .sg-audit { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; } }
-    .sg-audit-card { background: var(--background); border: 1px solid var(--border); border-radius: 22px; padding: 26px 24px 14px; box-shadow: 0 30px 70px -55px rgba(2,13,124,.35); }
-    .sg-audit-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-    .sg-audit-head h3 { font-size: 18px; font-weight: 800; letter-spacing: -.02em; color: var(--foreground); }
-    .sg-audit-ico { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(57,206,255,.16); color: #020d7c; }
-    .sg-audit-ico svg { width: 20px; height: 20px; }
-    .sg-audit-card ul { list-style: none; }
-    .sg-audit-card li { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .sg-audit-card li:last-child { border-bottom: none; }
-    .sg-audit-card li b { display: block; font-size: 15px; font-weight: 700; color: var(--foreground); }
-    .sg-audit-card li div span { display: block; font-size: 13.5px; line-height: 1.5; color: var(--muted-foreground); margin-top: 3px; }
-    .sg-pill { flex: none; position: relative; display: grid; margin-top: 1px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
-    .sg-pill i { grid-area: 1 / 1; font-style: normal; text-align: center; padding: 4px 10px; border-radius: 99px; transition: opacity .45s ease, transform .45s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--d) * 160ms + 300ms); }
-    .sg-pill-no { color: #b42318; background: #fee4e2; }
-    .sg-pill-ok { color: #067647; background: #dcfae6; opacity: 0; transform: scale(.7); }
-    .sg-audit-card.is-checked .sg-pill-no { opacity: 0; transform: scale(.7); }
-    .sg-audit-card.is-checked .sg-pill-ok { opacity: 1; transform: none; }
-    .sg-audit-note { max-width: 760px; margin: 34px auto 0; text-align: center; font-size: 16px; line-height: 1.65; color: #27272a; font-weight: 500; }
+    .sg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 880px; margin: 0 auto 64px; text-align: center; }
+    .sg-stats b { display: block; font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; background: linear-gradient(120deg, #39ceff, #1569c7 55%, #020d7c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sg-stats span { display: block; margin-top: 10px; font-size: 15px; color: var(--muted-foreground); }
+    @media (max-width: 640px) { .sg-stats { grid-template-columns: 1fr; gap: 28px; } }
+    .sg-words { max-width: 960px; margin: 0 auto; text-align: center; font-size: clamp(1.45rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.35; }
+    .sg-words span { display: inline-block; margin: 0 .38em; color: #d4d4d8; transition: color .6s ease; }
+    .sg-words span.is-lit { color: var(--foreground); }
+    .sg-words .sg-words-more.is-lit { color: #1569c7; }
+    .sg-audit-note { max-width: 680px; margin: 56px auto 0; text-align: center; font-size: 16px; line-height: 1.65; color: var(--muted-foreground); }
 
     /* Verzeichnisse */
     .sg-dirs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
     @media (max-width: 900px) { .sg-dirs { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .sg-dirs { grid-template-columns: repeat(2, 1fr); } }
-    .sg-dir { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 96px; padding: 18px; background: var(--background); border: 1px solid var(--border); border-radius: 18px; transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .4s ease; }
-    @media (hover: hover) { .sg-dir:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -30px rgba(2,13,124,.35); } }
+    .sg-dir { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 96px; padding: 18px; transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1); }
+    @media (hover: hover) { .sg-dir:hover { transform: scale(1.06); } }
     .sg-dir img { height: 32px; width: auto; max-width: 100%; object-fit: contain; }
     .sg-dir--icon img { height: 34px; }
     .sg-dir--tall img { height: 46px; }
     .sg-dir--icon span { font-size: 14px; font-weight: 700; color: #27272a; line-height: 1.25; }
-    .sg-dir--more { flex-direction: column; gap: 4px; text-align: center; background: var(--muted); }
+    .sg-dir--more { flex-direction: column; gap: 4px; text-align: center; }
     .sg-dir--more b { font-size: 15px; color: #020d7c; }
     .sg-dir--more span { font-size: 12.5px; line-height: 1.4; color: var(--muted-foreground); }
     .sg-dirs-note { margin-top: 18px; text-align: center; font-size: 12.5px; color: var(--muted-foreground); }
 
     /* Empfehlungen aus der Region */
-    .sg-split--rev { grid-template-columns: 1fr 1fr; }
-    .sg-text p + p { margin-top: 14px; }
-    .sg-net { position: relative; aspect-ratio: 1; max-width: 460px; width: 100%; margin: 0 auto; }
-    .sg-net svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-    .sg-net line { stroke: #39ceff; stroke-width: 2; stroke-dasharray: 2 2; vector-effect: non-scaling-stroke; animation: sgFlow 1.6s linear infinite; animation-delay: calc(var(--n) * -.27s); }
-    @keyframes sgFlow { to { stroke-dashoffset: -4; } }
-    .sg-net-node, .sg-net-core { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; border-radius: 99px; font-weight: 700; }
-    .sg-net-node { padding: 9px 14px; font-size: 13.5px; color: #27272a; background: var(--background); border: 1px solid var(--border); box-shadow: 0 14px 30px -20px rgba(2,13,124,.4); animation: sgFloat 5s ease-in-out infinite; animation-delay: calc(var(--n) * -.8s); }
-    @keyframes sgFloat { 50% { transform: translate(-50%, calc(-50% - 5px)); } }
-    .sg-net-core { left: 50%; top: 50%; padding: 18px 24px; font-size: 16px; color: #fff; background: linear-gradient(120deg, #1569c7, #020d7c); box-shadow: 0 0 0 10px rgba(57,206,255,.15), 0 24px 50px -20px rgba(2,13,124,.6); }
-    @media (max-width: 520px) { .sg-net-node { font-size: 11.5px; padding: 7px 10px; } .sg-net-core { font-size: 14px; padding: 14px 18px; } }
-    @media (prefers-reduced-motion: reduce) { .sg-net line, .sg-net-node { animation: none; } .sg-pill i { transition: none; } }
+    .sg-rec .sg-head { margin-bottom: 24px; }
+    .sg-rec-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; max-width: 920px; margin: 0 auto; }
+    .sg-rec-stage::before { content: ''; position: absolute; left: -10%; right: -10%; bottom: 0; height: 80%; background: radial-gradient(ellipse 45% 70% at 42% 100%, rgba(57,206,255,.22), rgba(57,206,255,0)); pointer-events: none; }
+    .sg-rec-person { position: relative; width: 360px; max-width: 46%; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+    .sg-article { position: relative; align-self: center; width: 420px; margin-left: -40px; padding: 30px 30px 26px; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,.04), 0 40px 80px -30px rgba(2,13,124,.35); text-align: left; transition: transform .6s cubic-bezier(0.22, 1, 0.36, 1); }
+    @media (hover: hover) { .sg-article:hover { transform: translateY(-4px); } }
+    .sg-article-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #1569c7; }
+    .sg-article h3 { margin-top: 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 25px; font-weight: 700; line-height: 1.22; letter-spacing: -.01em; color: var(--foreground); }
+    .sg-article-by { margin-top: 10px; font-size: 13px; color: var(--muted-foreground); }
+    .sg-article p { margin-top: 16px; font-family: Georgia, 'Times New Roman', serif; font-size: 16px; line-height: 1.65; color: #3f3f46; }
+    .sg-article a { color: #1569c7; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; background: rgba(57,206,255,.16); border-radius: 4px; padding: 0 3px; }
+    .sg-article-lines { display: grid; gap: 10px; margin-top: 18px; }
+    .sg-article-lines i { display: block; height: 9px; border-radius: 9px; background: #f0f0f2; }
+    .sg-article-lines i:nth-child(2) { width: 92%; } .sg-article-lines i:nth-child(3) { width: 96%; } .sg-article-lines i:nth-child(4) { width: 58%; }
+    .sg-article-tip { position: absolute; right: 26px; top: -16px; padding: 8px 14px; border-radius: 99px; background: #020d7c; color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 14px 30px -14px rgba(2,13,124,.7); }
+    @media (max-width: 760px) {
+      .sg-rec-stage { flex-direction: column; align-items: center; }
+      .sg-rec-person { width: 240px; max-width: 70%; }
+      .sg-article { width: 100%; max-width: 440px; margin: -70px 0 0; padding: 24px 22px 22px; }
+      .sg-article h3 { font-size: 21px; }
+    }
 
     /* Sanfter Zoom auf Bildern und Videos */
     .sg-zoom { transition: scale .6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .6s ease; }
@@ -137,8 +135,9 @@
     .sg-hero-sub { font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 500; color: #52525b; line-height: 1.55; max-width: 700px; margin: 24px auto 0; }
     .sg-hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
     .sg-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 40px; font-size: 14px; font-weight: 600; color: #3f3f46; }
-    .sg-facts span { display: inline-flex; align-items: center; gap: 8px; }
-    .sg-facts svg { color: #020d7c; flex-shrink: 0; }
+    .sg-facts span { display: inline-flex; align-items: center; }
+    .sg-facts span + span::before { content: ''; width: 4px; height: 4px; margin-right: 28px; border-radius: 50%; background: #a1a1aa; }
+    @media (max-width: 560px) { .sg-facts { flex-direction: column; align-items: center; gap: 8px; } .sg-facts span + span::before { display: none; } }
 
     /* Team + Zitat */
     .sg-team { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: center; }
@@ -177,9 +176,9 @@
     .sg-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .sg-text p { font-size: 16px; color: #3f3f46; line-height: 1.7; margin-top: 16px; }
     .sg-list { list-style: none; margin-top: 22px; display: grid; gap: 12px; }
-    .sg-list li { position: relative; padding-left: 30px; font-size: 15.5px; color: #27272a; line-height: 1.55; }
-    .sg-list li::before { content: ''; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: rgba(57,206,255,.2); }
-    .sg-list li::after { content: ''; position: absolute; left: 6px; top: 7px; width: 5px; height: 8px; border: solid #020d7c; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    .sg-list { gap: 0; }
+    .sg-list li { padding: 13px 0; border-top: 1px solid var(--border); font-size: 15.5px; font-weight: 500; color: #27272a; line-height: 1.5; }
+    .sg-list li:last-child { border-bottom: 1px solid var(--border); }
 
     /* Ablauf */
     .proc { background: var(--muted); }
@@ -432,9 +431,9 @@
       </a>
     </div>
     <div class="sg-facts">
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Zweimal pro Woche gemessen</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Jede Messung mit Beleg</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Website gehört in jedem Fall Ihnen</span>
+      <span>Zweimal pro Woche gemessen</span>
+      <span>Jede Messung mit Beleg</span>
+      <span>Website gehört in jedem Fall Ihnen</span>
     </div>
   </section>
 
@@ -526,49 +525,20 @@
   </section>
 
 
-  <!-- ═══ Website-Check: was wir konkret beheben ════════════ -->
+  <!-- ═══ Website-Check ═══════════════════════════════════ -->
   <section class="sg-section sg-muted" id="leistungen" aria-label="Was wir an Ihrer Website verbessern">
-    <div class="sg-inner sg-inner--wide">
+    <div class="sg-inner">
       <div class="sg-head reveal">
-        <h2 class="sg-h2">Was wir an Ihrer Website <span class="sg-grad">konkret verbessern</span></h2>
-        <p class="sg-sub">Bevor wir anfangen, prüfen wir Ihre heutige Website Seite für Seite. Diese Punkte finden wir bei fast jedem Betrieb. Jeden davon beheben wir, Sie müssen sich um nichts davon kümmern.</p>
+        <h2 class="sg-h2">Google liest Ihre Website anders als Ihre Kunden.</h2>
+        <p class="sg-sub">Bevor wir anfangen, prüfen wir Ihre Website Punkt für Punkt. Alles, was Google bremst, bringen wir in Ordnung. Sie müssen sich um nichts davon kümmern.</p>
       </div>
-      <div class="sg-audit">
-        <div class="sg-audit-card reveal">
-          <div class="sg-audit-head"><span class="sg-audit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><h3>Technik, die Google lesen kann</h3></div>
-          <ul>
-            <li style="--d:0"><div><b>Sitemap</b><span>Das Inhaltsverzeichnis Ihrer Website für Google. Fehlt sie, findet Google neue Seiten nur zufällig.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:1"><div><b>robots.txt</b><span>Sagt Suchmaschinen, was sie lesen sollen und was nicht.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:2"><div><b>llms.txt</b><span>Ein Steckbrief Ihres Betriebs für ChatGPT, Gemini und Co.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:3"><div><b>Sichere und schnelle Seite</b><span>HTTPS, kurze Ladezeit und eine Ansicht, die auf jedem Handy passt.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:4"><div><b>Alte Adressen umgeleitet</b><span>Wer über einen alten Link kommt, landet nicht im Leeren. Bestehende Platzierungen bleiben erhalten.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:5"><div><b>Kaputte Links und Testseiten</b><span>Vergessene Entwürfe, doppelte Seiten und tote Links räumen wir auf.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-          </ul>
-        </div>
-        <div class="sg-audit-card reveal">
-          <div class="sg-audit-head"><span class="sg-audit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg></span><h3>Inhalte, die Google versteht</h3></div>
-          <ul>
-            <li style="--d:0"><div><b>Eindeutige Seitentitel</b><span>Jede Seite bekommt einen eigenen Titel. Er ist das, was Kunden bei Google zuerst lesen.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:1"><div><b>Beschreibung im Suchergebnis</b><span>Der kurze Text unter dem Titel, der zum Klicken bewegt. Ohne ihn denkt Google sich selbst etwas aus.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:2"><div><b>Klare Überschriften</b><span>Eine Hauptüberschrift (H1) pro Seite und eine saubere Gliederung darunter.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:3"><div><b>Eine Seite pro Leistung</b><span>Statt einer Sammelseite oder fast gleicher Kopien bekommt jede Leistung ihre eigene Seite.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:4"><div><b>Bildbeschreibungen</b><span>Google sieht keine Bilder, sondern liest ihre Beschreibung. Die ergänzen wir überall.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:5"><div><b>Firmenkennung für Google</b><span>Strukturierte Daten zu Branche, Adresse, Öffnungszeiten und Bewertungen.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-          </ul>
-        </div>
-        <div class="sg-audit-card reveal">
-          <div class="sg-audit-head"><span class="sg-audit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span><h3>Sichtbar in Ihrer Stadt</h3></div>
-          <ul>
-            <li style="--d:0"><div><b>Ihre Stadt klar benannt</b><span>Google muss auf jeder wichtigen Seite erkennen, wo Sie arbeiten.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:1"><div><b>Seiten für das Umland</b><span>Eigene Seiten für die Orte rund um Ihre Stadt. Dort ist die Konkurrenz kleiner.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:2"><div><b>Google-Unternehmensprofil</b><span>Vollständig gepflegt mit Leistungen, Fotos und Öffnungszeiten.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:3"><div><b>Doppelte Einträge</b><span>Zwei Einträge für einen Betrieb teilen Ihre Bewertungen auf. Wir führen sie zusammen.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:4"><div><b>Überall dieselben Daten</b><span>Name, Adresse und Telefonnummer stimmen in jedem Verzeichnis überein.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-            <li style="--d:5"><div><b>Mehr Bewertungen</b><span>Wir zeigen Ihnen, wie zufriedene Kunden mit einem Klick bewerten.</span></div><span class="sg-pill" aria-hidden="true"><i class="sg-pill-no">fehlt</i><i class="sg-pill-ok">behoben</i></span></li>
-          </ul>
-        </div>
+      <div class="sg-stats reveal">
+        <div><b>30+</b><span>Prüfpunkte vor dem Start</span></div>
+        <div><b>3</b><span>Bereiche: Technik, Inhalte, Ihre Stadt</span></div>
+        <div><b>0</b><span>Stunden Aufwand für Sie</span></div>
       </div>
-      <p class="sg-audit-note reveal">Vor unserem Gespräch schauen wir uns Ihre Website genau an. Im Termin zeigen wir Ihnen, welche dieser Punkte bei Ihnen fehlen und wo Sie bei Google heute stehen.</p>
+      <p class="sg-words" id="sgWords"><span>Sitemap</span><span>robots.txt</span><span>llms.txt</span><span>Seitentitel</span><span>Überschriften</span><span>Ladezeit</span><span>Mobilansicht</span><span>Strukturdaten</span><span>Weiterleitungen</span><span>Bildbeschreibungen</span><span>Google-Profil</span><span>Seiten fürs Umland</span><span>Bewertungen</span><span>Verzeichnisse</span><span>Interne Links</span><span class="sg-words-more">und vieles mehr.</span></p>
+      <p class="sg-audit-note reveal">Vor unserem Gespräch schauen wir uns Ihre Website an. Im Termin zeigen wir Ihnen, wo Sie heute bei Google stehen und was bei Ihnen fehlt.</p>
     </div>
   </section>
 
@@ -596,22 +566,22 @@
   </section>
 
   <!-- ═══ Empfehlungen aus der Region (Backlinks) ═══════════ -->
-  <section class="sg-section sg-muted" aria-label="Empfehlungen aus Ihrer Region">
-    <div class="sg-inner sg-split sg-split--rev">
-      <div class="sg-text reveal">
-        <h2 class="sg-h2">Empfehlungen aus Ihrer Region</h2>
-        <p>Für Google ist jeder Link auf Ihre Website wie eine Empfehlung. Am meisten zählen Empfehlungen aus Ihrer eigenen Gegend: von Seiten, die Ihre Kunden ohnehin lesen.</p>
-        <p>Deshalb sorgen wir dafür, dass über Ihren Betrieb dort geschrieben wird. In Stadtmagazinen und lokalen Blogs, bei Vereinen, die Sie unterstützen, bei Partnerbetrieben und in Ihrer Innung. Wo es sinnvoll ist, arbeiten wir dafür auch mit Redaktionen und Autoren aus Ihrer Region zusammen, die Ihren Betrieb in einem eigenen Beitrag vorstellen.</p>
-        <ul class="sg-list">
-          <li>Erwähnungen auf Seiten aus Ihrer Stadt und Ihrem Umland</li>
-          <li>Beiträge über Ihren Betrieb statt gekaufter Massenlinks</li>
-          <li>Ein Link nach dem anderen, so wie Empfehlungen natürlich entstehen</li>
-        </ul>
+  <section class="sg-section sg-white sg-rec" aria-label="Empfehlungen aus Ihrer Region">
+    <div class="sg-inner">
+      <div class="sg-head reveal">
+        <h2 class="sg-h2">Wenn andere über Sie schreiben, hört Google zu.</h2>
+        <p class="sg-sub">Für Google ist jeder Link auf Ihre Website eine Empfehlung. Am meisten zählen Empfehlungen aus Ihrer eigenen Stadt. Deshalb arbeiten wir mit Redaktionen und Autoren aus Ihrer Region zusammen, die über Ihren Betrieb schreiben.</p>
       </div>
-      <div class="sg-net reveal" aria-hidden="true">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="50" y1="50" x2="50" y2="9" style="--n:0"/><line x1="50" y1="50" x2="89" y2="30" style="--n:1"/><line x1="50" y1="50" x2="89" y2="70" style="--n:2"/><line x1="50" y1="50" x2="50" y2="91" style="--n:3"/><line x1="50" y1="50" x2="11" y2="70" style="--n:4"/><line x1="50" y1="50" x2="11" y2="30" style="--n:5"/></svg>
-        <span class="sg-net-node" style="left:50%;top:9%;--n:0">Stadtmagazin</span><span class="sg-net-node" style="left:89%;top:30%;--n:1">Lokale Blogs</span><span class="sg-net-node" style="left:89%;top:70%;--n:2">Vereine</span><span class="sg-net-node" style="left:50%;top:91%;--n:3">Innung &amp; Verband</span><span class="sg-net-node" style="left:11%;top:70%;--n:4">Partnerbetriebe</span><span class="sg-net-node" style="left:11%;top:30%;--n:5">Regionale Presse</span>
-        <span class="sg-net-core">Ihre Website</span>
+      <div class="sg-rec-stage reveal">
+        <img class="sg-rec-person" src="material/autor_region.webp" width="520" height="889" loading="lazy" decoding="async" alt="Ein Autor aus der Region mit Notizbuch" />
+        <article class="sg-article" aria-label="Beispiel eines Artikels über einen Betrieb">
+          <div class="sg-article-kicker">Stadtmagazin · Aus der Region</div>
+          <h3>Ein Handwerksbetrieb, über den man in der Stadt spricht</h3>
+          <div class="sg-article-by">Von unserem Autor vor Ort · 4 Min. Lesezeit</div>
+          <p>Wer hier ein Dach, ein Bad oder eine Fassade machen lässt, fragt zuerst die Nachbarn. Immer öfter fällt dabei derselbe Name: <a tabindex="-1">Ihr Betrieb</a>. Wir haben uns angeschaut, warum.</p>
+          <div class="sg-article-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <span class="sg-article-tip" aria-hidden="true">Link zu Ihrer Website</span>
+        </article>
       </div>
     </div>
   </section>
@@ -1244,14 +1214,20 @@
       });
     });
   })();
-  /* Website-Check: Punkte springen beim Hinsehen von "fehlt" auf "behoben" */
+  /* Website-Check: Begriffe leuchten beim Scrollen nacheinander auf */
   (() => {
-    const cards = document.querySelectorAll('.sg-audit-card');
-    if (!('IntersectionObserver' in window)) { cards.forEach((c) => c.classList.add('is-checked')); return; }
-    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('is-checked'); io.unobserve(e.target); }
-    }), { threshold: 0.6 });
-    cards.forEach((c) => io.observe(c));
+    const box = document.getElementById('sgWords');
+    if (!box) return;
+    const words = Array.from(box.children);
+    const update = () => {
+      const r = box.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35)));
+      const n = Math.round(p * words.length);
+      words.forEach((w, i) => w.classList.toggle('is-lit', i < n));
+    };
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
   })();
   </script>
 </body>
