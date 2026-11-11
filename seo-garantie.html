@@ -53,6 +53,9 @@
 <style>
     /* ── Seite: /seo-garantie ── */
     .sg-section { padding: 96px 24px; }
+    .sg-section--compact { padding-top: 64px; padding-bottom: 64px; }
+    .sg-section--compact .sg-split { max-width: 980px; margin: 0 auto; gap: 48px; }
+    .sg-section--compact .sg-list { margin-top: 18px; }
     @media (max-width: 560px) { .sg-section { padding: 60px 18px; } }
     .sg-inner { max-width: 1080px; margin: 0 auto; }
     .sg-head { text-align: center; max-width: 700px; margin: 0 auto 48px; }
@@ -62,9 +65,9 @@
     .sg-white { background: var(--background); }
 
     /* Website-Check */
-    .sg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 880px; margin: 0 auto 64px; text-align: center; }
-    .sg-stats b { display: block; font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; background: linear-gradient(120deg, #39ceff, #1569c7 55%, #020d7c); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .sg-stats span { display: block; margin-top: 10px; font-size: 15px; color: var(--muted-foreground); }
+    .sg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 760px; margin: 0 auto 56px; text-align: center; }
+    .sg-stats b { display: block; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; background: linear-gradient(120deg, #39ceff, #1569c7 55%, #020d7c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sg-stats span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted-foreground); }
     @media (max-width: 640px) { .sg-stats { grid-template-columns: 1fr; gap: 28px; } }
     .sg-words { max-width: 960px; margin: 0 auto; text-align: center; font-size: clamp(1.45rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.35; }
     .sg-words span { display: inline-block; margin: 0 .38em; color: #d4d4d8; transition: color .6s ease; }
@@ -88,11 +91,12 @@
     .sg-dirs-note { margin-top: 18px; text-align: center; font-size: 12.5px; color: var(--muted-foreground); }
 
     /* Empfehlungen aus der Region */
+    .sg-rec { padding-bottom: 0 !important; }
     .sg-rec .sg-head { margin-bottom: 24px; }
     .sg-rec-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; max-width: 920px; margin: 0 auto; }
     .sg-rec-stage::before { content: ''; position: absolute; left: -10%; right: -10%; bottom: 0; height: 80%; background: radial-gradient(ellipse 45% 70% at 42% 100%, rgba(57,206,255,.22), rgba(57,206,255,0)); pointer-events: none; }
-    .sg-rec-person { position: relative; width: 360px; max-width: 46%; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
-    .sg-article { position: relative; align-self: center; width: 420px; margin-left: -40px; padding: 30px 30px 26px; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,.04), 0 40px 80px -30px rgba(2,13,124,.35); text-align: left; transition: transform .6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .sg-rec-person { position: relative; display: block; width: 360px; max-width: 46%; height: auto; }
+    .sg-article { position: relative; align-self: center; margin-bottom: 60px; width: 420px; margin-left: -40px; padding: 30px 30px 26px; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,.04), 0 40px 80px -30px rgba(2,13,124,.35); text-align: left; transition: transform .6s cubic-bezier(0.22, 1, 0.36, 1); }
     @media (hover: hover) { .sg-article:hover { transform: translateY(-4px); } }
     .sg-article-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #1569c7; }
     .sg-article h3 { margin-top: 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 25px; font-weight: 700; line-height: 1.22; letter-spacing: -.01em; color: var(--foreground); }
@@ -110,14 +114,39 @@
       .sg-article h3 { font-size: 21px; }
     }
 
+    /* Referenzen: Video in der Mitte, Balken links und rechts */
+    .sg-refs-stage { display: grid; grid-template-columns: 1fr minmax(0, 480px) 1fr; gap: 48px; align-items: end; max-width: 1100px; margin: 0 auto; }
+    .sg-refs-video { position: relative; border-radius: 20px; overflow: hidden; background: #0b0d18; box-shadow: 0 50px 100px -50px rgba(2,13,124,.55); aspect-ratio: 16 / 10; }
+    .sg-refs-video video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity .4s ease; }
+    .sg-refs-video.is-swap video { opacity: 0; }
+    .sg-refs-badge { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); white-space: nowrap; padding: 8px 16px; border-radius: 99px; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); font-size: 13.5px; font-weight: 700; color: #020d7c; transition: opacity .3s ease; }
+    .sg-chart { display: flex; flex-direction: column; }
+    .sg-chart-info { height: 76px; overflow: hidden; }
+    .sg-chart-info b, .sg-chart-info span { display: block; transition: opacity .35s ease, transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .sg-chart-info b { font-size: clamp(2rem, 3.6vw, 2.8rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; color: var(--foreground); }
+    .sg-chart-info span { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--muted-foreground); }
+    .sg-chart.is-out .sg-chart-info b, .sg-chart.is-out .sg-chart-info span { opacity: 0; transform: translateY(-14px); }
+    .sg-chart-bars { position: relative; display: flex; align-items: flex-end; gap: 8px; height: 220px; margin-top: 18px; border-top: 1.5px dashed #d4d4d8; }
+    .sg-chart-bars i { flex: 1; height: var(--h, 0%); border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, #39ceff, #1569c7); opacity: .35; transition: height 1s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--k) * 110ms); }
+    .sg-chart-bars i:last-child { opacity: 1; background: linear-gradient(180deg, #39ceff, #020d7c); box-shadow: 0 -10px 30px -6px rgba(57,206,255,.7); }
+    .sg-chart-bars i:nth-last-child(2) { opacity: .6; }
+    .sg-chart-axis { margin-top: 10px; font-size: 12px; color: #a1a1aa; }
+    .sg-refs-dots { display: flex; justify-content: center; gap: 8px; margin-top: 40px; }
+    .sg-refs-dots button { width: 8px; height: 8px; padding: 0; border: none; border-radius: 99px; background: #d4d4d8; cursor: pointer; transition: width .4s ease, background .3s ease; }
+    .sg-refs-dots button.is-active { width: 28px; background: #020d7c; }
+    @media (max-width: 860px) {
+      .sg-refs-stage { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+      .sg-refs-video { grid-column: 1 / -1; grid-row: 1; }
+      .sg-chart-bars { height: 150px; }
+      .sg-chart-info { height: 66px; }
+    }
+
     /* Sanfter Zoom auf Bildern und Videos */
     .sg-zoom { transition: scale .6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .6s ease; }
     @media (hover: hover) {
       .sg-zoom:hover { scale: 1.03; }
-      .feat7-frame { transition: scale .6s cubic-bezier(0.22, 1, 0.36, 1); }
-      .feat7-frame:hover { scale: 1.02; }
     }
-    @media (prefers-reduced-motion: reduce) { .sg-zoom, .feat7-frame { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .sg-zoom { transition: none; } }
 
     /* Hero */
     .sg-hero { position: relative; overflow: hidden; isolation: isolate; padding: 150px 24px 110px; text-align: center; }
@@ -184,33 +213,31 @@
     .proc { background: var(--muted); }
 
     /* Garantie: aufklappbar wie ein Buch */
-    .sg-books { max-width: 760px; margin: 0 auto; display: grid; gap: 14px; }
-    .sg-book { background: var(--background); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color .3s ease, box-shadow .3s ease; }
-    .sg-book.is-open { border-color: rgba(2,13,124,.25); box-shadow: 0 24px 50px -32px rgba(2,13,124,.45); }
-    .sg-book-q { width: 100%; display: flex; align-items: center; gap: 18px; padding: 22px 24px; background: none; border: none; cursor: pointer; font-family: var(--font); text-align: left; }
-    .sg-book-num { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #eef3ff; color: #020d7c; font-size: 14px; font-weight: 800; transition: background .3s ease, color .3s ease; }
-    .sg-book.is-open .sg-book-num { background: #020d7c; color: #fff; }
-    .sg-book-title { flex: 1; font-size: 17.5px; font-weight: 700; letter-spacing: -.01em; color: var(--foreground); line-height: 1.35; }
-    .sg-book-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--border); position: relative; transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1), border-color .3s ease; }
-    .sg-book-icon::before, .sg-book-icon::after { content: ''; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.8px; margin: -0.9px 0 0 -5.5px; background: #020d7c; border-radius: 2px; }
+    .sg-books { max-width: 860px; margin: 0 auto; border-top: 1px solid var(--border); }
+    .sg-book { border-bottom: 1px solid var(--border); }
+    .sg-book-q { width: 100%; display: flex; align-items: baseline; gap: 28px; padding: 30px 4px; background: none; border: none; cursor: pointer; font-family: var(--font); text-align: left; color: var(--foreground); }
+    .sg-book-num { flex-shrink: 0; width: 34px; font-size: 15px; font-weight: 600; color: #a1a1aa; font-variant-numeric: tabular-nums; transition: color .3s ease; }
+    .sg-book-title { flex: 1; font-size: clamp(1.25rem, 2.6vw, 1.85rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.2; transition: color .3s ease; }
+    @media (hover: hover) { .sg-book-q:hover .sg-book-title { color: #1569c7; } }
+    .sg-book.is-open .sg-book-num { color: #1569c7; }
+    .sg-book-icon { flex-shrink: 0; align-self: center; width: 16px; height: 16px; position: relative; transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .sg-book-icon::before, .sg-book-icon::after { content: ''; position: absolute; left: 0; top: 50%; width: 16px; height: 1.6px; margin-top: -0.8px; background: currentColor; border-radius: 2px; }
     .sg-book-icon::after { transform: rotate(90deg); transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
-    .sg-book.is-open .sg-book-icon { border-color: #020d7c; transform: rotate(180deg); }
+    .sg-book.is-open .sg-book-icon { transform: rotate(180deg); }
     .sg-book.is-open .sg-book-icon::after { transform: rotate(0deg); }
-    .sg-book-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s cubic-bezier(0.22, 1, 0.36, 1); perspective: 900px; }
+    .sg-book-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s cubic-bezier(0.22, 1, 0.36, 1); }
     .sg-book.is-open .sg-book-body { grid-template-rows: 1fr; }
     .sg-book-page { overflow: hidden; }
-    .sg-book-page p { margin: 0 24px 24px 80px; padding: 18px 20px; border-radius: 12px; background: #f7f9ff; border-left: 3px solid #39ceff; font-size: 16px; line-height: 1.7; color: #3f3f46;
-      transform-origin: top center; transform: rotateX(-75deg); opacity: 0; transition: transform .6s cubic-bezier(0.22, 1, 0.36, 1), opacity .4s ease; }
-    .sg-book.is-open .sg-book-page p { transform: rotateX(0); opacity: 1; transition-delay: .08s; }
-    @media (max-width: 560px) { .sg-book-q { padding: 18px; gap: 14px; } .sg-book-page p { margin: 0 18px 18px; } }
+    .sg-book-page p { max-width: 620px; margin: 0 0 32px 66px; font-size: 18px; line-height: 1.6; color: #52525b; opacity: 0; transform: translateY(-8px); transition: opacity .4s ease, transform .5s cubic-bezier(0.22, 1, 0.36, 1); }
+    .sg-book.is-open .sg-book-page p { opacity: 1; transform: none; transition-delay: .1s; }
+    @media (max-width: 560px) { .sg-book-q { gap: 16px; padding: 24px 0; } .sg-book-num { width: 26px; } .sg-book-page p { margin: 0 0 24px 42px; font-size: 16px; } }
     @media (prefers-reduced-motion: reduce) { .sg-book-body, .sg-book-page p { transition: none; } }
 
-    .sg-measure { max-width: 760px; margin: 28px auto 0; display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; padding: 28px 30px; border-radius: 20px; background: linear-gradient(135deg, #eef3ff, #f7fbff); border: 1px solid rgba(2,13,124,.1); }
-    @media (max-width: 640px) { .sg-measure { grid-template-columns: 1fr; gap: 14px; padding: 24px 22px; } }
-    .sg-measure-big { font-size: 3rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; color: #020d7c; }
-    .sg-measure-big small { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted-foreground); margin-top: 8px; }
-    .sg-measure p { font-size: 16px; line-height: 1.7; color: #3f3f46; }
-    .sg-measure p + p { margin-top: 8px; font-size: 14px; color: var(--muted-foreground); }
+    .sg-measure { max-width: 680px; margin: 88px auto 0; text-align: center; }
+    .sg-measure-big { font-size: clamp(4rem, 11vw, 7.5rem); font-weight: 800; letter-spacing: -.06em; line-height: 1; background: linear-gradient(120deg, #39ceff, #1569c7 50%, #020d7c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sg-measure-cap { margin-top: 10px; font-size: 19px; font-weight: 700; letter-spacing: -.01em; color: var(--foreground); }
+    .sg-measure p { margin-top: 18px; font-size: 16.5px; line-height: 1.65; color: var(--muted-foreground); }
+    .sg-measure .sg-measure-fine { margin-top: 10px; font-size: 13.5px; color: #a1a1aa; }
 
     /* Kundenbereich */
     .sg-portal { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
@@ -227,7 +254,6 @@
 
     /* Abschnitts-Hintergründe der übernommenen Blöcke */
     .reviews { background: var(--muted); }
-    .feat7 { background: var(--background); }
     .faq { background: var(--muted); padding-top: 96px; }
     @media (max-width: 560px) { .faq { padding-top: 60px; } }
 
@@ -240,10 +266,6 @@
     .faq-a p { margin: 0 24px; padding: 18px 0 24px; border-top: 1px solid var(--border); font-size: 15.5px; line-height: 1.7; color: #52525b; }
 
     /* Abschluss */
-    .sg-end { position: relative; overflow: hidden; isolation: isolate; text-align: center; }
-    .sg-end .sg-hero-fx { opacity: .9; }
-    .sg-end-card { max-width: 680px; margin: 0 auto; }
-    .sg-end-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 30px; }
   </style>
 <script defer src="https://emwebstudios.de/t.js" data-site="f6bee455da6665e671cf"></script>
 </head>
@@ -503,7 +525,7 @@
   </section>
 
   <!-- ═══ Was wir tun (SEO-Video) ═══════════════════════════ -->
-  <section class="sg-section sg-white" aria-label="Was wir für Sie tun">
+  <section class="sg-section sg-section--compact sg-white" aria-label="Was wir für Sie tun">
     <div class="sg-inner sg-split">
       <div class="sg-video sg-zoom reveal">
         <video autoplay muted loop playsinline preload="none" poster="material/seo_poster.webp" aria-label="SEO, Suchmaschinenoptimierung">
@@ -512,7 +534,6 @@
       </div>
       <div class="sg-text reveal">
         <h2 class="sg-h2">Eine Website, die von Anfang an für Google gebaut ist</h2>
-        <p>Wir bauen Ihre Website nicht aus einem Baukasten, sondern von Hand. Schnell, mobil optimiert und so aufgebaut, dass Google sofort versteht, was Sie anbieten und wo. Danach bleiben wir dran, Monat für Monat, damit Sie oben ankommen und oben bleiben.</p>
         <ul class="sg-list">
           <li>Individuelle Website inklusive Texten und Bildauswahl</li>
           <li>Laufende SEO-Betreuung für Google-Suche und Google Maps</li>
@@ -658,34 +679,33 @@
   <section class="sg-section sg-white" id="garantie" aria-label="Was die Garantie für Sie bedeutet">
     <div class="sg-inner">
       <div class="sg-head reveal">
-        <h2 class="sg-h2">Was die Garantie für Sie bedeutet</h2>
-        <p class="sg-sub">Vier Versprechen, die genau so in Ihrem Vertrag stehen. Klicken Sie auf eines, um es aufzuschlagen.</p>
+        <h2 class="sg-h2">Die Garantie. In vier Sätzen.</h2>
+        <p class="sg-sub">So steht es in Ihrem Vertrag.</p>
       </div>
       <div class="sg-books">
         <div class="sg-book reveal">
-          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">1</span><span class="sg-book-title">Ein Monat ohne Top 3 kostet Sie nichts</span><span class="sg-book-icon" aria-hidden="true"></span></button>
-          <div class="sg-book-body"><div class="sg-book-page"><p>Stehen Sie in einem Monat nicht oft genug oben, schreiben wir keine Rechnung. Auch keine Teilrechnung und keine Nachzahlung später.</p></div></div>
+          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">01</span><span class="sg-book-title">Kein Platz 1 bis 3, keine Rechnung.</span><span class="sg-book-icon" aria-hidden="true"></span></button>
+          <div class="sg-book-body"><div class="sg-book-page"><p>Stehen Sie in einem Monat nicht oft genug oben, zahlen Sie für diesen Monat nichts. Keine Teilrechnung, keine Nachzahlung.</p></div></div>
         </div>
         <div class="sg-book reveal">
-          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">2</span><span class="sg-book-title">Das gilt über die ganze Laufzeit</span><span class="sg-book-icon" aria-hidden="true"></span></button>
-          <div class="sg-book-body"><div class="sg-book-page"><p>Rutschen Sie mitten in der Laufzeit ab, ist auch dieser Monat frei. Und wir arbeiten weiter, bis Sie wieder oben stehen.</p></div></div>
+          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">02</span><span class="sg-book-title">Über die ganze Laufzeit.</span><span class="sg-book-icon" aria-hidden="true"></span></button>
+          <div class="sg-book-body"><div class="sg-book-page"><p>Rutschen Sie irgendwann ab, ist auch dieser Monat frei. Und wir arbeiten weiter, bis Sie wieder oben stehen.</p></div></div>
         </div>
         <div class="sg-book reveal">
-          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">3</span><span class="sg-book-title">Zwei schwache Monate, und Sie dürfen gehen</span><span class="sg-book-icon" aria-hidden="true"></span></button>
-          <div class="sg-book-body"><div class="sg-book-page"><p>Zwei Monate direkt hintereinander ohne Platzierung? Dann können Sie zum Monatsende kündigen. Eine kurze E-Mail reicht. Sie müssen nicht, Sie dürfen.</p></div></div>
+          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">03</span><span class="sg-book-title">Zwei schwache Monate, und Sie dürfen gehen.</span><span class="sg-book-icon" aria-hidden="true"></span></button>
+          <div class="sg-book-body"><div class="sg-book-page"><p>Zwei Monate hintereinander ohne Platzierung? Dann können Sie zum Monatsende kündigen. Eine kurze E-Mail reicht.</p></div></div>
         </div>
         <div class="sg-book reveal">
-          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">4</span><span class="sg-book-title">Die Website gehört immer Ihnen</span><span class="sg-book-icon" aria-hidden="true"></span></button>
-          <div class="sg-book-body"><div class="sg-book-page"><p>Egal, wie es ausgeht. Wir übergeben Ihnen alle Dateien und die Domain, den Umzug zu einem anderen Anbieter machen wir kostenlos.</p></div></div>
+          <button class="sg-book-q" aria-expanded="false"><span class="sg-book-num">04</span><span class="sg-book-title">Die Website gehört Ihnen.</span><span class="sg-book-icon" aria-hidden="true"></span></button>
+          <div class="sg-book-body"><div class="sg-book-page"><p>Egal, wie es ausgeht. Sie bekommen alle Dateien und Ihre Domain, den Umzug zu einem anderen Anbieter übernehmen wir kostenlos.</p></div></div>
         </div>
       </div>
 
       <div class="sg-measure reveal">
-        <div class="sg-measure-big">75&nbsp;%<small>der Messungen im Monat</small></div>
-        <div>
-          <p>Jeden Dienstag und Donnerstag um 10 Uhr schauen wir nach, wo Sie bei Google und Google Maps in Ihrer Stadt stehen. Sind Sie bei drei von vier Messungen unter den ersten drei, gilt der Monat als erreicht. In den ersten zwei Monaten nach dem Livegang reicht sogar ein Treffer.</p>
-          <p>Garantiert ist ein Suchbegriff, wir arbeiten an allen. Anzeigen und Einträge von Branchenverzeichnissen zählen dabei nicht als Platzierung.</p>
-        </div>
+        <div class="sg-measure-big">75&nbsp;%</div>
+        <div class="sg-measure-cap">der Messungen im Monat auf Platz 1 bis 3</div>
+        <p>Jeden Dienstag und Donnerstag um 10 Uhr prüfen wir, wo Sie bei Google und Google Maps in Ihrer Stadt stehen. In den ersten zwei Monaten nach dem Livegang reicht schon ein Treffer.</p>
+        <p class="sg-measure-fine">Garantiert ist ein Suchbegriff, wir arbeiten an allen. Anzeigen und Einträge von Branchenverzeichnissen zählen nicht als Platzierung.</p>
       </div>
     </div>
   </section>
@@ -905,76 +925,31 @@
 
   </section>
 
-<section class="feat7" id="erfolge" aria-label="Projekte, die Ergebnisse liefern">
-    <div class="feat7-inner">
-
-      <!-- Heading + reference navigation -->
-      <div class="feat7-head reveal">
-        <h2 class="feat7-title">Projekte, die Ergebnisse liefern</h2>
-        <p class="feat7-sub">Echte Websites für echte Unternehmen aus der Region, modern, schnell und gemacht, um Anfragen zu bringen.</p>
+<section class="sg-section sg-white sg-refs" id="erfolge" aria-label="Projekte, die Ergebnisse liefern">
+    <div class="sg-inner sg-inner--wide">
+      <div class="sg-head reveal">
+        <h2 class="sg-h2">Projekte, die Ergebnisse liefern</h2>
+        <p class="sg-sub" id="refName">Bautrocknung in NRW</p>
       </div>
-
-      <!-- Control bar: current project + arrows -->
-      <div class="feat7-bar reveal">
-        <div class="feat7-project" id="feat7Project">Bautrocknung in NRW</div>
-        <div class="feat7-arrows">
-          <button class="feat7-arrow" id="feat7Prev" aria-label="Vorherige Referenz">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-            </svg>
-          </button>
-          <button class="feat7-arrow" id="feat7Next" aria-label="Nächste Referenz">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </button>
+      <div class="sg-refs-stage reveal" id="refStage">
+        <div class="sg-chart" data-side="0">
+          <div class="sg-chart-info"><b data-val>×212&nbsp;%</b><span data-lab>Besucher</span></div>
+          <div class="sg-chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="sg-chart-axis">Monate nach dem Livegang</div>
+        </div>
+        <div class="sg-refs-video sg-zoom">
+          <video muted loop playsinline preload="none" poster="material/bautrocknung_poster.webp" aria-label="Scroll-Aufnahme der Referenz-Website">
+            <source src="material/bautrocknung.mp4" type="video/mp4" />
+          </video>
+          <span class="sg-refs-badge" id="refRank">Platz 1 bei Google</span>
+        </div>
+        <div class="sg-chart" data-side="1">
+          <div class="sg-chart-info"><b data-val>×180&nbsp;%</b><span data-lab>Neukunden</span></div>
+          <div class="sg-chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="sg-chart-axis">Monate nach dem Livegang</div>
         </div>
       </div>
-
-      <!-- Swappable content (image + features cross-fade on navigation) -->
-      <div class="feat7-swap" id="feat7Swap">
-
-        <!-- Tilted 3D image showcase -->
-        <div class="feat7-showcase reveal">
-          <div class="feat7-perspective">
-            <div class="feat7-tilt">
-              <div class="feat7-frame">
-                <div class="feat7-vignette" aria-hidden="true"></div>
-                <div class="feat7-media" id="feat7Media">
-                  <video class="feat7-img" muted loop playsinline preload="none"
-                    poster="material/bautrocknung_poster.webp"
-                    aria-label="Scroll-Aufnahme der Website von Bautrocknung OWL">
-                    <source src="material/bautrocknung.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature grid, short heading + big counting key figure -->
-        <div class="feat7-grid">
-          <div class="feat7-feature reveal">
-            <h3 class="feat7-fval" data-target="212" data-prefix="×" data-suffix="&#160;%">×212&#160;%</h3>
-            <span class="feat7-label">Besucher</span>
-          </div>
-          <div class="feat7-feature reveal">
-            <h3 class="feat7-fval" data-target="180" data-prefix="×" data-suffix="&#160;%">×180&#160;%</h3>
-            <span class="feat7-label">Neukunden</span>
-          </div>
-          <div class="feat7-feature reveal">
-            <h3 class="feat7-fval">#1</h3>
-            <span class="feat7-label">Platzierung</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Dots -->
-      <div class="feat7-dots" id="feat7Dots"></div>
-
+      <div class="sg-refs-dots" id="refDots"></div>
     </div>
   </section>
 
@@ -1134,25 +1109,6 @@
     </div>
   </section>
 
-  <!-- ═══ Abschluss ═════════════════════════════════════════ -->
-  <section class="sg-section sg-end" aria-label="Nächster Schritt">
-    <div class="sg-hero-fx" aria-hidden="true"></div>
-    <div class="sg-end-card reveal">
-      <h2 class="sg-h2">Lesen Sie in Ruhe. Wir sprechen dann persönlich.</h2>
-      <p class="sg-sub">Im Gespräch schauen wir gemeinsam, welche Suchbegriffe für Ihren Betrieb sinnvoll sind und wie Sie heute bei Google dastehen. Unverbindlich und ohne Druck. Wenn Sie vorher schon Fragen haben, erreichen Sie uns direkt.</p>
-      <div class="sg-end-contacts">
-        <a href="tel:+4915510457759" class="lhero-btn lhero-btn--primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>0155 10457759</span>
-          <span class="lhero-shine" aria-hidden="true"></span>
-        </a>
-        <a href="mailto:info@solventa-digital.de" class="lhero-btn lhero-btn--secondary">
-          <span>info@solventa-digital.de</span>
-          <span class="lhero-shine" aria-hidden="true"></span>
-        </a>
-      </div>
-    </div>
-  </section>
 
 <footer class="ft">
     <div class="ft-inner">
@@ -1228,6 +1184,69 @@
     addEventListener('scroll', update, { passive: true });
     addEventListener('resize', update);
     update();
+  })();
+  /* Referenzen: Video wechselt, Balken wachsen, Zahlen tauschen nacheinander */
+  (() => {
+    const stage = document.getElementById('refStage');
+    if (!stage) return;
+    const REFS = [
+      { name: 'Bautrocknung in NRW', mp4: 'material/bautrocknung.mp4', poster: 'material/bautrocknung_poster.webp', rank: 'Platz 1 bei Google',
+        stats: [['×212\u00a0%', 'Besucher', [16, 20, 27, 42, 68, 118]], ['×180\u00a0%', 'Neukunden', [14, 18, 26, 38, 64, 112]]] },
+      { name: 'Garten- und Landschaftsbau in Baden-Württemberg', mp4: 'material/gruenwerk.mp4', poster: 'material/gruenwerk_poster.jpg', rank: 'Platz 3 bei Google',
+        stats: [['×165\u00a0%', 'Besucher', [18, 22, 30, 44, 66, 108]], ['×140\u00a0%', 'Neukunden', [16, 21, 28, 40, 60, 104]]] },
+    ];
+    const charts = Array.from(stage.querySelectorAll('.sg-chart'));
+    const box = stage.querySelector('.sg-refs-video');
+    const video = box.querySelector('video');
+    const name = document.getElementById('refName');
+    const rank = document.getElementById('refRank');
+    const dotsWrap = document.getElementById('refDots');
+    let cur = 0, timer = null, seen = false;
+
+    const bars = (c, hs) => c.querySelectorAll('.sg-chart-bars i').forEach((b, k) => { b.style.setProperty('--k', k); b.style.setProperty('--h', hs ? hs[k] + '%' : '0%'); });
+    const dots = REFS.map((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', 'Referenz ' + (i + 1) + ' anzeigen');
+      d.addEventListener('click', () => { show(i); restart(); });
+      dotsWrap.appendChild(d);
+      return d;
+    });
+
+    function show(i) {
+      cur = i;
+      const r = REFS[i];
+      dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
+      name.textContent = r.name;
+      box.classList.add('is-swap');
+      setTimeout(() => {
+        video.poster = r.poster;
+        video.innerHTML = '<source src="' + r.mp4 + '" type="video/mp4">';
+        video.load();
+        if (seen) video.play().catch(() => {});
+        rank.textContent = r.rank;
+        box.classList.remove('is-swap');
+      }, 400);
+      charts.forEach((c, k) => {
+        bars(c, null);
+        setTimeout(() => c.classList.add('is-out'), k * 350);
+        setTimeout(() => {
+          c.querySelector('[data-val]').textContent = r.stats[k][0];
+          c.querySelector('[data-lab]').textContent = r.stats[k][1];
+          c.classList.remove('is-out');
+          bars(c, r.stats[k][2]);
+        }, 450 + k * 350);
+      });
+    }
+    function restart() { clearInterval(timer); timer = setInterval(() => show((cur + 1) % REFS.length), 7000); }
+
+    charts.forEach((c) => bars(c, null));
+    dots[0].classList.add('is-active');
+    new IntersectionObserver((entries) => {
+      const on = entries[0].isIntersecting;
+      if (on && !seen) { seen = true; show(0); restart(); }
+      if (on) video.play().catch(() => {}); else video.pause();
+    }, { threshold: 0.3 }).observe(stage);
   })();
   </script>
 </body>
